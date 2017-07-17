@@ -279,12 +279,6 @@ module Google
       class Organization
         include Google::Apis::Core::Hashable
       
-        # Timestamp when the Organization was created. Assigned by the server.
-        # @OutputOnly
-        # Corresponds to the JSON property `creationTime`
-        # @return [String]
-        attr_accessor :creation_time
-      
         # The entity that owns an Organization. The lifetime of the Organization and
         # all of its descendants are bound to the `OrganizationOwner`. If the
         # `OrganizationOwner` is deleted, the Organization and all its descendants will
@@ -322,18 +316,24 @@ module Google
         # @return [String]
         attr_accessor :display_name
       
+        # Timestamp when the Organization was created. Assigned by the server.
+        # @OutputOnly
+        # Corresponds to the JSON property `creationTime`
+        # @return [String]
+        attr_accessor :creation_time
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @creation_time = args[:creation_time] if args.key?(:creation_time)
           @owner = args[:owner] if args.key?(:owner)
           @name = args[:name] if args.key?(:name)
           @organization_id = args[:organization_id] if args.key?(:organization_id)
           @lifecycle_state = args[:lifecycle_state] if args.key?(:lifecycle_state)
           @display_name = args[:display_name] if args.key?(:display_name)
+          @creation_time = args[:creation_time] if args.key?(:creation_time)
         end
       end
       
@@ -552,6 +552,26 @@ module Google
       class Project
         include Google::Apis::Core::Hashable
       
+        # The user-assigned display name of the Project.
+        # It must be 4 to 30 characters.
+        # Allowed characters are: lowercase and uppercase letters, numbers,
+        # hyphen, single-quote, double-quote, space, and exclamation point.
+        # Example: <code>My Project</code>
+        # Read-write.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # The unique, user-assigned ID of the Project.
+        # It must be 6 to 30 lowercase letters, digits, or hyphens.
+        # It must start with a letter.
+        # Trailing hyphens are prohibited.
+        # Example: <code>tokyo-rain-123</code>
+        # Read-only after creation.
+        # Corresponds to the JSON property `projectId`
+        # @return [String]
+        attr_accessor :project_id
+      
         # The Project lifecycle state.
         # Read-only.
         # Corresponds to the JSON property `lifecycleState`
@@ -593,39 +613,19 @@ module Google
         # @return [String]
         attr_accessor :create_time
       
-        # The user-assigned display name of the Project.
-        # It must be 4 to 30 characters.
-        # Allowed characters are: lowercase and uppercase letters, numbers,
-        # hyphen, single-quote, double-quote, space, and exclamation point.
-        # Example: <code>My Project</code>
-        # Read-write.
-        # Corresponds to the JSON property `name`
-        # @return [String]
-        attr_accessor :name
-      
-        # The unique, user-assigned ID of the Project.
-        # It must be 6 to 30 lowercase letters, digits, or hyphens.
-        # It must start with a letter.
-        # Trailing hyphens are prohibited.
-        # Example: <code>tokyo-rain-123</code>
-        # Read-only after creation.
-        # Corresponds to the JSON property `projectId`
-        # @return [String]
-        attr_accessor :project_id
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @name = args[:name] if args.key?(:name)
+          @project_id = args[:project_id] if args.key?(:project_id)
           @lifecycle_state = args[:lifecycle_state] if args.key?(:lifecycle_state)
           @project_number = args[:project_number] if args.key?(:project_number)
           @parent = args[:parent] if args.key?(:parent)
           @labels = args[:labels] if args.key?(:labels)
           @create_time = args[:create_time] if args.key?(:create_time)
-          @name = args[:name] if args.key?(:name)
-          @project_id = args[:project_id] if args.key?(:project_id)
         end
       end
       
@@ -788,17 +788,17 @@ module Google
       class ResourceId
         include Google::Apis::Core::Hashable
       
-        # Required field representing the resource type this id is for.
-        # At present, the valid types are "project" and "organization".
-        # Corresponds to the JSON property `type`
-        # @return [String]
-        attr_accessor :type
-      
         # Required field for the type-specific id. This should correspond to the id
         # used in the type-specific API's.
         # Corresponds to the JSON property `id`
         # @return [String]
         attr_accessor :id
+      
+        # Required field representing the resource type this id is for.
+        # At present, the valid types are "project" and "organization".
+        # Corresponds to the JSON property `type`
+        # @return [String]
+        attr_accessor :type
       
         def initialize(**args)
            update!(**args)
@@ -806,8 +806,8 @@ module Google
       
         # Update properties of this object
         def update!(**args)
-          @type = args[:type] if args.key?(:type)
           @id = args[:id] if args.key?(:id)
+          @type = args[:type] if args.key?(:type)
         end
       end
     end

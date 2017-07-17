@@ -27,6 +27,9 @@ module Google
       VERSION = 'V1'
       REVISION = '20170710'
 
+      # View the email addresses of people in your classes
+      AUTH_CLASSROOM_PROFILE_EMAILS = 'https://www.googleapis.com/auth/classroom.profile.emails'
+
       # Manage your course work and view your grades in Google Classroom
       AUTH_CLASSROOM_COURSEWORK_ME = 'https://www.googleapis.com/auth/classroom.coursework.me'
 
@@ -45,11 +48,11 @@ module Google
       # View your Google Classroom classes
       AUTH_CLASSROOM_COURSES_READONLY = 'https://www.googleapis.com/auth/classroom.courses.readonly'
 
-      # View your Google Classroom class rosters
-      AUTH_CLASSROOM_ROSTERS_READONLY = 'https://www.googleapis.com/auth/classroom.rosters.readonly'
-
       # View the profile photos of people in your classes
       AUTH_CLASSROOM_PROFILE_PHOTOS = 'https://www.googleapis.com/auth/classroom.profile.photos'
+
+      # View your Google Classroom class rosters
+      AUTH_CLASSROOM_ROSTERS_READONLY = 'https://www.googleapis.com/auth/classroom.rosters.readonly'
 
       # View and manage guardians for students in your Google Classroom classes
       AUTH_CLASSROOM_GUARDIANLINKS_STUDENTS = 'https://www.googleapis.com/auth/classroom.guardianlinks.students'
@@ -68,9 +71,6 @@ module Google
 
       # View your course work and grades in Google Classroom
       AUTH_CLASSROOM_COURSEWORK_ME_READONLY = 'https://www.googleapis.com/auth/classroom.coursework.me.readonly'
-
-      # View the email addresses of people in your classes
-      AUTH_CLASSROOM_PROFILE_EMAILS = 'https://www.googleapis.com/auth/classroom.profile.emails'
     end
   end
 end

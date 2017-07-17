@@ -5047,6 +5047,11 @@ module Google
         # @return [String]
         attr_accessor :link
       
+        # Product data.
+        # Corresponds to the JSON property `product`
+        # @return [Google::Apis::ContentV2::Product]
+        attr_accessor :product
+      
         # The id of the product for which status is reported.
         # Corresponds to the JSON property `productId`
         # @return [String]
@@ -5070,6 +5075,7 @@ module Google
           @kind = args[:kind] if args.key?(:kind)
           @last_update_date = args[:last_update_date] if args.key?(:last_update_date)
           @link = args[:link] if args.key?(:link)
+          @product = args[:product] if args.key?(:product)
           @product_id = args[:product_id] if args.key?(:product_id)
           @title = args[:title] if args.key?(:title)
         end
@@ -5458,6 +5464,12 @@ module Google
         # @return [Fixnum]
         attr_accessor :batch_id
       
+        # 
+        # Corresponds to the JSON property `includeAttributes`
+        # @return [Boolean]
+        attr_accessor :include_attributes
+        alias_method :include_attributes?, :include_attributes
+      
         # The ID of the managing account.
         # Corresponds to the JSON property `merchantId`
         # @return [Fixnum]
@@ -5480,6 +5492,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @batch_id = args[:batch_id] if args.key?(:batch_id)
+          @include_attributes = args[:include_attributes] if args.key?(:include_attributes)
           @merchant_id = args[:merchant_id] if args.key?(:merchant_id)
           @request_method = args[:request_method] if args.key?(:request_method)
           @product_id = args[:product_id] if args.key?(:product_id)

@@ -46,16 +46,6 @@ module Google
       class RunMobileFriendlyTestResponse
         include Google::Apis::Core::Hashable
       
-        # Information about embedded resources issues.
-        # Corresponds to the JSON property `resourceIssues`
-        # @return [Array<Google::Apis::SearchconsoleV1::ResourceIssue>]
-        attr_accessor :resource_issues
-      
-        # Final state of the test, including error details if necessary.
-        # Corresponds to the JSON property `testStatus`
-        # @return [Google::Apis::SearchconsoleV1::TestStatus]
-        attr_accessor :test_status
-      
         # Test verdict, whether the page is mobile friendly or not.
         # Corresponds to the JSON property `mobileFriendliness`
         # @return [String]
@@ -71,17 +61,27 @@ module Google
         # @return [Google::Apis::SearchconsoleV1::Image]
         attr_accessor :screenshot
       
+        # Information about embedded resources issues.
+        # Corresponds to the JSON property `resourceIssues`
+        # @return [Array<Google::Apis::SearchconsoleV1::ResourceIssue>]
+        attr_accessor :resource_issues
+      
+        # Final state of the test, including error details if necessary.
+        # Corresponds to the JSON property `testStatus`
+        # @return [Google::Apis::SearchconsoleV1::TestStatus]
+        attr_accessor :test_status
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @resource_issues = args[:resource_issues] if args.key?(:resource_issues)
-          @test_status = args[:test_status] if args.key?(:test_status)
           @mobile_friendliness = args[:mobile_friendliness] if args.key?(:mobile_friendliness)
           @mobile_friendly_issues = args[:mobile_friendly_issues] if args.key?(:mobile_friendly_issues)
           @screenshot = args[:screenshot] if args.key?(:screenshot)
+          @resource_issues = args[:resource_issues] if args.key?(:resource_issues)
+          @test_status = args[:test_status] if args.key?(:test_status)
         end
       end
       

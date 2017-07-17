@@ -10319,7 +10319,8 @@ module Google
         end
         
         # Patches the specified Router resource with the data included in the request.
-        # This method supports patch semantics.
+        # This method supports PATCH semantics and uses JSON merge patch format and
+        # processing rules.
         # @param [String] project
         #   Project ID for this request.
         # @param [String] region

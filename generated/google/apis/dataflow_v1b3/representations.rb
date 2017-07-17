@@ -22,6 +22,78 @@ module Google
   module Apis
     module DataflowV1b3
       
+      class SourceSplitShard
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class CpuTime
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Environment
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class StreamingComputationTask
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SendDebugCaptureRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GetDebugConfigResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ComponentTransform
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class StreamingSetupTask
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class PubsubLocation
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class WorkerHealthReport
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class JobMessage
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ParameterMetadata
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class MultiOutputInfo
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -40,7 +112,7 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class ShellTask
+      class AutoscalingEvent
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -52,7 +124,7 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class AutoscalingEvent
+      class ShellTask
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -142,13 +214,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class StreamingStageLocation
+      class DataDiskAssignment
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class DataDiskAssignment
+      class StreamingStageLocation
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -184,7 +256,7 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class StreamingComputationConfig
+      class LeaseWorkItemResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -196,19 +268,19 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class LeaseWorkItemResponse
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class LaunchTemplateParameters
+      class StreamingComputationConfig
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
       class Sink
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class LaunchTemplateParameters
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -226,13 +298,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class StageSource
+      class InstructionInput
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class InstructionInput
+      class StageSource
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -250,13 +322,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class GetDebugConfigRequest
+      class LeaseWorkItemRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class LeaseWorkItemRequest
+      class GetDebugConfigRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -292,13 +364,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class JobExecutionInfo
+      class Step
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class Step
+      class JobExecutionInfo
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -316,13 +388,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class CounterMetadata
+      class ListJobMessagesResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class ListJobMessagesResponse
+      class CounterMetadata
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -334,13 +406,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class IntegerList
+      class StateFamilyConfig
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class StateFamilyConfig
+      class IntegerList
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -364,13 +436,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class Package
+      class KeyRangeDataDiskAssignment
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class KeyRangeDataDiskAssignment
+      class Package
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -382,13 +454,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class MetricUpdate
+      class CounterStructuredName
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class CounterStructuredName
+      class MetricUpdate
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -448,13 +520,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class SourceFork
+      class WorkerHealthReportResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class WorkerHealthReportResponse
+      class SourceFork
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -628,13 +700,19 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class SendDebugCaptureResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class SideInputInfo
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class SendDebugCaptureResponse
+      class WriteInstruction
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -652,19 +730,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class WriteInstruction
+      class AutoscalingSettings
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
       class StreamingComputationRanges
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class AutoscalingSettings
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -689,75 +761,130 @@ module Google
       end
       
       class SourceSplitShard
-        class Representation < Google::Apis::Core::JsonRepresentation; end
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :derivation_mode, as: 'derivationMode'
+          property :source, as: 'source', class: Google::Apis::DataflowV1b3::Source, decorator: Google::Apis::DataflowV1b3::Source::Representation
       
-        include Google::Apis::Core::JsonObjectSupport
+        end
       end
       
       class CpuTime
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :rate, as: 'rate'
+          property :timestamp, as: 'timestamp'
+          property :total_ms, :numeric_string => true, as: 'totalMs'
+        end
       end
       
       class Environment
-        class Representation < Google::Apis::Core::JsonRepresentation; end
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :worker_pools, as: 'workerPools', class: Google::Apis::DataflowV1b3::WorkerPool, decorator: Google::Apis::DataflowV1b3::WorkerPool::Representation
       
-        include Google::Apis::Core::JsonObjectSupport
+          property :dataset, as: 'dataset'
+          collection :experiments, as: 'experiments'
+          hash :internal_experiments, as: 'internalExperiments'
+          hash :version, as: 'version'
+          property :service_account_email, as: 'serviceAccountEmail'
+          hash :user_agent, as: 'userAgent'
+          hash :sdk_pipeline_options, as: 'sdkPipelineOptions'
+          property :cluster_manager_api_service, as: 'clusterManagerApiService'
+          property :temp_storage_prefix, as: 'tempStoragePrefix'
+        end
       end
       
       class StreamingComputationTask
-        class Representation < Google::Apis::Core::JsonRepresentation; end
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :task_type, as: 'taskType'
+          collection :computation_ranges, as: 'computationRanges', class: Google::Apis::DataflowV1b3::StreamingComputationRanges, decorator: Google::Apis::DataflowV1b3::StreamingComputationRanges::Representation
       
-        include Google::Apis::Core::JsonObjectSupport
+          collection :data_disks, as: 'dataDisks', class: Google::Apis::DataflowV1b3::MountedDataDisk, decorator: Google::Apis::DataflowV1b3::MountedDataDisk::Representation
+      
+        end
       end
       
       class SendDebugCaptureRequest
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :worker_id, as: 'workerId'
+          property :location, as: 'location'
+          property :data, as: 'data'
+          property :component_id, as: 'componentId'
+        end
       end
       
       class GetDebugConfigResponse
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :config, as: 'config'
+        end
       end
       
       class ComponentTransform
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :original_transform, as: 'originalTransform'
+          property :name, as: 'name'
+          property :user_name, as: 'userName'
+        end
       end
       
       class StreamingSetupTask
-        class Representation < Google::Apis::Core::JsonRepresentation; end
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :drain, as: 'drain'
+          property :worker_harness_port, as: 'workerHarnessPort'
+          property :receive_work_port, as: 'receiveWorkPort'
+          property :streaming_computation_topology, as: 'streamingComputationTopology', class: Google::Apis::DataflowV1b3::TopologyConfig, decorator: Google::Apis::DataflowV1b3::TopologyConfig::Representation
       
-        include Google::Apis::Core::JsonObjectSupport
+        end
       end
       
       class PubsubLocation
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :subscription, as: 'subscription'
+          property :drop_late_data, as: 'dropLateData'
+          property :tracking_subscription, as: 'trackingSubscription'
+          property :with_attributes, as: 'withAttributes'
+          property :id_label, as: 'idLabel'
+          property :topic, as: 'topic'
+          property :timestamp_label, as: 'timestampLabel'
+        end
       end
       
       class WorkerHealthReport
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :pods, as: 'pods'
+          property :vm_startup_time, as: 'vmStartupTime'
+          property :report_interval, as: 'reportInterval'
+          property :vm_is_healthy, as: 'vmIsHealthy'
+        end
       end
       
       class JobMessage
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :id, as: 'id'
+          property :message_importance, as: 'messageImportance'
+          property :message_text, as: 'messageText'
+          property :time, as: 'time'
+        end
       end
       
       class ParameterMetadata
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :label, as: 'label'
+          property :help_text, as: 'helpText'
+          property :is_optional, as: 'isOptional'
+          property :name, as: 'name'
+          collection :regexes, as: 'regexes'
+        end
       end
       
       class MultiOutputInfo
@@ -785,11 +912,15 @@ module Google
         end
       end
       
-      class ShellTask
+      class AutoscalingEvent
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :command, as: 'command'
-          property :exit_code, as: 'exitCode'
+          property :event_type, as: 'eventType'
+          property :target_num_workers, :numeric_string => true, as: 'targetNumWorkers'
+          property :current_num_workers, :numeric_string => true, as: 'currentNumWorkers'
+          property :time, as: 'time'
+          property :description, as: 'description', class: Google::Apis::DataflowV1b3::StructuredMessage, decorator: Google::Apis::DataflowV1b3::StructuredMessage::Representation
+      
         end
       end
       
@@ -801,30 +932,24 @@ module Google
         end
       end
       
-      class AutoscalingEvent
+      class ShellTask
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :time, as: 'time'
-          property :description, as: 'description', class: Google::Apis::DataflowV1b3::StructuredMessage, decorator: Google::Apis::DataflowV1b3::StructuredMessage::Representation
-      
-          property :event_type, as: 'eventType'
-          property :target_num_workers, :numeric_string => true, as: 'targetNumWorkers'
-          property :current_num_workers, :numeric_string => true, as: 'currentNumWorkers'
+          property :exit_code, as: 'exitCode'
+          property :command, as: 'command'
         end
       end
       
       class TaskRunnerSettings
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :dataflow_api_version, as: 'dataflowApiVersion'
-          collection :oauth_scopes, as: 'oauthScopes'
           property :streaming_worker_main_class, as: 'streamingWorkerMainClass'
           property :log_upload_location, as: 'logUploadLocation'
           property :workflow_file_name, as: 'workflowFileName'
           property :commandlines_file_name, as: 'commandlinesFileName'
-          property :language_hint, as: 'languageHint'
           property :base_task_dir, as: 'baseTaskDir'
           property :temp_storage_prefix, as: 'tempStoragePrefix'
+          property :language_hint, as: 'languageHint'
           property :base_url, as: 'baseUrl'
           property :log_to_serialconsole, as: 'logToSerialconsole'
           property :continue_on_exception, as: 'continueOnException'
@@ -836,6 +961,8 @@ module Google
           property :task_group, as: 'taskGroup'
           property :harness_command, as: 'harnessCommand'
           property :log_dir, as: 'logDir'
+          collection :oauth_scopes, as: 'oauthScopes'
+          property :dataflow_api_version, as: 'dataflowApiVersion'
         end
       end
       
@@ -844,9 +971,9 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :record_index, :numeric_string => true, as: 'recordIndex'
           property :shuffle_position, as: 'shufflePosition'
-          property :byte_offset, :numeric_string => true, as: 'byteOffset'
           property :concat_position, as: 'concatPosition', class: Google::Apis::DataflowV1b3::ConcatPosition, decorator: Google::Apis::DataflowV1b3::ConcatPosition::Representation
       
+          property :byte_offset, :numeric_string => true, as: 'byteOffset'
           property :end, as: 'end'
           property :key, as: 'key'
         end
@@ -855,12 +982,12 @@ module Google
       class Source
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :does_not_need_splitting, as: 'doesNotNeedSplitting'
+          hash :codec, as: 'codec'
           hash :spec, as: 'spec'
           property :metadata, as: 'metadata', class: Google::Apis::DataflowV1b3::SourceMetadata, decorator: Google::Apis::DataflowV1b3::SourceMetadata::Representation
       
           collection :base_specs, as: 'baseSpecs'
-          property :does_not_need_splitting, as: 'doesNotNeedSplitting'
-          hash :codec, as: 'codec'
         end
       end
       
@@ -875,13 +1002,6 @@ module Google
       class WorkerPool
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :subnetwork, as: 'subnetwork'
-          property :ip_configuration, as: 'ipConfiguration'
-          property :taskrunner_settings, as: 'taskrunnerSettings', class: Google::Apis::DataflowV1b3::TaskRunnerSettings, decorator: Google::Apis::DataflowV1b3::TaskRunnerSettings::Representation
-      
-          property :autoscaling_settings, as: 'autoscalingSettings', class: Google::Apis::DataflowV1b3::AutoscalingSettings, decorator: Google::Apis::DataflowV1b3::AutoscalingSettings::Representation
-      
-          hash :metadata, as: 'metadata'
           property :network, as: 'network'
           property :default_package_set, as: 'defaultPackageSet'
           property :num_threads_per_worker, as: 'numThreadsPerWorker'
@@ -900,6 +1020,13 @@ module Google
           property :kind, as: 'kind'
           collection :data_disks, as: 'dataDisks', class: Google::Apis::DataflowV1b3::Disk, decorator: Google::Apis::DataflowV1b3::Disk::Representation
       
+          property :subnetwork, as: 'subnetwork'
+          property :ip_configuration, as: 'ipConfiguration'
+          property :autoscaling_settings, as: 'autoscalingSettings', class: Google::Apis::DataflowV1b3::AutoscalingSettings, decorator: Google::Apis::DataflowV1b3::AutoscalingSettings::Representation
+      
+          property :taskrunner_settings, as: 'taskrunnerSettings', class: Google::Apis::DataflowV1b3::TaskRunnerSettings, decorator: Google::Apis::DataflowV1b3::TaskRunnerSettings::Representation
+      
+          hash :metadata, as: 'metadata'
         end
       end
       
@@ -916,6 +1043,13 @@ module Google
       class WorkItem
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :map_task, as: 'mapTask', class: Google::Apis::DataflowV1b3::MapTask, decorator: Google::Apis::DataflowV1b3::MapTask::Representation
+      
+          property :seq_map_task, as: 'seqMapTask', class: Google::Apis::DataflowV1b3::SeqMapTask, decorator: Google::Apis::DataflowV1b3::SeqMapTask::Representation
+      
+          collection :packages, as: 'packages', class: Google::Apis::DataflowV1b3::Package, decorator: Google::Apis::DataflowV1b3::Package::Representation
+      
+          property :project_id, as: 'projectId'
           property :streaming_setup_task, as: 'streamingSetupTask', class: Google::Apis::DataflowV1b3::StreamingSetupTask, decorator: Google::Apis::DataflowV1b3::StreamingSetupTask::Representation
       
           property :report_status_interval, as: 'reportStatusInterval'
@@ -925,20 +1059,13 @@ module Google
           property :streaming_config_task, as: 'streamingConfigTask', class: Google::Apis::DataflowV1b3::StreamingConfigTask, decorator: Google::Apis::DataflowV1b3::StreamingConfigTask::Representation
       
           property :initial_report_index, :numeric_string => true, as: 'initialReportIndex'
-          property :streaming_computation_task, as: 'streamingComputationTask', class: Google::Apis::DataflowV1b3::StreamingComputationTask, decorator: Google::Apis::DataflowV1b3::StreamingComputationTask::Representation
-      
           property :shell_task, as: 'shellTask', class: Google::Apis::DataflowV1b3::ShellTask, decorator: Google::Apis::DataflowV1b3::ShellTask::Representation
+      
+          property :streaming_computation_task, as: 'streamingComputationTask', class: Google::Apis::DataflowV1b3::StreamingComputationTask, decorator: Google::Apis::DataflowV1b3::StreamingComputationTask::Representation
       
           property :job_id, as: 'jobId'
           property :id, :numeric_string => true, as: 'id'
           property :configuration, as: 'configuration'
-          property :map_task, as: 'mapTask', class: Google::Apis::DataflowV1b3::MapTask, decorator: Google::Apis::DataflowV1b3::MapTask::Representation
-      
-          property :seq_map_task, as: 'seqMapTask', class: Google::Apis::DataflowV1b3::SeqMapTask, decorator: Google::Apis::DataflowV1b3::SeqMapTask::Representation
-      
-          collection :packages, as: 'packages', class: Google::Apis::DataflowV1b3::Package, decorator: Google::Apis::DataflowV1b3::Package::Representation
-      
-          property :project_id, as: 'projectId'
         end
       end
       
@@ -955,8 +1082,8 @@ module Google
       class ReportedParallelism
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :value, as: 'value'
           property :is_infinite, as: 'isInfinite'
+          property :value, as: 'value'
         end
       end
       
@@ -971,13 +1098,13 @@ module Google
       class TopologyConfig
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          hash :user_stage_to_computation_name_map, as: 'userStageToComputationNameMap'
           collection :computations, as: 'computations', class: Google::Apis::DataflowV1b3::ComputationTopology, decorator: Google::Apis::DataflowV1b3::ComputationTopology::Representation
       
           property :persistent_state_version, as: 'persistentStateVersion'
           collection :data_disk_assignments, as: 'dataDiskAssignments', class: Google::Apis::DataflowV1b3::DataDiskAssignment, decorator: Google::Apis::DataflowV1b3::DataDiskAssignment::Representation
       
           property :forwarding_key_bits, as: 'forwardingKeyBits'
-          hash :user_stage_to_computation_name_map, as: 'userStageToComputationNameMap'
         end
       end
       
@@ -1000,19 +1127,12 @@ module Google
       class WorkerSettings
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :service_path, as: 'servicePath'
           property :shuffle_service_path, as: 'shuffleServicePath'
           property :worker_id, as: 'workerId'
           property :temp_storage_prefix, as: 'tempStoragePrefix'
           property :reporting_enabled, as: 'reportingEnabled'
           property :base_url, as: 'baseUrl'
-        end
-      end
-      
-      class StreamingStageLocation
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :stream_id, as: 'streamId'
+          property :service_path, as: 'servicePath'
         end
       end
       
@@ -1021,6 +1141,13 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :vm_instance, as: 'vmInstance'
           collection :data_disks, as: 'dataDisks'
+        end
+      end
+      
+      class StreamingStageLocation
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :stream_id, as: 'streamId'
         end
       end
       
@@ -1036,9 +1163,9 @@ module Google
       class Status
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          collection :details, as: 'details'
           property :code, as: 'code'
           property :message, as: 'message'
-          collection :details, as: 'details'
         end
       end
       
@@ -1073,6 +1200,27 @@ module Google
         end
       end
       
+      class LeaseWorkItemResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :work_items, as: 'workItems', class: Google::Apis::DataflowV1b3::WorkItem, decorator: Google::Apis::DataflowV1b3::WorkItem::Representation
+      
+        end
+      end
+      
+      class TransformSummary
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :input_collection_name, as: 'inputCollectionName'
+          property :name, as: 'name'
+          property :id, as: 'id'
+          collection :display_data, as: 'displayData', class: Google::Apis::DataflowV1b3::DisplayData, decorator: Google::Apis::DataflowV1b3::DisplayData::Representation
+      
+          collection :output_collection_name, as: 'outputCollectionName'
+          property :kind, as: 'kind'
+        end
+      end
+      
       class StreamingComputationConfig
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1084,42 +1232,21 @@ module Google
         end
       end
       
-      class TransformSummary
+      class Sink
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :id, as: 'id'
-          collection :display_data, as: 'displayData', class: Google::Apis::DataflowV1b3::DisplayData, decorator: Google::Apis::DataflowV1b3::DisplayData::Representation
-      
-          collection :output_collection_name, as: 'outputCollectionName'
-          property :kind, as: 'kind'
-          collection :input_collection_name, as: 'inputCollectionName'
-          property :name, as: 'name'
-        end
-      end
-      
-      class LeaseWorkItemResponse
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          collection :work_items, as: 'workItems', class: Google::Apis::DataflowV1b3::WorkItem, decorator: Google::Apis::DataflowV1b3::WorkItem::Representation
-      
+          hash :codec, as: 'codec'
+          hash :spec, as: 'spec'
         end
       end
       
       class LaunchTemplateParameters
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :job_name, as: 'jobName'
           property :environment, as: 'environment', class: Google::Apis::DataflowV1b3::RuntimeEnvironment, decorator: Google::Apis::DataflowV1b3::RuntimeEnvironment::Representation
       
           hash :parameters, as: 'parameters'
-          property :job_name, as: 'jobName'
-        end
-      end
-      
-      class Sink
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          hash :codec, as: 'codec'
-          hash :spec, as: 'spec'
         end
       end
       
@@ -1134,7 +1261,6 @@ module Google
       class PartialGroupByKeyInstruction
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :original_combine_values_input_store_name, as: 'originalCombineValuesInputStoreName'
           collection :side_inputs, as: 'sideInputs', class: Google::Apis::DataflowV1b3::SideInputInfo, decorator: Google::Apis::DataflowV1b3::SideInputInfo::Representation
       
           property :original_combine_values_step_name, as: 'originalCombineValuesStepName'
@@ -1142,6 +1268,15 @@ module Google
       
           hash :input_element_codec, as: 'inputElementCodec'
           hash :value_combining_fn, as: 'valueCombiningFn'
+          property :original_combine_values_input_store_name, as: 'originalCombineValuesInputStoreName'
+        end
+      end
+      
+      class InstructionInput
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :producer_instruction_index, as: 'producerInstructionIndex'
+          property :output_num, as: 'outputNum'
         end
       end
       
@@ -1155,14 +1290,6 @@ module Google
         end
       end
       
-      class InstructionInput
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :producer_instruction_index, as: 'producerInstructionIndex'
-          property :output_num, as: 'outputNum'
-        end
-      end
-      
       class StringList
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1173,18 +1300,30 @@ module Google
       class DisplayData
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :str_value, as: 'strValue'
-          property :duration_value, as: 'durationValue'
           property :int64_value, :numeric_string => true, as: 'int64Value'
+          property :duration_value, as: 'durationValue'
           property :namespace, as: 'namespace'
           property :float_value, as: 'floatValue'
           property :key, as: 'key'
           property :short_str_value, as: 'shortStrValue'
-          property :url, as: 'url'
           property :label, as: 'label'
+          property :url, as: 'url'
           property :timestamp_value, as: 'timestampValue'
-          property :java_class_value, as: 'javaClassValue'
           property :bool_value, as: 'boolValue'
+          property :java_class_value, as: 'javaClassValue'
+          property :str_value, as: 'strValue'
+        end
+      end
+      
+      class LeaseWorkItemRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :requested_lease_duration, as: 'requestedLeaseDuration'
+          property :current_worker_time, as: 'currentWorkerTime'
+          property :location, as: 'location'
+          collection :work_item_types, as: 'workItemTypes'
+          property :worker_id, as: 'workerId'
+          collection :worker_capabilities, as: 'workerCapabilities'
         end
       end
       
@@ -1197,24 +1336,12 @@ module Google
         end
       end
       
-      class LeaseWorkItemRequest
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          collection :worker_capabilities, as: 'workerCapabilities'
-          property :worker_id, as: 'workerId'
-          property :requested_lease_duration, as: 'requestedLeaseDuration'
-          property :current_worker_time, as: 'currentWorkerTime'
-          property :location, as: 'location'
-          collection :work_item_types, as: 'workItemTypes'
-        end
-      end
-      
       class GetTemplateResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :metadata, as: 'metadata', class: Google::Apis::DataflowV1b3::TemplateMetadata, decorator: Google::Apis::DataflowV1b3::TemplateMetadata::Representation
-      
           property :status, as: 'status', class: Google::Apis::DataflowV1b3::Status, decorator: Google::Apis::DataflowV1b3::Status::Representation
+      
+          property :metadata, as: 'metadata', class: Google::Apis::DataflowV1b3::TemplateMetadata, decorator: Google::Apis::DataflowV1b3::TemplateMetadata::Representation
       
         end
       end
@@ -1241,11 +1368,11 @@ module Google
       class PipelineDescription
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          collection :execution_pipeline_stage, as: 'executionPipelineStage', class: Google::Apis::DataflowV1b3::ExecutionStageSummary, decorator: Google::Apis::DataflowV1b3::ExecutionStageSummary::Representation
+      
           collection :original_pipeline_transform, as: 'originalPipelineTransform', class: Google::Apis::DataflowV1b3::TransformSummary, decorator: Google::Apis::DataflowV1b3::TransformSummary::Representation
       
           collection :display_data, as: 'displayData', class: Google::Apis::DataflowV1b3::DisplayData, decorator: Google::Apis::DataflowV1b3::DisplayData::Representation
-      
-          collection :execution_pipeline_stage, as: 'executionPipelineStage', class: Google::Apis::DataflowV1b3::ExecutionStageSummary, decorator: Google::Apis::DataflowV1b3::ExecutionStageSummary::Representation
       
         end
       end
@@ -1261,20 +1388,20 @@ module Google
         end
       end
       
-      class JobExecutionInfo
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          hash :stages, as: 'stages', class: Google::Apis::DataflowV1b3::JobExecutionStageInfo, decorator: Google::Apis::DataflowV1b3::JobExecutionStageInfo::Representation
-      
-        end
-      end
-      
       class Step
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :name, as: 'name'
           property :kind, as: 'kind'
           hash :properties, as: 'properties'
+        end
+      end
+      
+      class JobExecutionInfo
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          hash :stages, as: 'stages', class: Google::Apis::DataflowV1b3::JobExecutionStageInfo, decorator: Google::Apis::DataflowV1b3::JobExecutionStageInfo::Representation
+      
         end
       end
       
@@ -1288,9 +1415,20 @@ module Google
       class Disk
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :mount_point, as: 'mountPoint'
           property :disk_type, as: 'diskType'
           property :size_gb, as: 'sizeGb'
+          property :mount_point, as: 'mountPoint'
+        end
+      end
+      
+      class ListJobMessagesResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :job_messages, as: 'jobMessages', class: Google::Apis::DataflowV1b3::JobMessage, decorator: Google::Apis::DataflowV1b3::JobMessage::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+          collection :autoscaling_events, as: 'autoscalingEvents', class: Google::Apis::DataflowV1b3::AutoscalingEvent, decorator: Google::Apis::DataflowV1b3::AutoscalingEvent::Representation
+      
         end
       end
       
@@ -1304,34 +1442,15 @@ module Google
         end
       end
       
-      class ListJobMessagesResponse
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :next_page_token, as: 'nextPageToken'
-          collection :autoscaling_events, as: 'autoscalingEvents', class: Google::Apis::DataflowV1b3::AutoscalingEvent, decorator: Google::Apis::DataflowV1b3::AutoscalingEvent::Representation
-      
-          collection :job_messages, as: 'jobMessages', class: Google::Apis::DataflowV1b3::JobMessage, decorator: Google::Apis::DataflowV1b3::JobMessage::Representation
-      
-        end
-      end
-      
       class ApproximateReportedProgress
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :remaining_parallelism, as: 'remainingParallelism', class: Google::Apis::DataflowV1b3::ReportedParallelism, decorator: Google::Apis::DataflowV1b3::ReportedParallelism::Representation
-      
-          property :position, as: 'position', class: Google::Apis::DataflowV1b3::Position, decorator: Google::Apis::DataflowV1b3::Position::Representation
-      
           property :fraction_consumed, as: 'fractionConsumed'
           property :consumed_parallelism, as: 'consumedParallelism', class: Google::Apis::DataflowV1b3::ReportedParallelism, decorator: Google::Apis::DataflowV1b3::ReportedParallelism::Representation
       
-        end
-      end
+          property :remaining_parallelism, as: 'remainingParallelism', class: Google::Apis::DataflowV1b3::ReportedParallelism, decorator: Google::Apis::DataflowV1b3::ReportedParallelism::Representation
       
-      class IntegerList
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          collection :elements, as: 'elements', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
+          property :position, as: 'position', class: Google::Apis::DataflowV1b3::Position, decorator: Google::Apis::DataflowV1b3::Position::Representation
       
         end
       end
@@ -1344,6 +1463,14 @@ module Google
         end
       end
       
+      class IntegerList
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :elements, as: 'elements', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
+      
+        end
+      end
+      
       class ResourceUtilizationReportResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1353,40 +1480,32 @@ module Google
       class SourceSplitResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :outcome, as: 'outcome'
           collection :bundles, as: 'bundles', class: Google::Apis::DataflowV1b3::DerivedSource, decorator: Google::Apis::DataflowV1b3::DerivedSource::Representation
       
           collection :shards, as: 'shards', class: Google::Apis::DataflowV1b3::SourceSplitShard, decorator: Google::Apis::DataflowV1b3::SourceSplitShard::Representation
       
-          property :outcome, as: 'outcome'
         end
       end
       
       class ParallelInstruction
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :original_name, as: 'originalName'
-          property :flatten, as: 'flatten', class: Google::Apis::DataflowV1b3::FlattenInstruction, decorator: Google::Apis::DataflowV1b3::FlattenInstruction::Representation
-      
+          property :system_name, as: 'systemName'
           property :write, as: 'write', class: Google::Apis::DataflowV1b3::WriteInstruction, decorator: Google::Apis::DataflowV1b3::WriteInstruction::Representation
       
-          property :system_name, as: 'systemName'
           property :partial_group_by_key, as: 'partialGroupByKey', class: Google::Apis::DataflowV1b3::PartialGroupByKeyInstruction, decorator: Google::Apis::DataflowV1b3::PartialGroupByKeyInstruction::Representation
       
           collection :outputs, as: 'outputs', class: Google::Apis::DataflowV1b3::InstructionOutput, decorator: Google::Apis::DataflowV1b3::InstructionOutput::Representation
       
           property :name, as: 'name'
-          property :read, as: 'read', class: Google::Apis::DataflowV1b3::ReadInstruction, decorator: Google::Apis::DataflowV1b3::ReadInstruction::Representation
-      
           property :par_do, as: 'parDo', class: Google::Apis::DataflowV1b3::ParDoInstruction, decorator: Google::Apis::DataflowV1b3::ParDoInstruction::Representation
       
-        end
-      end
+          property :read, as: 'read', class: Google::Apis::DataflowV1b3::ReadInstruction, decorator: Google::Apis::DataflowV1b3::ReadInstruction::Representation
       
-      class Package
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :location, as: 'location'
-          property :name, as: 'name'
+          property :original_name, as: 'originalName'
+          property :flatten, as: 'flatten', class: Google::Apis::DataflowV1b3::FlattenInstruction, decorator: Google::Apis::DataflowV1b3::FlattenInstruction::Representation
+      
         end
       end
       
@@ -1399,34 +1518,25 @@ module Google
         end
       end
       
+      class Package
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :location, as: 'location'
+          property :name, as: 'name'
+        end
+      end
+      
       class ParDoInstruction
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          collection :side_inputs, as: 'sideInputs', class: Google::Apis::DataflowV1b3::SideInputInfo, decorator: Google::Apis::DataflowV1b3::SideInputInfo::Representation
-      
           collection :multi_output_infos, as: 'multiOutputInfos', class: Google::Apis::DataflowV1b3::MultiOutputInfo, decorator: Google::Apis::DataflowV1b3::MultiOutputInfo::Representation
       
           hash :user_fn, as: 'userFn'
           property :input, as: 'input', class: Google::Apis::DataflowV1b3::InstructionInput, decorator: Google::Apis::DataflowV1b3::InstructionInput::Representation
       
           property :num_outputs, as: 'numOutputs'
-        end
-      end
+          collection :side_inputs, as: 'sideInputs', class: Google::Apis::DataflowV1b3::SideInputInfo, decorator: Google::Apis::DataflowV1b3::SideInputInfo::Representation
       
-      class MetricUpdate
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :internal, as: 'internal'
-          property :cumulative, as: 'cumulative'
-          property :kind, as: 'kind'
-          property :scalar, as: 'scalar'
-          property :mean_count, as: 'meanCount'
-          property :mean_sum, as: 'meanSum'
-          property :update_time, as: 'updateTime'
-          property :name, as: 'name', class: Google::Apis::DataflowV1b3::MetricStructuredName, decorator: Google::Apis::DataflowV1b3::MetricStructuredName::Representation
-      
-          property :distribution, as: 'distribution'
-          property :set, as: 'set'
         end
       end
       
@@ -1438,9 +1548,26 @@ module Google
           property :original_step_name, as: 'originalStepName'
           property :worker_id, as: 'workerId'
           property :origin_namespace, as: 'originNamespace'
+          property :origin, as: 'origin'
           property :name, as: 'name'
           property :execution_step_name, as: 'executionStepName'
-          property :origin, as: 'origin'
+        end
+      end
+      
+      class MetricUpdate
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :update_time, as: 'updateTime'
+          property :name, as: 'name', class: Google::Apis::DataflowV1b3::MetricStructuredName, decorator: Google::Apis::DataflowV1b3::MetricStructuredName::Representation
+      
+          property :distribution, as: 'distribution'
+          property :set, as: 'set'
+          property :cumulative, as: 'cumulative'
+          property :internal, as: 'internal'
+          property :kind, as: 'kind'
+          property :scalar, as: 'scalar'
+          property :mean_count, as: 'meanCount'
+          property :mean_sum, as: 'meanSum'
         end
       end
       
@@ -1477,6 +1604,7 @@ module Google
       class WorkerMessage
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :time, as: 'time'
           property :worker_health_report, as: 'workerHealthReport', class: Google::Apis::DataflowV1b3::WorkerHealthReport, decorator: Google::Apis::DataflowV1b3::WorkerHealthReport::Representation
       
           property :worker_metrics, as: 'workerMetrics', class: Google::Apis::DataflowV1b3::ResourceUtilizationReport, decorator: Google::Apis::DataflowV1b3::ResourceUtilizationReport::Representation
@@ -1484,7 +1612,6 @@ module Google
           property :worker_message_code, as: 'workerMessageCode', class: Google::Apis::DataflowV1b3::WorkerMessageCode, decorator: Google::Apis::DataflowV1b3::WorkerMessageCode::Representation
       
           hash :labels, as: 'labels'
-          property :time, as: 'time'
         end
       end
       
@@ -1507,17 +1634,18 @@ module Google
       class CounterUpdate
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :short_id, :numeric_string => true, as: 'shortId'
           property :floating_point_list, as: 'floatingPointList', class: Google::Apis::DataflowV1b3::FloatingPointList, decorator: Google::Apis::DataflowV1b3::FloatingPointList::Representation
       
           property :integer, as: 'integer', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
       
-          property :structured_name_and_metadata, as: 'structuredNameAndMetadata', class: Google::Apis::DataflowV1b3::CounterStructuredNameAndMetadata, decorator: Google::Apis::DataflowV1b3::CounterStructuredNameAndMetadata::Representation
-      
           property :integer_list, as: 'integerList', class: Google::Apis::DataflowV1b3::IntegerList, decorator: Google::Apis::DataflowV1b3::IntegerList::Representation
       
-          property :integer_mean, as: 'integerMean', class: Google::Apis::DataflowV1b3::IntegerMean, decorator: Google::Apis::DataflowV1b3::IntegerMean::Representation
+          property :structured_name_and_metadata, as: 'structuredNameAndMetadata', class: Google::Apis::DataflowV1b3::CounterStructuredNameAndMetadata, decorator: Google::Apis::DataflowV1b3::CounterStructuredNameAndMetadata::Representation
       
           property :floating_point, as: 'floatingPoint'
+          property :integer_mean, as: 'integerMean', class: Google::Apis::DataflowV1b3::IntegerMean, decorator: Google::Apis::DataflowV1b3::IntegerMean::Representation
+      
           property :internal, as: 'internal'
           property :cumulative, as: 'cumulative'
           property :floating_point_mean, as: 'floatingPointMean', class: Google::Apis::DataflowV1b3::FloatingPointMean, decorator: Google::Apis::DataflowV1b3::FloatingPointMean::Representation
@@ -1529,7 +1657,6 @@ module Google
       
           property :distribution, as: 'distribution', class: Google::Apis::DataflowV1b3::DistributionUpdate, decorator: Google::Apis::DataflowV1b3::DistributionUpdate::Representation
       
-          property :short_id, :numeric_string => true, as: 'shortId'
         end
       end
       
@@ -1545,8 +1672,6 @@ module Google
       class DistributionUpdate
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :max, as: 'max', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
-      
           collection :log_buckets, as: 'logBuckets', class: Google::Apis::DataflowV1b3::LogBucket, decorator: Google::Apis::DataflowV1b3::LogBucket::Representation
       
           property :count, as: 'count', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
@@ -1556,19 +1681,7 @@ module Google
           property :sum_of_squares, as: 'sumOfSquares'
           property :sum, as: 'sum', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
       
-        end
-      end
-      
-      class SourceFork
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :primary_source, as: 'primarySource', class: Google::Apis::DataflowV1b3::DerivedSource, decorator: Google::Apis::DataflowV1b3::DerivedSource::Representation
-      
-          property :residual, as: 'residual', class: Google::Apis::DataflowV1b3::SourceSplitShard, decorator: Google::Apis::DataflowV1b3::SourceSplitShard::Representation
-      
-          property :residual_source, as: 'residualSource', class: Google::Apis::DataflowV1b3::DerivedSource, decorator: Google::Apis::DataflowV1b3::DerivedSource::Representation
-      
-          property :primary, as: 'primary', class: Google::Apis::DataflowV1b3::SourceSplitShard, decorator: Google::Apis::DataflowV1b3::SourceSplitShard::Representation
+          property :max, as: 'max', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
       
         end
       end
@@ -1580,15 +1693,29 @@ module Google
         end
       end
       
+      class SourceFork
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :residual, as: 'residual', class: Google::Apis::DataflowV1b3::SourceSplitShard, decorator: Google::Apis::DataflowV1b3::SourceSplitShard::Representation
+      
+          property :residual_source, as: 'residualSource', class: Google::Apis::DataflowV1b3::DerivedSource, decorator: Google::Apis::DataflowV1b3::DerivedSource::Representation
+      
+          property :primary, as: 'primary', class: Google::Apis::DataflowV1b3::SourceSplitShard, decorator: Google::Apis::DataflowV1b3::SourceSplitShard::Representation
+      
+          property :primary_source, as: 'primarySource', class: Google::Apis::DataflowV1b3::DerivedSource, decorator: Google::Apis::DataflowV1b3::DerivedSource::Representation
+      
+        end
+      end
+      
       class WorkItemStatus
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :counter_updates, as: 'counterUpdates', class: Google::Apis::DataflowV1b3::CounterUpdate, decorator: Google::Apis::DataflowV1b3::CounterUpdate::Representation
       
           property :work_item_id, as: 'workItemId'
-          collection :metric_updates, as: 'metricUpdates', class: Google::Apis::DataflowV1b3::MetricUpdate, decorator: Google::Apis::DataflowV1b3::MetricUpdate::Representation
-      
           collection :errors, as: 'errors', class: Google::Apis::DataflowV1b3::Status, decorator: Google::Apis::DataflowV1b3::Status::Representation
+      
+          collection :metric_updates, as: 'metricUpdates', class: Google::Apis::DataflowV1b3::MetricUpdate, decorator: Google::Apis::DataflowV1b3::MetricUpdate::Representation
       
           property :dynamic_source_split, as: 'dynamicSourceSplit', class: Google::Apis::DataflowV1b3::DynamicSourceSplit, decorator: Google::Apis::DataflowV1b3::DynamicSourceSplit::Representation
       
@@ -1611,19 +1738,15 @@ module Google
       class ComponentSource
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :original_transform_or_collection, as: 'originalTransformOrCollection'
           property :name, as: 'name'
           property :user_name, as: 'userName'
-          property :original_transform_or_collection, as: 'originalTransformOrCollection'
         end
       end
       
       class WorkItemServiceState
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :suggested_stop_point, as: 'suggestedStopPoint', class: Google::Apis::DataflowV1b3::ApproximateProgress, decorator: Google::Apis::DataflowV1b3::ApproximateProgress::Representation
-      
-          property :split_request, as: 'splitRequest', class: Google::Apis::DataflowV1b3::ApproximateSplitRequest, decorator: Google::Apis::DataflowV1b3::ApproximateSplitRequest::Representation
-      
           property :suggested_stop_position, as: 'suggestedStopPosition', class: Google::Apis::DataflowV1b3::Position, decorator: Google::Apis::DataflowV1b3::Position::Representation
       
           property :report_status_interval, as: 'reportStatusInterval'
@@ -1632,24 +1755,28 @@ module Google
           collection :metric_short_id, as: 'metricShortId', class: Google::Apis::DataflowV1b3::MetricShortId, decorator: Google::Apis::DataflowV1b3::MetricShortId::Representation
       
           property :next_report_index, :numeric_string => true, as: 'nextReportIndex'
+          property :suggested_stop_point, as: 'suggestedStopPoint', class: Google::Apis::DataflowV1b3::ApproximateProgress, decorator: Google::Apis::DataflowV1b3::ApproximateProgress::Representation
+      
+          property :split_request, as: 'splitRequest', class: Google::Apis::DataflowV1b3::ApproximateSplitRequest, decorator: Google::Apis::DataflowV1b3::ApproximateSplitRequest::Representation
+      
         end
       end
       
       class MetricStructuredName
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          hash :context, as: 'context'
           property :name, as: 'name'
           property :origin, as: 'origin'
+          hash :context, as: 'context'
         end
       end
       
       class SeqMapTaskOutputInfo
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :tag, as: 'tag'
           property :sink, as: 'sink', class: Google::Apis::DataflowV1b3::Sink, decorator: Google::Apis::DataflowV1b3::Sink::Representation
       
+          property :tag, as: 'tag'
         end
       end
       
@@ -1682,14 +1809,14 @@ module Google
       class SeqMapTask
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          collection :inputs, as: 'inputs', class: Google::Apis::DataflowV1b3::SideInputInfo, decorator: Google::Apis::DataflowV1b3::SideInputInfo::Representation
+      
+          property :system_name, as: 'systemName'
+          property :stage_name, as: 'stageName'
+          hash :user_fn, as: 'userFn'
           property :name, as: 'name'
           collection :output_infos, as: 'outputInfos', class: Google::Apis::DataflowV1b3::SeqMapTaskOutputInfo, decorator: Google::Apis::DataflowV1b3::SeqMapTaskOutputInfo::Representation
       
-          collection :inputs, as: 'inputs', class: Google::Apis::DataflowV1b3::SideInputInfo, decorator: Google::Apis::DataflowV1b3::SideInputInfo::Representation
-      
-          property :stage_name, as: 'stageName'
-          property :system_name, as: 'systemName'
-          hash :user_fn, as: 'userFn'
         end
       end
       
@@ -1729,9 +1856,9 @@ module Google
       class FloatingPointMean
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :sum, as: 'sum'
           property :count, as: 'count', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
       
-          property :sum, as: 'sum'
         end
       end
       
@@ -1746,33 +1873,33 @@ module Google
       class InstructionOutput
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          hash :codec, as: 'codec'
-          property :name, as: 'name'
           property :original_name, as: 'originalName'
           property :system_name, as: 'systemName'
           property :only_count_key_bytes, as: 'onlyCountKeyBytes'
           property :only_count_value_bytes, as: 'onlyCountValueBytes'
+          hash :codec, as: 'codec'
+          property :name, as: 'name'
         end
       end
       
       class CreateJobFromTemplateRequest
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :job_name, as: 'jobName'
-          property :gcs_path, as: 'gcsPath'
           property :environment, as: 'environment', class: Google::Apis::DataflowV1b3::RuntimeEnvironment, decorator: Google::Apis::DataflowV1b3::RuntimeEnvironment::Representation
       
           property :location, as: 'location'
           hash :parameters, as: 'parameters'
+          property :job_name, as: 'jobName'
+          property :gcs_path, as: 'gcsPath'
         end
       end
       
       class IntegerMean
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :count, as: 'count', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
-      
           property :sum, as: 'sum', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
+      
+          property :count, as: 'count', class: Google::Apis::DataflowV1b3::SplitInt64, decorator: Google::Apis::DataflowV1b3::SplitInt64::Representation
       
         end
       end
@@ -1780,26 +1907,26 @@ module Google
       class ListJobsResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          collection :jobs, as: 'jobs', class: Google::Apis::DataflowV1b3::Job, decorator: Google::Apis::DataflowV1b3::Job::Representation
+      
           collection :failed_location, as: 'failedLocation', class: Google::Apis::DataflowV1b3::FailedLocation, decorator: Google::Apis::DataflowV1b3::FailedLocation::Representation
       
           property :next_page_token, as: 'nextPageToken'
-          collection :jobs, as: 'jobs', class: Google::Apis::DataflowV1b3::Job, decorator: Google::Apis::DataflowV1b3::Job::Representation
-      
         end
       end
       
       class ComputationTopology
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          collection :state_families, as: 'stateFamilies', class: Google::Apis::DataflowV1b3::StateFamilyConfig, decorator: Google::Apis::DataflowV1b3::StateFamilyConfig::Representation
+      
+          collection :outputs, as: 'outputs', class: Google::Apis::DataflowV1b3::StreamLocation, decorator: Google::Apis::DataflowV1b3::StreamLocation::Representation
+      
           property :system_stage_name, as: 'systemStageName'
           property :computation_id, as: 'computationId'
           collection :inputs, as: 'inputs', class: Google::Apis::DataflowV1b3::StreamLocation, decorator: Google::Apis::DataflowV1b3::StreamLocation::Representation
       
           collection :key_ranges, as: 'keyRanges', class: Google::Apis::DataflowV1b3::KeyRangeLocation, decorator: Google::Apis::DataflowV1b3::KeyRangeLocation::Representation
-      
-          collection :state_families, as: 'stateFamilies', class: Google::Apis::DataflowV1b3::StateFamilyConfig, decorator: Google::Apis::DataflowV1b3::StateFamilyConfig::Representation
-      
-          collection :outputs, as: 'outputs', class: Google::Apis::DataflowV1b3::StreamLocation, decorator: Google::Apis::DataflowV1b3::StreamLocation::Representation
       
         end
       end
@@ -1807,12 +1934,12 @@ module Google
       class RuntimeEnvironment
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :machine_type, as: 'machineType'
           property :zone, as: 'zone'
           property :max_workers, as: 'maxWorkers'
           property :service_account_email, as: 'serviceAccountEmail'
           property :temp_location, as: 'tempLocation'
           property :bypass_temp_dir_validation, as: 'bypassTempDirValidation'
+          property :machine_type, as: 'machineType'
         end
       end
       
@@ -1842,20 +1969,13 @@ module Google
       class Job
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          collection :stage_states, as: 'stageStates', class: Google::Apis::DataflowV1b3::ExecutionStageState, decorator: Google::Apis::DataflowV1b3::ExecutionStageState::Representation
-      
-          property :project_id, as: 'projectId'
-          property :type, as: 'type'
-          property :pipeline_description, as: 'pipelineDescription', class: Google::Apis::DataflowV1b3::PipelineDescription, decorator: Google::Apis::DataflowV1b3::PipelineDescription::Representation
-      
-          property :replace_job_id, as: 'replaceJobId'
           property :requested_state, as: 'requestedState'
           collection :temp_files, as: 'tempFiles'
           property :client_request_id, as: 'clientRequestId'
           property :name, as: 'name'
+          property :replaced_by_job_id, as: 'replacedByJobId'
           collection :steps, as: 'steps', class: Google::Apis::DataflowV1b3::Step, decorator: Google::Apis::DataflowV1b3::Step::Representation
       
-          property :replaced_by_job_id, as: 'replacedByJobId'
           property :execution_info, as: 'executionInfo', class: Google::Apis::DataflowV1b3::JobExecutionInfo, decorator: Google::Apis::DataflowV1b3::JobExecutionInfo::Representation
       
           property :id, as: 'id'
@@ -1867,6 +1987,13 @@ module Google
           property :environment, as: 'environment', class: Google::Apis::DataflowV1b3::Environment, decorator: Google::Apis::DataflowV1b3::Environment::Representation
       
           property :create_time, as: 'createTime'
+          collection :stage_states, as: 'stageStates', class: Google::Apis::DataflowV1b3::ExecutionStageState, decorator: Google::Apis::DataflowV1b3::ExecutionStageState::Representation
+      
+          property :type, as: 'type'
+          property :project_id, as: 'projectId'
+          property :pipeline_description, as: 'pipelineDescription', class: Google::Apis::DataflowV1b3::PipelineDescription, decorator: Google::Apis::DataflowV1b3::PipelineDescription::Representation
+      
+          property :replace_job_id, as: 'replaceJobId'
         end
       end
       
@@ -1883,19 +2010,25 @@ module Google
       class DerivedSource
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :derivation_mode, as: 'derivationMode'
           property :source, as: 'source', class: Google::Apis::DataflowV1b3::Source, decorator: Google::Apis::DataflowV1b3::Source::Representation
       
-          property :derivation_mode, as: 'derivationMode'
         end
       end
       
       class SourceOperationResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :split, as: 'split', class: Google::Apis::DataflowV1b3::SourceSplitResponse, decorator: Google::Apis::DataflowV1b3::SourceSplitResponse::Representation
-      
           property :get_metadata, as: 'getMetadata', class: Google::Apis::DataflowV1b3::SourceGetMetadataResponse, decorator: Google::Apis::DataflowV1b3::SourceGetMetadataResponse::Representation
       
+          property :split, as: 'split', class: Google::Apis::DataflowV1b3::SourceSplitResponse, decorator: Google::Apis::DataflowV1b3::SourceSplitResponse::Representation
+      
+        end
+      end
+      
+      class SendDebugCaptureResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
         end
       end
       
@@ -1909,9 +2042,13 @@ module Google
         end
       end
       
-      class SendDebugCaptureResponse
+      class WriteInstruction
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :sink, as: 'sink', class: Google::Apis::DataflowV1b3::Sink, decorator: Google::Apis::DataflowV1b3::Sink::Representation
+      
+          property :input, as: 'input', class: Google::Apis::DataflowV1b3::InstructionInput, decorator: Google::Apis::DataflowV1b3::InstructionInput::Representation
+      
         end
       end
       
@@ -1934,25 +2071,6 @@ module Google
         end
       end
       
-      class WriteInstruction
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :sink, as: 'sink', class: Google::Apis::DataflowV1b3::Sink, decorator: Google::Apis::DataflowV1b3::Sink::Representation
-      
-          property :input, as: 'input', class: Google::Apis::DataflowV1b3::InstructionInput, decorator: Google::Apis::DataflowV1b3::InstructionInput::Representation
-      
-        end
-      end
-      
-      class StreamingComputationRanges
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          collection :range_assignments, as: 'rangeAssignments', class: Google::Apis::DataflowV1b3::KeyRangeDataDiskAssignment, decorator: Google::Apis::DataflowV1b3::KeyRangeDataDiskAssignment::Representation
-      
-          property :computation_id, as: 'computationId'
-        end
-      end
-      
       class AutoscalingSettings
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1961,19 +2079,28 @@ module Google
         end
       end
       
+      class StreamingComputationRanges
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :computation_id, as: 'computationId'
+          collection :range_assignments, as: 'rangeAssignments', class: Google::Apis::DataflowV1b3::KeyRangeDataDiskAssignment, decorator: Google::Apis::DataflowV1b3::KeyRangeDataDiskAssignment::Representation
+      
+        end
+      end
+      
       class ExecutionStageSummary
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          collection :component_source, as: 'componentSource', class: Google::Apis::DataflowV1b3::ComponentSource, decorator: Google::Apis::DataflowV1b3::ComponentSource::Representation
-      
-          property :kind, as: 'kind'
-          collection :output_source, as: 'outputSource', class: Google::Apis::DataflowV1b3::StageSource, decorator: Google::Apis::DataflowV1b3::StageSource::Representation
-      
           property :name, as: 'name'
           collection :input_source, as: 'inputSource', class: Google::Apis::DataflowV1b3::StageSource, decorator: Google::Apis::DataflowV1b3::StageSource::Representation
       
           property :id, as: 'id'
           collection :component_transform, as: 'componentTransform', class: Google::Apis::DataflowV1b3::ComponentTransform, decorator: Google::Apis::DataflowV1b3::ComponentTransform::Representation
+      
+          collection :component_source, as: 'componentSource', class: Google::Apis::DataflowV1b3::ComponentSource, decorator: Google::Apis::DataflowV1b3::ComponentSource::Representation
+      
+          property :kind, as: 'kind'
+          collection :output_source, as: 'outputSource', class: Google::Apis::DataflowV1b3::StageSource, decorator: Google::Apis::DataflowV1b3::StageSource::Representation
       
         end
       end
@@ -1981,9 +2108,9 @@ module Google
       class SendWorkerMessagesRequest
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :location, as: 'location'
           collection :worker_messages, as: 'workerMessages', class: Google::Apis::DataflowV1b3::WorkerMessage, decorator: Google::Apis::DataflowV1b3::WorkerMessage::Representation
       
-          property :location, as: 'location'
         end
       end
       
@@ -1992,133 +2119,6 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :log, as: 'log'
           property :count, :numeric_string => true, as: 'count'
-        end
-      end
-      
-      class SourceSplitShard
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :derivation_mode, as: 'derivationMode'
-          property :source, as: 'source', class: Google::Apis::DataflowV1b3::Source, decorator: Google::Apis::DataflowV1b3::Source::Representation
-      
-        end
-      end
-      
-      class CpuTime
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :total_ms, :numeric_string => true, as: 'totalMs'
-          property :rate, as: 'rate'
-          property :timestamp, as: 'timestamp'
-        end
-      end
-      
-      class Environment
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :cluster_manager_api_service, as: 'clusterManagerApiService'
-          property :temp_storage_prefix, as: 'tempStoragePrefix'
-          collection :worker_pools, as: 'workerPools', class: Google::Apis::DataflowV1b3::WorkerPool, decorator: Google::Apis::DataflowV1b3::WorkerPool::Representation
-      
-          property :dataset, as: 'dataset'
-          collection :experiments, as: 'experiments'
-          hash :version, as: 'version'
-          hash :internal_experiments, as: 'internalExperiments'
-          property :service_account_email, as: 'serviceAccountEmail'
-          hash :user_agent, as: 'userAgent'
-          hash :sdk_pipeline_options, as: 'sdkPipelineOptions'
-        end
-      end
-      
-      class StreamingComputationTask
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          collection :data_disks, as: 'dataDisks', class: Google::Apis::DataflowV1b3::MountedDataDisk, decorator: Google::Apis::DataflowV1b3::MountedDataDisk::Representation
-      
-          property :task_type, as: 'taskType'
-          collection :computation_ranges, as: 'computationRanges', class: Google::Apis::DataflowV1b3::StreamingComputationRanges, decorator: Google::Apis::DataflowV1b3::StreamingComputationRanges::Representation
-      
-        end
-      end
-      
-      class SendDebugCaptureRequest
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :location, as: 'location'
-          property :data, as: 'data'
-          property :component_id, as: 'componentId'
-          property :worker_id, as: 'workerId'
-        end
-      end
-      
-      class GetDebugConfigResponse
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :config, as: 'config'
-        end
-      end
-      
-      class ComponentTransform
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :original_transform, as: 'originalTransform'
-          property :name, as: 'name'
-          property :user_name, as: 'userName'
-        end
-      end
-      
-      class StreamingSetupTask
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :streaming_computation_topology, as: 'streamingComputationTopology', class: Google::Apis::DataflowV1b3::TopologyConfig, decorator: Google::Apis::DataflowV1b3::TopologyConfig::Representation
-      
-          property :drain, as: 'drain'
-          property :worker_harness_port, as: 'workerHarnessPort'
-          property :receive_work_port, as: 'receiveWorkPort'
-        end
-      end
-      
-      class PubsubLocation
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :topic, as: 'topic'
-          property :timestamp_label, as: 'timestampLabel'
-          property :subscription, as: 'subscription'
-          property :drop_late_data, as: 'dropLateData'
-          property :tracking_subscription, as: 'trackingSubscription'
-          property :with_attributes, as: 'withAttributes'
-          property :id_label, as: 'idLabel'
-        end
-      end
-      
-      class WorkerHealthReport
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          collection :pods, as: 'pods'
-          property :vm_startup_time, as: 'vmStartupTime'
-          property :report_interval, as: 'reportInterval'
-          property :vm_is_healthy, as: 'vmIsHealthy'
-        end
-      end
-      
-      class JobMessage
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :id, as: 'id'
-          property :message_importance, as: 'messageImportance'
-          property :message_text, as: 'messageText'
-          property :time, as: 'time'
-        end
-      end
-      
-      class ParameterMetadata
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          collection :regexes, as: 'regexes'
-          property :label, as: 'label'
-          property :help_text, as: 'helpText'
-          property :is_optional, as: 'isOptional'
-          property :name, as: 'name'
         end
       end
     end

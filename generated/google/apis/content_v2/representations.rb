@@ -2338,6 +2338,8 @@ module Google
           property :kind, as: 'kind'
           property :last_update_date, as: 'lastUpdateDate'
           property :link, as: 'link'
+          property :product, as: 'product', class: Google::Apis::ContentV2::Product, decorator: Google::Apis::ContentV2::Product::Representation
+      
           property :product_id, as: 'productId'
           property :title, as: 'title'
         end
@@ -2457,6 +2459,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :batch_id, as: 'batchId'
+          property :include_attributes, as: 'includeAttributes'
           property :merchant_id, :numeric_string => true, as: 'merchantId'
           property :request_method, as: 'method'
           property :product_id, as: 'productId'

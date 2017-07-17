@@ -27,17 +27,17 @@ module Google
       VERSION = 'V1b3'
       REVISION = '20170701'
 
-      # View and manage your data across Google Cloud Platform services
-      AUTH_CLOUD_PLATFORM = 'https://www.googleapis.com/auth/cloud-platform'
-
-      # View your email address
-      AUTH_USERINFO_EMAIL = 'https://www.googleapis.com/auth/userinfo.email'
-
       # View your Google Compute Engine resources
       AUTH_COMPUTE_READONLY = 'https://www.googleapis.com/auth/compute.readonly'
 
       # View and manage your Google Compute Engine resources
       AUTH_COMPUTE = 'https://www.googleapis.com/auth/compute'
+
+      # View and manage your data across Google Cloud Platform services
+      AUTH_CLOUD_PLATFORM = 'https://www.googleapis.com/auth/cloud-platform'
+
+      # View your email address
+      AUTH_USERINFO_EMAIL = 'https://www.googleapis.com/auth/userinfo.email'
     end
   end
 end

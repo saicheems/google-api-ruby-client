@@ -28,14 +28,14 @@ module Google
       VERSION = 'V1'
       REVISION = '20170523'
 
-      # View and manage your data across Google Cloud Platform services
-      AUTH_CLOUD_PLATFORM = 'https://www.googleapis.com/auth/cloud-platform'
+      # View all your Firebase data and settings
+      AUTH_FIREBASE_READONLY = 'https://www.googleapis.com/auth/firebase.readonly'
 
       # View and administer all your Firebase data and settings
       AUTH_FIREBASE = 'https://www.googleapis.com/auth/firebase'
 
-      # View all your Firebase data and settings
-      AUTH_FIREBASE_READONLY = 'https://www.googleapis.com/auth/firebase.readonly'
+      # View and manage your data across Google Cloud Platform services
+      AUTH_CLOUD_PLATFORM = 'https://www.googleapis.com/auth/cloud-platform'
     end
   end
 end

@@ -770,6 +770,7 @@ module Google
       class JobStatistics3
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :bad_records, :numeric_string => true, as: 'badRecords'
           property :input_file_bytes, :numeric_string => true, as: 'inputFileBytes'
           property :input_files, :numeric_string => true, as: 'inputFiles'
           property :output_bytes, :numeric_string => true, as: 'outputBytes'

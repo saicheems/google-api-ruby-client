@@ -34,14 +34,14 @@ module Google
       # @see https://cloud.google.com/error-reporting/
       class ClouderrorreportingService < Google::Apis::Core::BaseService
         # @return [String]
-        #  API key. Your API key identifies your project and provides you with API access,
-        #  quota, and reports. Required unless you provide an OAuth 2.0 token.
-        attr_accessor :key
-
-        # @return [String]
         #  Available to use for quota purposes for server-side applications. Can be any
         #  arbitrary string assigned to a user, but should not exceed 40 characters.
         attr_accessor :quota_user
+
+        # @return [String]
+        #  API key. Your API key identifies your project and provides you with API access,
+        #  quota, and reports. Required unless you provide an OAuth 2.0 token.
+        attr_accessor :key
 
         def initialize
           super('https://clouderrorreporting.googleapis.com/', '')
@@ -89,6 +89,15 @@ module Google
         #   <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
         #   Platform project ID</a>.
         #   Example: <code>projects/my-project-123</code>.
+        # @param [String] timed_count_duration
+        #   [Optional] The preferred duration for a single returned `TimedCount`.
+        #   If not set, no timed counts are returned.
+        # @param [String] page_token
+        #   [Optional] A `next_page_token` provided by a previous response. To view
+        #   additional results, pass this token along with the identical query
+        #   parameters as the first request.
+        # @param [String] time_range_period
+        #   Restricts the query to the specified time range.
         # @param [String] alignment
         #   [Optional] The alignment of the timed counts to be returned.
         #   Default is `ALIGNMENT_EQUAL_AT_END`.
@@ -101,29 +110,20 @@ module Google
         # @param [Fixnum] page_size
         #   [Optional] The maximum number of results to return per response.
         #   Default is 20.
-        # @param [String] order
-        #   [Optional] The sort order in which the results are returned.
-        #   Default is `COUNT_DESC`.
         # @param [String] service_filter_version
         #   [Optional] The exact value to match against
         #   [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/
         #   ServiceContext#FIELDS.version).
-        # @param [String] alignment_time
-        #   [Optional] Time where the timed counts shall be aligned if rounded
-        #   alignment is chosen. Default is 00:00 UTC.
+        # @param [String] order
+        #   [Optional] The sort order in which the results are returned.
+        #   Default is `COUNT_DESC`.
         # @param [String] service_filter_resource_type
         #   [Optional] The exact value to match against
         #   [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/
         #   ServiceContext#FIELDS.resource_type).
-        # @param [String] timed_count_duration
-        #   [Optional] The preferred duration for a single returned `TimedCount`.
-        #   If not set, no timed counts are returned.
-        # @param [String] page_token
-        #   [Optional] A `next_page_token` provided by a previous response. To view
-        #   additional results, pass this token along with the identical query
-        #   parameters as the first request.
-        # @param [String] time_range_period
-        #   Restricts the query to the specified time range.
+        # @param [String] alignment_time
+        #   [Optional] Time where the timed counts shall be aligned if rounded
+        #   alignment is chosen. Default is 00:00 UTC.
         # @param [String] quota_user
         #   Available to use for quota purposes for server-side applications. Can be any
         #   arbitrary string assigned to a user, but should not exceed 40 characters.
@@ -141,22 +141,22 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_project_group_stats(project_name, alignment: nil, group_id: nil, service_filter_service: nil, page_size: nil, order: nil, service_filter_version: nil, alignment_time: nil, service_filter_resource_type: nil, timed_count_duration: nil, page_token: nil, time_range_period: nil, quota_user: nil, fields: nil, options: nil, &block)
+        def list_project_group_stats(project_name, timed_count_duration: nil, page_token: nil, time_range_period: nil, alignment: nil, group_id: nil, service_filter_service: nil, page_size: nil, service_filter_version: nil, order: nil, service_filter_resource_type: nil, alignment_time: nil, quota_user: nil, fields: nil, options: nil, &block)
           command =  make_simple_command(:get, 'v1beta1/{+projectName}/groupStats', options)
           command.response_representation = Google::Apis::ClouderrorreportingV1beta1::ListGroupStatsResponse::Representation
           command.response_class = Google::Apis::ClouderrorreportingV1beta1::ListGroupStatsResponse
           command.params['projectName'] = project_name unless project_name.nil?
+          command.query['timedCountDuration'] = timed_count_duration unless timed_count_duration.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['timeRange.period'] = time_range_period unless time_range_period.nil?
           command.query['alignment'] = alignment unless alignment.nil?
           command.query['groupId'] = group_id unless group_id.nil?
           command.query['serviceFilter.service'] = service_filter_service unless service_filter_service.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
-          command.query['order'] = order unless order.nil?
           command.query['serviceFilter.version'] = service_filter_version unless service_filter_version.nil?
-          command.query['alignmentTime'] = alignment_time unless alignment_time.nil?
+          command.query['order'] = order unless order.nil?
           command.query['serviceFilter.resourceType'] = service_filter_resource_type unless service_filter_resource_type.nil?
-          command.query['timedCountDuration'] = timed_count_duration unless timed_count_duration.nil?
-          command.query['pageToken'] = page_token unless page_token.nil?
-          command.query['timeRange.period'] = time_range_period unless time_range_period.nil?
+          command.query['alignmentTime'] = alignment_time unless alignment_time.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           command.query['fields'] = fields unless fields.nil?
           execute_or_queue_command(command, &block)
@@ -240,12 +240,12 @@ module Google
         #   [Google Cloud Platform project
         #   ID](https://support.google.com/cloud/answer/6158840).
         #   Example: `projects/my-project-123`.
+        # @param [String] page_token
+        #   [Optional] A `next_page_token` provided by a previous response.
         # @param [String] service_filter_service
         #   [Optional] The exact value to match against
         #   [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/
         #   ServiceContext#FIELDS.service).
-        # @param [String] page_token
-        #   [Optional] A `next_page_token` provided by a previous response.
         # @param [Fixnum] page_size
         #   [Optional] The maximum number of results to return per response.
         # @param [String] service_filter_version
@@ -277,13 +277,13 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_project_events(project_name, service_filter_service: nil, page_token: nil, page_size: nil, service_filter_version: nil, service_filter_resource_type: nil, time_range_period: nil, group_id: nil, quota_user: nil, fields: nil, options: nil, &block)
+        def list_project_events(project_name, page_token: nil, service_filter_service: nil, page_size: nil, service_filter_version: nil, service_filter_resource_type: nil, time_range_period: nil, group_id: nil, quota_user: nil, fields: nil, options: nil, &block)
           command =  make_simple_command(:get, 'v1beta1/{+projectName}/events', options)
           command.response_representation = Google::Apis::ClouderrorreportingV1beta1::ListEventsResponse::Representation
           command.response_class = Google::Apis::ClouderrorreportingV1beta1::ListEventsResponse
           command.params['projectName'] = project_name unless project_name.nil?
-          command.query['serviceFilter.service'] = service_filter_service unless service_filter_service.nil?
           command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['serviceFilter.service'] = service_filter_service unless service_filter_service.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
           command.query['serviceFilter.version'] = service_filter_version unless service_filter_version.nil?
           command.query['serviceFilter.resourceType'] = service_filter_resource_type unless service_filter_resource_type.nil?
@@ -341,8 +341,8 @@ module Google
         protected
 
         def apply_command_defaults(command)
-          command.query['key'] = key unless key.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
+          command.query['key'] = key unless key.nil?
         end
       end
     end

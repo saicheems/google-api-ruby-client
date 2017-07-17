@@ -47,39 +47,6 @@ module Google
           @batch_path = 'batch'
         end
         
-        # Deletes a long-running operation. This method indicates that the client is
-        # no longer interested in the operation result. It does not cancel the
-        # operation. If the server doesn't support this method, it returns
-        # `google.rpc.Code.UNIMPLEMENTED`.
-        # @param [String] name
-        #   The name of the operation resource to be deleted.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::SpeechV1beta1::Empty] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::SpeechV1beta1::Empty]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def delete_operation(name, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:delete, 'v1beta1/operations/{+name}', options)
-          command.response_representation = Google::Apis::SpeechV1beta1::Empty::Representation
-          command.response_class = Google::Apis::SpeechV1beta1::Empty
-          command.params['name'] = name unless name.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
         # Gets the latest state of a long-running operation.  Clients can use this
         # method to poll the operation result at intervals as recommended by the API
         # service.
@@ -121,14 +88,14 @@ module Google
         # For backwards compatibility, the default name includes the operations
         # collection id, however overriding users must ensure the name binding
         # is the parent resource, without the operations collection id.
+        # @param [String] filter
+        #   The standard list filter.
         # @param [String] page_token
         #   The standard list page token.
         # @param [String] name
         #   The name of the operation's parent resource.
         # @param [Fixnum] page_size
         #   The standard list page size.
-        # @param [String] filter
-        #   The standard list filter.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -146,14 +113,14 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_operations(page_token: nil, name: nil, page_size: nil, filter: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def list_operations(filter: nil, page_token: nil, name: nil, page_size: nil, fields: nil, quota_user: nil, options: nil, &block)
           command =  make_simple_command(:get, 'v1beta1/operations', options)
           command.response_representation = Google::Apis::SpeechV1beta1::ListOperationsResponse::Representation
           command.response_class = Google::Apis::SpeechV1beta1::ListOperationsResponse
+          command.query['filter'] = filter unless filter.nil?
           command.query['pageToken'] = page_token unless page_token.nil?
           command.query['name'] = name unless name.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
-          command.query['filter'] = filter unless filter.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -190,6 +157,39 @@ module Google
         # @raise [Google::Apis::AuthorizationError] Authorization is required
         def cancel_operation(name, fields: nil, quota_user: nil, options: nil, &block)
           command =  make_simple_command(:post, 'v1beta1/operations/{+name}:cancel', options)
+          command.response_representation = Google::Apis::SpeechV1beta1::Empty::Representation
+          command.response_class = Google::Apis::SpeechV1beta1::Empty
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a long-running operation. This method indicates that the client is
+        # no longer interested in the operation result. It does not cancel the
+        # operation. If the server doesn't support this method, it returns
+        # `google.rpc.Code.UNIMPLEMENTED`.
+        # @param [String] name
+        #   The name of the operation resource to be deleted.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::SpeechV1beta1::Empty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::SpeechV1beta1::Empty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_operation(name, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:delete, 'v1beta1/operations/{+name}', options)
           command.response_representation = Google::Apis::SpeechV1beta1::Empty::Representation
           command.response_class = Google::Apis::SpeechV1beta1::Empty
           command.params['name'] = name unless name.nil?

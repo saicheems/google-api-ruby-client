@@ -27,11 +27,6 @@ module Google
       class SearchResponse
         include Google::Apis::Core::Hashable
       
-        # The schema type of top-level JSON-LD object, e.g. ItemList.
-        # Corresponds to the JSON property `@type`
-        # @return [Object]
-        attr_accessor :_type
-      
         # The item list of search results.
         # Corresponds to the JSON property `itemListElement`
         # @return [Array<Object>]
@@ -43,15 +38,20 @@ module Google
         # @return [Object]
         attr_accessor :_context
       
+        # The schema type of top-level JSON-LD object, e.g. ItemList.
+        # Corresponds to the JSON property `@type`
+        # @return [Object]
+        attr_accessor :_type
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @_type = args[:_type] if args.key?(:_type)
           @item_list_element = args[:item_list_element] if args.key?(:item_list_element)
           @_context = args[:_context] if args.key?(:_context)
+          @_type = args[:_type] if args.key?(:_type)
         end
       end
     end

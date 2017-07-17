@@ -22,195 +22,14 @@ module Google
   module Apis
     module DatastoreV1
       
-      # The result of applying a mutation.
-      class MutationResult
-        include Google::Apis::Core::Hashable
-      
-        # The version of the entity on the server after processing the mutation. If
-        # the mutation doesn't change anything on the server, then the version will
-        # be the version of the current entity or, if no entity is present, a version
-        # that is strictly greater than the version of any previous entity and less
-        # than the version of any possible future entity.
-        # Corresponds to the JSON property `version`
-        # @return [Fixnum]
-        attr_accessor :version
-      
-        # Whether a conflict was detected for this mutation. Always false when a
-        # conflict detection strategy field is not set in the mutation.
-        # Corresponds to the JSON property `conflictDetected`
-        # @return [Boolean]
-        attr_accessor :conflict_detected
-        alias_method :conflict_detected?, :conflict_detected
-      
-        # A unique identifier for an entity.
-        # If a key's partition ID or any of its path kinds or names are
-        # reserved/read-only, the key is reserved/read-only.
-        # A reserved/read-only key is forbidden in certain documented contexts.
-        # Corresponds to the JSON property `key`
-        # @return [Google::Apis::DatastoreV1::Key]
-        attr_accessor :key
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @version = args[:version] if args.key?(:version)
-          @conflict_detected = args[:conflict_detected] if args.key?(:conflict_detected)
-          @key = args[:key] if args.key?(:key)
-        end
-      end
-      
-      # A [GQL query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
-      class GqlQuery
-        include Google::Apis::Core::Hashable
-      
-        # Numbered binding site @1 references the first numbered parameter,
-        # effectively using 1-based indexing, rather than the usual 0.
-        # For each binding site numbered i in `query_string`, there must be an i-th
-        # numbered parameter. The inverse must also be true.
-        # Corresponds to the JSON property `positionalBindings`
-        # @return [Array<Google::Apis::DatastoreV1::GqlQueryParameter>]
-        attr_accessor :positional_bindings
-      
-        # For each non-reserved named binding site in the query string, there must be
-        # a named parameter with that name, but not necessarily the inverse.
-        # Key must match regex `A-Za-z_$*`, must not match regex
-        # `__.*__`, and must not be `""`.
-        # Corresponds to the JSON property `namedBindings`
-        # @return [Hash<String,Google::Apis::DatastoreV1::GqlQueryParameter>]
-        attr_accessor :named_bindings
-      
-        # When false, the query string must not contain any literals and instead must
-        # bind all values. For example,
-        # `SELECT * FROM Kind WHERE a = 'string literal'` is not allowed, while
-        # `SELECT * FROM Kind WHERE a = @value` is.
-        # Corresponds to the JSON property `allowLiterals`
-        # @return [Boolean]
-        attr_accessor :allow_literals
-        alias_method :allow_literals?, :allow_literals
-      
-        # A string of the format described
-        # [here](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
-        # Corresponds to the JSON property `queryString`
-        # @return [String]
-        attr_accessor :query_string
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @positional_bindings = args[:positional_bindings] if args.key?(:positional_bindings)
-          @named_bindings = args[:named_bindings] if args.key?(:named_bindings)
-          @allow_literals = args[:allow_literals] if args.key?(:allow_literals)
-          @query_string = args[:query_string] if args.key?(:query_string)
-        end
-      end
-      
-      # A holder for any type of filter.
-      class Filter
-        include Google::Apis::Core::Hashable
-      
-        # A filter on a specific property.
-        # Corresponds to the JSON property `propertyFilter`
-        # @return [Google::Apis::DatastoreV1::PropertyFilter]
-        attr_accessor :property_filter
-      
-        # A filter that merges multiple other filters using the given operator.
-        # Corresponds to the JSON property `compositeFilter`
-        # @return [Google::Apis::DatastoreV1::CompositeFilter]
-        attr_accessor :composite_filter
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @property_filter = args[:property_filter] if args.key?(:property_filter)
-          @composite_filter = args[:composite_filter] if args.key?(:composite_filter)
-        end
-      end
-      
-      # The request for Datastore.RunQuery.
-      class RunQueryRequest
-        include Google::Apis::Core::Hashable
-      
-        # A [GQL query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
-        # Corresponds to the JSON property `gqlQuery`
-        # @return [Google::Apis::DatastoreV1::GqlQuery]
-        attr_accessor :gql_query
-      
-        # A partition ID identifies a grouping of entities. The grouping is always
-        # by project and namespace, however the namespace ID may be empty.
-        # A partition ID contains several dimensions:
-        # project ID and namespace ID.
-        # Partition dimensions:
-        # - May be `""`.
-        # - Must be valid UTF-8 bytes.
-        # - Must have values that match regex `[A-Za-z\d\.\-_]`1,100``
-        # If the value of any dimension matches regex `__.*__`, the partition is
-        # reserved/read-only.
-        # A reserved/read-only partition ID is forbidden in certain documented
-        # contexts.
-        # Foreign partition IDs (in which the project ID does
-        # not match the context project ID ) are discouraged.
-        # Reads and writes of foreign partition IDs may fail if the project is not in an
-        # active state.
-        # Corresponds to the JSON property `partitionId`
-        # @return [Google::Apis::DatastoreV1::PartitionId]
-        attr_accessor :partition_id
-      
-        # The options shared by read requests.
-        # Corresponds to the JSON property `readOptions`
-        # @return [Google::Apis::DatastoreV1::ReadOptions]
-        attr_accessor :read_options
-      
-        # A query for entities.
-        # Corresponds to the JSON property `query`
-        # @return [Google::Apis::DatastoreV1::Query]
-        attr_accessor :query
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @gql_query = args[:gql_query] if args.key?(:gql_query)
-          @partition_id = args[:partition_id] if args.key?(:partition_id)
-          @read_options = args[:read_options] if args.key?(:read_options)
-          @query = args[:query] if args.key?(:query)
-        end
-      end
-      
-      # The request for Datastore.Rollback.
-      class RollbackRequest
-        include Google::Apis::Core::Hashable
-      
-        # The transaction identifier, returned by a call to
-        # Datastore.BeginTransaction.
-        # Corresponds to the JSON property `transaction`
-        # NOTE: Values are automatically base64 encoded/decoded in the client library.
-        # @return [String]
-        attr_accessor :transaction
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @transaction = args[:transaction] if args.key?(:transaction)
-        end
-      end
-      
       # A filter that merges multiple other filters using the given operator.
       class CompositeFilter
         include Google::Apis::Core::Hashable
+      
+        # The operator for combining multiple filters.
+        # Corresponds to the JSON property `op`
+        # @return [String]
+        attr_accessor :op
       
         # The list of filters to combine.
         # Must contain at least one filter.
@@ -218,19 +37,14 @@ module Google
         # @return [Array<Google::Apis::DatastoreV1::Filter>]
         attr_accessor :filters
       
-        # The operator for combining multiple filters.
-        # Corresponds to the JSON property `op`
-        # @return [String]
-        attr_accessor :op
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @filters = args[:filters] if args.key?(:filters)
           @op = args[:op] if args.key?(:op)
+          @filters = args[:filters] if args.key?(:filters)
         end
       end
       
@@ -285,6 +99,12 @@ module Google
         # @return [Fixnum]
         attr_accessor :limit
       
+        # The number of results to skip. Applies before limit, but after all other
+        # constraints. Optional. Must be >= 0 if specified.
+        # Corresponds to the JSON property `offset`
+        # @return [Fixnum]
+        attr_accessor :offset
+      
         # A starting point for the query results. Query cursors are
         # returned in query result batches and
         # [can only be used to continue the same query](https://cloud.google.com/
@@ -293,12 +113,6 @@ module Google
         # NOTE: Values are automatically base64 encoded/decoded in the client library.
         # @return [String]
         attr_accessor :start_cursor
-      
-        # The number of results to skip. Applies before limit, but after all other
-        # constraints. Optional. Must be >= 0 if specified.
-        # Corresponds to the JSON property `offset`
-        # @return [Fixnum]
-        attr_accessor :offset
       
         # The kinds to query (if empty, returns entities of all kinds).
         # Currently at most 1 kind may be specified.
@@ -328,8 +142,8 @@ module Google
           @end_cursor = args[:end_cursor] if args.key?(:end_cursor)
           @filter = args[:filter] if args.key?(:filter)
           @limit = args[:limit] if args.key?(:limit)
-          @start_cursor = args[:start_cursor] if args.key?(:start_cursor)
           @offset = args[:offset] if args.key?(:offset)
+          @start_cursor = args[:start_cursor] if args.key?(:start_cursor)
           @kind = args[:kind] if args.key?(:kind)
           @distinct_on = args[:distinct_on] if args.key?(:distinct_on)
           @order = args[:order] if args.key?(:order)
@@ -372,14 +186,6 @@ module Google
       class EntityResult
         include Google::Apis::Core::Hashable
       
-        # A Datastore data object.
-        # An entity is limited to 1 megabyte when stored. That _roughly_
-        # corresponds to a limit of 1 megabyte for the serialized form of this
-        # message.
-        # Corresponds to the JSON property `entity`
-        # @return [Google::Apis::DatastoreV1::Entity]
-        attr_accessor :entity
-      
         # A cursor that points to the position after the result entity.
         # Set only when the `EntityResult` is part of a `QueryResultBatch` message.
         # Corresponds to the JSON property `cursor`
@@ -398,15 +204,23 @@ module Google
         # @return [Fixnum]
         attr_accessor :version
       
+        # A Datastore data object.
+        # An entity is limited to 1 megabyte when stored. That _roughly_
+        # corresponds to a limit of 1 megabyte for the serialized form of this
+        # message.
+        # Corresponds to the JSON property `entity`
+        # @return [Google::Apis::DatastoreV1::Entity]
+        attr_accessor :entity
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @entity = args[:entity] if args.key?(:entity)
           @cursor = args[:cursor] if args.key?(:cursor)
           @version = args[:version] if args.key?(:version)
+          @entity = args[:entity] if args.key?(:entity)
         end
       end
       
@@ -414,48 +228,6 @@ module Google
       # metadata.
       class Value
         include Google::Apis::Core::Hashable
-      
-        # A double value.
-        # Corresponds to the JSON property `doubleValue`
-        # @return [Float]
-        attr_accessor :double_value
-      
-        # A timestamp value.
-        # When stored in the Datastore, precise only to microseconds;
-        # any additional precision is rounded down.
-        # Corresponds to the JSON property `timestampValue`
-        # @return [String]
-        attr_accessor :timestamp_value
-      
-        # A null value.
-        # Corresponds to the JSON property `nullValue`
-        # @return [String]
-        attr_accessor :null_value
-      
-        # A boolean value.
-        # Corresponds to the JSON property `booleanValue`
-        # @return [Boolean]
-        attr_accessor :boolean_value
-        alias_method :boolean_value?, :boolean_value
-      
-        # A blob value.
-        # May have at most 1,000,000 bytes.
-        # When `exclude_from_indexes` is false, may have at most 1500 bytes.
-        # In JSON requests, must be base64-encoded.
-        # Corresponds to the JSON property `blobValue`
-        # NOTE: Values are automatically base64 encoded/decoded in the client library.
-        # @return [String]
-        attr_accessor :blob_value
-      
-        # The `meaning` field should only be populated for backwards compatibility.
-        # Corresponds to the JSON property `meaning`
-        # @return [Fixnum]
-        attr_accessor :meaning
-      
-        # An array value.
-        # Corresponds to the JSON property `arrayValue`
-        # @return [Google::Apis::DatastoreV1::ArrayValue]
-        attr_accessor :array_value
       
         # A Datastore data object.
         # An entity is limited to 1 megabyte when stored. That _roughly_
@@ -504,6 +276,11 @@ module Google
         # @return [Google::Apis::DatastoreV1::LatLng]
         attr_accessor :geo_point_value
       
+        # An integer value.
+        # Corresponds to the JSON property `integerValue`
+        # @return [Fixnum]
+        attr_accessor :integer_value
+      
         # A unique identifier for an entity.
         # If a key's partition ID or any of its path kinds or names are
         # reserved/read-only, the key is reserved/read-only.
@@ -511,11 +288,6 @@ module Google
         # Corresponds to the JSON property `keyValue`
         # @return [Google::Apis::DatastoreV1::Key]
         attr_accessor :key_value
-      
-        # An integer value.
-        # Corresponds to the JSON property `integerValue`
-        # @return [Fixnum]
-        attr_accessor :integer_value
       
         # A UTF-8 encoded string value.
         # When `exclude_from_indexes` is false (it is indexed) , may have at most 1500
@@ -532,12 +304,60 @@ module Google
         attr_accessor :exclude_from_indexes
         alias_method :exclude_from_indexes?, :exclude_from_indexes
       
+        # A double value.
+        # Corresponds to the JSON property `doubleValue`
+        # @return [Float]
+        attr_accessor :double_value
+      
+        # A timestamp value.
+        # When stored in the Datastore, precise only to microseconds;
+        # any additional precision is rounded down.
+        # Corresponds to the JSON property `timestampValue`
+        # @return [String]
+        attr_accessor :timestamp_value
+      
+        # A null value.
+        # Corresponds to the JSON property `nullValue`
+        # @return [String]
+        attr_accessor :null_value
+      
+        # A boolean value.
+        # Corresponds to the JSON property `booleanValue`
+        # @return [Boolean]
+        attr_accessor :boolean_value
+        alias_method :boolean_value?, :boolean_value
+      
+        # A blob value.
+        # May have at most 1,000,000 bytes.
+        # When `exclude_from_indexes` is false, may have at most 1500 bytes.
+        # In JSON requests, must be base64-encoded.
+        # Corresponds to the JSON property `blobValue`
+        # NOTE: Values are automatically base64 encoded/decoded in the client library.
+        # @return [String]
+        attr_accessor :blob_value
+      
+        # The `meaning` field should only be populated for backwards compatibility.
+        # Corresponds to the JSON property `meaning`
+        # @return [Fixnum]
+        attr_accessor :meaning
+      
+        # An array value.
+        # Corresponds to the JSON property `arrayValue`
+        # @return [Google::Apis::DatastoreV1::ArrayValue]
+        attr_accessor :array_value
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @entity_value = args[:entity_value] if args.key?(:entity_value)
+          @geo_point_value = args[:geo_point_value] if args.key?(:geo_point_value)
+          @integer_value = args[:integer_value] if args.key?(:integer_value)
+          @key_value = args[:key_value] if args.key?(:key_value)
+          @string_value = args[:string_value] if args.key?(:string_value)
+          @exclude_from_indexes = args[:exclude_from_indexes] if args.key?(:exclude_from_indexes)
           @double_value = args[:double_value] if args.key?(:double_value)
           @timestamp_value = args[:timestamp_value] if args.key?(:timestamp_value)
           @null_value = args[:null_value] if args.key?(:null_value)
@@ -545,12 +365,6 @@ module Google
           @blob_value = args[:blob_value] if args.key?(:blob_value)
           @meaning = args[:meaning] if args.key?(:meaning)
           @array_value = args[:array_value] if args.key?(:array_value)
-          @entity_value = args[:entity_value] if args.key?(:entity_value)
-          @geo_point_value = args[:geo_point_value] if args.key?(:geo_point_value)
-          @key_value = args[:key_value] if args.key?(:key_value)
-          @integer_value = args[:integer_value] if args.key?(:integer_value)
-          @string_value = args[:string_value] if args.key?(:string_value)
-          @exclude_from_indexes = args[:exclude_from_indexes] if args.key?(:exclude_from_indexes)
         end
       end
       
@@ -628,6 +442,14 @@ module Google
       class Entity
         include Google::Apis::Core::Hashable
       
+        # A unique identifier for an entity.
+        # If a key's partition ID or any of its path kinds or names are
+        # reserved/read-only, the key is reserved/read-only.
+        # A reserved/read-only key is forbidden in certain documented contexts.
+        # Corresponds to the JSON property `key`
+        # @return [Google::Apis::DatastoreV1::Key]
+        attr_accessor :key
+      
         # The entity's properties.
         # The map's keys are property names.
         # A property name matching regex `__.*__` is reserved.
@@ -638,70 +460,20 @@ module Google
         # @return [Hash<String,Google::Apis::DatastoreV1::Value>]
         attr_accessor :properties
       
-        # A unique identifier for an entity.
-        # If a key's partition ID or any of its path kinds or names are
-        # reserved/read-only, the key is reserved/read-only.
-        # A reserved/read-only key is forbidden in certain documented contexts.
-        # Corresponds to the JSON property `key`
-        # @return [Google::Apis::DatastoreV1::Key]
-        attr_accessor :key
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @properties = args[:properties] if args.key?(:properties)
           @key = args[:key] if args.key?(:key)
-        end
-      end
-      
-      # The request for Datastore.Lookup.
-      class LookupRequest
-        include Google::Apis::Core::Hashable
-      
-        # The options shared by read requests.
-        # Corresponds to the JSON property `readOptions`
-        # @return [Google::Apis::DatastoreV1::ReadOptions]
-        attr_accessor :read_options
-      
-        # Keys of entities to look up.
-        # Corresponds to the JSON property `keys`
-        # @return [Array<Google::Apis::DatastoreV1::Key>]
-        attr_accessor :keys
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @read_options = args[:read_options] if args.key?(:read_options)
-          @keys = args[:keys] if args.key?(:keys)
+          @properties = args[:properties] if args.key?(:properties)
         end
       end
       
       # A batch of results produced by a query.
       class QueryResultBatch
         include Google::Apis::Core::Hashable
-      
-        # A cursor that points to the position after the last skipped result.
-        # Will be set when `skipped_results` != 0.
-        # Corresponds to the JSON property `skippedCursor`
-        # NOTE: Values are automatically base64 encoded/decoded in the client library.
-        # @return [String]
-        attr_accessor :skipped_cursor
-      
-        # The number of results skipped, typically because of an offset.
-        # Corresponds to the JSON property `skippedResults`
-        # @return [Fixnum]
-        attr_accessor :skipped_results
-      
-        # The result type for every entity in `entity_results`.
-        # Corresponds to the JSON property `entityResultType`
-        # @return [String]
-        attr_accessor :entity_result_type
       
         # The results for this batch.
         # Corresponds to the JSON property `entityResults`
@@ -731,19 +503,61 @@ module Google
         # @return [Fixnum]
         attr_accessor :snapshot_version
       
+        # A cursor that points to the position after the last skipped result.
+        # Will be set when `skipped_results` != 0.
+        # Corresponds to the JSON property `skippedCursor`
+        # NOTE: Values are automatically base64 encoded/decoded in the client library.
+        # @return [String]
+        attr_accessor :skipped_cursor
+      
+        # The number of results skipped, typically because of an offset.
+        # Corresponds to the JSON property `skippedResults`
+        # @return [Fixnum]
+        attr_accessor :skipped_results
+      
+        # The result type for every entity in `entity_results`.
+        # Corresponds to the JSON property `entityResultType`
+        # @return [String]
+        attr_accessor :entity_result_type
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @skipped_cursor = args[:skipped_cursor] if args.key?(:skipped_cursor)
-          @skipped_results = args[:skipped_results] if args.key?(:skipped_results)
-          @entity_result_type = args[:entity_result_type] if args.key?(:entity_result_type)
           @entity_results = args[:entity_results] if args.key?(:entity_results)
           @more_results = args[:more_results] if args.key?(:more_results)
           @end_cursor = args[:end_cursor] if args.key?(:end_cursor)
           @snapshot_version = args[:snapshot_version] if args.key?(:snapshot_version)
+          @skipped_cursor = args[:skipped_cursor] if args.key?(:skipped_cursor)
+          @skipped_results = args[:skipped_results] if args.key?(:skipped_results)
+          @entity_result_type = args[:entity_result_type] if args.key?(:entity_result_type)
+        end
+      end
+      
+      # The request for Datastore.Lookup.
+      class LookupRequest
+        include Google::Apis::Core::Hashable
+      
+        # The options shared by read requests.
+        # Corresponds to the JSON property `readOptions`
+        # @return [Google::Apis::DatastoreV1::ReadOptions]
+        attr_accessor :read_options
+      
+        # Keys of entities to look up.
+        # Corresponds to the JSON property `keys`
+        # @return [Array<Google::Apis::DatastoreV1::Key>]
+        attr_accessor :keys
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @read_options = args[:read_options] if args.key?(:read_options)
+          @keys = args[:keys] if args.key?(:keys)
         end
       end
       
@@ -836,63 +650,6 @@ module Google
         end
       end
       
-      # The request for Datastore.AllocateIds.
-      class AllocateIdsRequest
-        include Google::Apis::Core::Hashable
-      
-        # A list of keys with incomplete key paths for which to allocate IDs.
-        # No key may be reserved/read-only.
-        # Corresponds to the JSON property `keys`
-        # @return [Array<Google::Apis::DatastoreV1::Key>]
-        attr_accessor :keys
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @keys = args[:keys] if args.key?(:keys)
-        end
-      end
-      
-      # The response for Datastore.Lookup.
-      class LookupResponse
-        include Google::Apis::Core::Hashable
-      
-        # Entities not found as `ResultType.KEY_ONLY` entities. The order of results
-        # in this field is undefined and has no relation to the order of the keys
-        # in the input.
-        # Corresponds to the JSON property `missing`
-        # @return [Array<Google::Apis::DatastoreV1::EntityResult>]
-        attr_accessor :missing
-      
-        # Entities found as `ResultType.FULL` entities. The order of results in this
-        # field is undefined and has no relation to the order of the keys in the
-        # input.
-        # Corresponds to the JSON property `found`
-        # @return [Array<Google::Apis::DatastoreV1::EntityResult>]
-        attr_accessor :found
-      
-        # A list of keys that were not looked up due to resource constraints. The
-        # order of results in this field is undefined and has no relation to the
-        # order of the keys in the input.
-        # Corresponds to the JSON property `deferred`
-        # @return [Array<Google::Apis::DatastoreV1::Key>]
-        attr_accessor :deferred
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @missing = args[:missing] if args.key?(:missing)
-          @found = args[:found] if args.key?(:found)
-          @deferred = args[:deferred] if args.key?(:deferred)
-        end
-      end
-      
       # The response for Datastore.RunQuery.
       class RunQueryResponse
         include Google::Apis::Core::Hashable
@@ -918,9 +675,74 @@ module Google
         end
       end
       
+      # The request for Datastore.AllocateIds.
+      class AllocateIdsRequest
+        include Google::Apis::Core::Hashable
+      
+        # A list of keys with incomplete key paths for which to allocate IDs.
+        # No key may be reserved/read-only.
+        # Corresponds to the JSON property `keys`
+        # @return [Array<Google::Apis::DatastoreV1::Key>]
+        attr_accessor :keys
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @keys = args[:keys] if args.key?(:keys)
+        end
+      end
+      
+      # The response for Datastore.Lookup.
+      class LookupResponse
+        include Google::Apis::Core::Hashable
+      
+        # Entities found as `ResultType.FULL` entities. The order of results in this
+        # field is undefined and has no relation to the order of the keys in the
+        # input.
+        # Corresponds to the JSON property `found`
+        # @return [Array<Google::Apis::DatastoreV1::EntityResult>]
+        attr_accessor :found
+      
+        # Entities not found as `ResultType.KEY_ONLY` entities. The order of results
+        # in this field is undefined and has no relation to the order of the keys
+        # in the input.
+        # Corresponds to the JSON property `missing`
+        # @return [Array<Google::Apis::DatastoreV1::EntityResult>]
+        attr_accessor :missing
+      
+        # A list of keys that were not looked up due to resource constraints. The
+        # order of results in this field is undefined and has no relation to the
+        # order of the keys in the input.
+        # Corresponds to the JSON property `deferred`
+        # @return [Array<Google::Apis::DatastoreV1::Key>]
+        attr_accessor :deferred
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @found = args[:found] if args.key?(:found)
+          @missing = args[:missing] if args.key?(:missing)
+          @deferred = args[:deferred] if args.key?(:deferred)
+        end
+      end
+      
       # The request for Datastore.Commit.
       class CommitRequest
         include Google::Apis::Core::Hashable
+      
+        # The identifier of the transaction associated with the commit. A
+        # transaction identifier is returned by a call to
+        # Datastore.BeginTransaction.
+        # Corresponds to the JSON property `transaction`
+        # NOTE: Values are automatically base64 encoded/decoded in the client library.
+        # @return [String]
+        attr_accessor :transaction
       
         # The type of commit to perform. Defaults to `TRANSACTIONAL`.
         # Corresponds to the JSON property `mode`
@@ -941,23 +763,15 @@ module Google
         # @return [Array<Google::Apis::DatastoreV1::Mutation>]
         attr_accessor :mutations
       
-        # The identifier of the transaction associated with the commit. A
-        # transaction identifier is returned by a call to
-        # Datastore.BeginTransaction.
-        # Corresponds to the JSON property `transaction`
-        # NOTE: Values are automatically base64 encoded/decoded in the client library.
-        # @return [String]
-        attr_accessor :transaction
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @transaction = args[:transaction] if args.key?(:transaction)
           @mode = args[:mode] if args.key?(:mode)
           @mutations = args[:mutations] if args.key?(:mutations)
-          @transaction = args[:transaction] if args.key?(:transaction)
         end
       end
       
@@ -978,15 +792,15 @@ module Google
       class PropertyOrder
         include Google::Apis::Core::Hashable
       
-        # The direction to order by. Defaults to `ASCENDING`.
-        # Corresponds to the JSON property `direction`
-        # @return [String]
-        attr_accessor :direction
-      
         # A reference to a property relative to the kind expressions.
         # Corresponds to the JSON property `property`
         # @return [Google::Apis::DatastoreV1::PropertyReference]
         attr_accessor :property
+      
+        # The direction to order by. Defaults to `ASCENDING`.
+        # Corresponds to the JSON property `direction`
+        # @return [String]
+        attr_accessor :direction
       
         def initialize(**args)
            update!(**args)
@@ -994,8 +808,8 @@ module Google
       
         # Update properties of this object
         def update!(**args)
-          @direction = args[:direction] if args.key?(:direction)
           @property = args[:property] if args.key?(:property)
+          @direction = args[:direction] if args.key?(:direction)
         end
       end
       
@@ -1015,62 +829,6 @@ module Google
         # Update properties of this object
         def update!(**args)
           @name = args[:name] if args.key?(:name)
-        end
-      end
-      
-      # A unique identifier for an entity.
-      # If a key's partition ID or any of its path kinds or names are
-      # reserved/read-only, the key is reserved/read-only.
-      # A reserved/read-only key is forbidden in certain documented contexts.
-      class Key
-        include Google::Apis::Core::Hashable
-      
-        # A partition ID identifies a grouping of entities. The grouping is always
-        # by project and namespace, however the namespace ID may be empty.
-        # A partition ID contains several dimensions:
-        # project ID and namespace ID.
-        # Partition dimensions:
-        # - May be `""`.
-        # - Must be valid UTF-8 bytes.
-        # - Must have values that match regex `[A-Za-z\d\.\-_]`1,100``
-        # If the value of any dimension matches regex `__.*__`, the partition is
-        # reserved/read-only.
-        # A reserved/read-only partition ID is forbidden in certain documented
-        # contexts.
-        # Foreign partition IDs (in which the project ID does
-        # not match the context project ID ) are discouraged.
-        # Reads and writes of foreign partition IDs may fail if the project is not in an
-        # active state.
-        # Corresponds to the JSON property `partitionId`
-        # @return [Google::Apis::DatastoreV1::PartitionId]
-        attr_accessor :partition_id
-      
-        # The entity path.
-        # An entity path consists of one or more elements composed of a kind and a
-        # string or numerical identifier, which identify entities. The first
-        # element identifies a _root entity_, the second element identifies
-        # a _child_ of the root entity, the third element identifies a child of the
-        # second entity, and so forth. The entities identified by all prefixes of
-        # the path are called the element's _ancestors_.
-        # An entity path is always fully complete: *all* of the entity's ancestors
-        # are required to be in the path along with the entity identifier itself.
-        # The only exception is that in some documented cases, the identifier in the
-        # last path element (for the entity) itself may be omitted. For example,
-        # the last path element of the key of `Mutation.insert` may have no
-        # identifier.
-        # A path can never be empty, and a path can have at most 100 elements.
-        # Corresponds to the JSON property `path`
-        # @return [Array<Google::Apis::DatastoreV1::PathElement>]
-        attr_accessor :path
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @partition_id = args[:partition_id] if args.key?(:partition_id)
-          @path = args[:path] if args.key?(:path)
         end
       end
       
@@ -1130,6 +888,62 @@ module Google
         def update!(**args)
           @latitude = args[:latitude] if args.key?(:latitude)
           @longitude = args[:longitude] if args.key?(:longitude)
+        end
+      end
+      
+      # A unique identifier for an entity.
+      # If a key's partition ID or any of its path kinds or names are
+      # reserved/read-only, the key is reserved/read-only.
+      # A reserved/read-only key is forbidden in certain documented contexts.
+      class Key
+        include Google::Apis::Core::Hashable
+      
+        # A partition ID identifies a grouping of entities. The grouping is always
+        # by project and namespace, however the namespace ID may be empty.
+        # A partition ID contains several dimensions:
+        # project ID and namespace ID.
+        # Partition dimensions:
+        # - May be `""`.
+        # - Must be valid UTF-8 bytes.
+        # - Must have values that match regex `[A-Za-z\d\.\-_]`1,100``
+        # If the value of any dimension matches regex `__.*__`, the partition is
+        # reserved/read-only.
+        # A reserved/read-only partition ID is forbidden in certain documented
+        # contexts.
+        # Foreign partition IDs (in which the project ID does
+        # not match the context project ID ) are discouraged.
+        # Reads and writes of foreign partition IDs may fail if the project is not in an
+        # active state.
+        # Corresponds to the JSON property `partitionId`
+        # @return [Google::Apis::DatastoreV1::PartitionId]
+        attr_accessor :partition_id
+      
+        # The entity path.
+        # An entity path consists of one or more elements composed of a kind and a
+        # string or numerical identifier, which identify entities. The first
+        # element identifies a _root entity_, the second element identifies
+        # a _child_ of the root entity, the third element identifies a child of the
+        # second entity, and so forth. The entities identified by all prefixes of
+        # the path are called the element's _ancestors_.
+        # An entity path is always fully complete: *all* of the entity's ancestors
+        # are required to be in the path along with the entity identifier itself.
+        # The only exception is that in some documented cases, the identifier in the
+        # last path element (for the entity) itself may be omitted. For example,
+        # the last path element of the key of `Mutation.insert` may have no
+        # identifier.
+        # A path can never be empty, and a path can have at most 100 elements.
+        # Corresponds to the JSON property `path`
+        # @return [Array<Google::Apis::DatastoreV1::PathElement>]
+        attr_accessor :path
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @partition_id = args[:partition_id] if args.key?(:partition_id)
+          @path = args[:path] if args.key?(:path)
         end
       end
       
@@ -1197,11 +1011,13 @@ module Google
       class Mutation
         include Google::Apis::Core::Hashable
       
-        # The version of the entity that this mutation is being applied to. If this
-        # does not match the current version on the server, the mutation conflicts.
-        # Corresponds to the JSON property `baseVersion`
-        # @return [Fixnum]
-        attr_accessor :base_version
+        # A unique identifier for an entity.
+        # If a key's partition ID or any of its path kinds or names are
+        # reserved/read-only, the key is reserved/read-only.
+        # A reserved/read-only key is forbidden in certain documented contexts.
+        # Corresponds to the JSON property `delete`
+        # @return [Google::Apis::DatastoreV1::Key]
+        attr_accessor :delete
       
         # A Datastore data object.
         # An entity is limited to 1 megabyte when stored. That _roughly_
@@ -1210,6 +1026,12 @@ module Google
         # Corresponds to the JSON property `insert`
         # @return [Google::Apis::DatastoreV1::Entity]
         attr_accessor :insert
+      
+        # The version of the entity that this mutation is being applied to. If this
+        # does not match the current version on the server, the mutation conflicts.
+        # Corresponds to the JSON property `baseVersion`
+        # @return [Fixnum]
+        attr_accessor :base_version
       
         # A Datastore data object.
         # An entity is limited to 1 megabyte when stored. That _roughly_
@@ -1227,31 +1049,29 @@ module Google
         # @return [Google::Apis::DatastoreV1::Entity]
         attr_accessor :upsert
       
-        # A unique identifier for an entity.
-        # If a key's partition ID or any of its path kinds or names are
-        # reserved/read-only, the key is reserved/read-only.
-        # A reserved/read-only key is forbidden in certain documented contexts.
-        # Corresponds to the JSON property `delete`
-        # @return [Google::Apis::DatastoreV1::Key]
-        attr_accessor :delete
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @base_version = args[:base_version] if args.key?(:base_version)
+          @delete = args[:delete] if args.key?(:delete)
           @insert = args[:insert] if args.key?(:insert)
+          @base_version = args[:base_version] if args.key?(:base_version)
           @update = args[:update] if args.key?(:update)
           @upsert = args[:upsert] if args.key?(:upsert)
-          @delete = args[:delete] if args.key?(:delete)
         end
       end
       
       # The options shared by read requests.
       class ReadOptions
         include Google::Apis::Core::Hashable
+      
+        # The non-transactional read consistency to use.
+        # Cannot be set to `STRONG` for global queries.
+        # Corresponds to the JSON property `readConsistency`
+        # @return [String]
+        attr_accessor :read_consistency
       
         # The identifier of the transaction in which to read. A
         # transaction identifier is returned by a call to
@@ -1261,20 +1081,14 @@ module Google
         # @return [String]
         attr_accessor :transaction
       
-        # The non-transactional read consistency to use.
-        # Cannot be set to `STRONG` for global queries.
-        # Corresponds to the JSON property `readConsistency`
-        # @return [String]
-        attr_accessor :read_consistency
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @transaction = args[:transaction] if args.key?(:transaction)
           @read_consistency = args[:read_consistency] if args.key?(:read_consistency)
+          @transaction = args[:transaction] if args.key?(:transaction)
         end
       end
       
@@ -1289,6 +1103,192 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+        end
+      end
+      
+      # The result of applying a mutation.
+      class MutationResult
+        include Google::Apis::Core::Hashable
+      
+        # Whether a conflict was detected for this mutation. Always false when a
+        # conflict detection strategy field is not set in the mutation.
+        # Corresponds to the JSON property `conflictDetected`
+        # @return [Boolean]
+        attr_accessor :conflict_detected
+        alias_method :conflict_detected?, :conflict_detected
+      
+        # A unique identifier for an entity.
+        # If a key's partition ID or any of its path kinds or names are
+        # reserved/read-only, the key is reserved/read-only.
+        # A reserved/read-only key is forbidden in certain documented contexts.
+        # Corresponds to the JSON property `key`
+        # @return [Google::Apis::DatastoreV1::Key]
+        attr_accessor :key
+      
+        # The version of the entity on the server after processing the mutation. If
+        # the mutation doesn't change anything on the server, then the version will
+        # be the version of the current entity or, if no entity is present, a version
+        # that is strictly greater than the version of any previous entity and less
+        # than the version of any possible future entity.
+        # Corresponds to the JSON property `version`
+        # @return [Fixnum]
+        attr_accessor :version
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @conflict_detected = args[:conflict_detected] if args.key?(:conflict_detected)
+          @key = args[:key] if args.key?(:key)
+          @version = args[:version] if args.key?(:version)
+        end
+      end
+      
+      # A [GQL query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
+      class GqlQuery
+        include Google::Apis::Core::Hashable
+      
+        # A string of the format described
+        # [here](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
+        # Corresponds to the JSON property `queryString`
+        # @return [String]
+        attr_accessor :query_string
+      
+        # When false, the query string must not contain any literals and instead must
+        # bind all values. For example,
+        # `SELECT * FROM Kind WHERE a = 'string literal'` is not allowed, while
+        # `SELECT * FROM Kind WHERE a = @value` is.
+        # Corresponds to the JSON property `allowLiterals`
+        # @return [Boolean]
+        attr_accessor :allow_literals
+        alias_method :allow_literals?, :allow_literals
+      
+        # For each non-reserved named binding site in the query string, there must be
+        # a named parameter with that name, but not necessarily the inverse.
+        # Key must match regex `A-Za-z_$*`, must not match regex
+        # `__.*__`, and must not be `""`.
+        # Corresponds to the JSON property `namedBindings`
+        # @return [Hash<String,Google::Apis::DatastoreV1::GqlQueryParameter>]
+        attr_accessor :named_bindings
+      
+        # Numbered binding site @1 references the first numbered parameter,
+        # effectively using 1-based indexing, rather than the usual 0.
+        # For each binding site numbered i in `query_string`, there must be an i-th
+        # numbered parameter. The inverse must also be true.
+        # Corresponds to the JSON property `positionalBindings`
+        # @return [Array<Google::Apis::DatastoreV1::GqlQueryParameter>]
+        attr_accessor :positional_bindings
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @query_string = args[:query_string] if args.key?(:query_string)
+          @allow_literals = args[:allow_literals] if args.key?(:allow_literals)
+          @named_bindings = args[:named_bindings] if args.key?(:named_bindings)
+          @positional_bindings = args[:positional_bindings] if args.key?(:positional_bindings)
+        end
+      end
+      
+      # A holder for any type of filter.
+      class Filter
+        include Google::Apis::Core::Hashable
+      
+        # A filter that merges multiple other filters using the given operator.
+        # Corresponds to the JSON property `compositeFilter`
+        # @return [Google::Apis::DatastoreV1::CompositeFilter]
+        attr_accessor :composite_filter
+      
+        # A filter on a specific property.
+        # Corresponds to the JSON property `propertyFilter`
+        # @return [Google::Apis::DatastoreV1::PropertyFilter]
+        attr_accessor :property_filter
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @composite_filter = args[:composite_filter] if args.key?(:composite_filter)
+          @property_filter = args[:property_filter] if args.key?(:property_filter)
+        end
+      end
+      
+      # The request for Datastore.Rollback.
+      class RollbackRequest
+        include Google::Apis::Core::Hashable
+      
+        # The transaction identifier, returned by a call to
+        # Datastore.BeginTransaction.
+        # Corresponds to the JSON property `transaction`
+        # NOTE: Values are automatically base64 encoded/decoded in the client library.
+        # @return [String]
+        attr_accessor :transaction
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @transaction = args[:transaction] if args.key?(:transaction)
+        end
+      end
+      
+      # The request for Datastore.RunQuery.
+      class RunQueryRequest
+        include Google::Apis::Core::Hashable
+      
+        # A partition ID identifies a grouping of entities. The grouping is always
+        # by project and namespace, however the namespace ID may be empty.
+        # A partition ID contains several dimensions:
+        # project ID and namespace ID.
+        # Partition dimensions:
+        # - May be `""`.
+        # - Must be valid UTF-8 bytes.
+        # - Must have values that match regex `[A-Za-z\d\.\-_]`1,100``
+        # If the value of any dimension matches regex `__.*__`, the partition is
+        # reserved/read-only.
+        # A reserved/read-only partition ID is forbidden in certain documented
+        # contexts.
+        # Foreign partition IDs (in which the project ID does
+        # not match the context project ID ) are discouraged.
+        # Reads and writes of foreign partition IDs may fail if the project is not in an
+        # active state.
+        # Corresponds to the JSON property `partitionId`
+        # @return [Google::Apis::DatastoreV1::PartitionId]
+        attr_accessor :partition_id
+      
+        # A [GQL query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
+        # Corresponds to the JSON property `gqlQuery`
+        # @return [Google::Apis::DatastoreV1::GqlQuery]
+        attr_accessor :gql_query
+      
+        # The options shared by read requests.
+        # Corresponds to the JSON property `readOptions`
+        # @return [Google::Apis::DatastoreV1::ReadOptions]
+        attr_accessor :read_options
+      
+        # A query for entities.
+        # Corresponds to the JSON property `query`
+        # @return [Google::Apis::DatastoreV1::Query]
+        attr_accessor :query
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @partition_id = args[:partition_id] if args.key?(:partition_id)
+          @gql_query = args[:gql_query] if args.key?(:gql_query)
+          @read_options = args[:read_options] if args.key?(:read_options)
+          @query = args[:query] if args.key?(:query)
         end
       end
     end

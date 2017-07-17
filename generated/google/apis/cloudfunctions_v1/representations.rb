@@ -31,9 +31,9 @@ module Google
       class OperationMetadataV1Beta2
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :type, as: 'type'
           property :target, as: 'target'
           hash :request, as: 'request'
-          property :type, as: 'type'
         end
       end
     end

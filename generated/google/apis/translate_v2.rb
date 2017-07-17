@@ -28,11 +28,11 @@ module Google
       VERSION = 'V2'
       REVISION = '20170525'
 
-      # View and manage your data across Google Cloud Platform services
-      AUTH_CLOUD_PLATFORM = 'https://www.googleapis.com/auth/cloud-platform'
-
       # Translate text from one language to another using Google Translate
       AUTH_CLOUD_TRANSLATION = 'https://www.googleapis.com/auth/cloud-translation'
+
+      # View and manage your data across Google Cloud Platform services
+      AUTH_CLOUD_PLATFORM = 'https://www.googleapis.com/auth/cloud-platform'
     end
   end
 end

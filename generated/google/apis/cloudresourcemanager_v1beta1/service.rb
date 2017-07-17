@@ -48,6 +48,160 @@ module Google
           @batch_path = 'batch'
         end
         
+        # Marks the Project identified by the specified
+        # `project_id` (for example, `my-project-123`) for deletion.
+        # This method will only affect the Project if the following criteria are met:
+        # + The Project does not have a billing account associated with it.
+        # + The Project has a lifecycle state of
+        # ACTIVE.
+        # This method changes the Project's lifecycle state from
+        # ACTIVE
+        # to DELETE_REQUESTED.
+        # The deletion starts at an unspecified time, at which point the project is
+        # no longer accessible.
+        # Until the deletion completes, you can check the lifecycle state
+        # checked by retrieving the Project with GetProject,
+        # and the Project remains visible to ListProjects.
+        # However, you cannot update the project.
+        # After the deletion completes, the Project is not retrievable by
+        # the  GetProject and
+        # ListProjects methods.
+        # The caller must have modify permissions for this Project.
+        # @param [String] project_id
+        #   The Project ID (for example, `foo-bar-123`).
+        #   Required.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::Empty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::CloudresourcemanagerV1beta1::Empty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project(project_id, quota_user: nil, fields: nil, options: nil, &block)
+          command =  make_simple_command(:delete, 'v1beta1/projects/{projectId}', options)
+          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::Empty::Representation
+          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::Empty
+          command.params['projectId'] = project_id unless project_id.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          command.query['fields'] = fields unless fields.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Lists Projects that are visible to the user and satisfy the
+        # specified filter. This method returns Projects in an unspecified order.
+        # New Projects do not necessarily appear at the end of the list.
+        # @param [String] page_token
+        #   A pagination token returned from a previous call to ListProjects
+        #   that indicates from where listing should continue.
+        #   Optional.
+        # @param [Fixnum] page_size
+        #   The maximum number of Projects to return in the response.
+        #   The server can return fewer Projects than requested.
+        #   If unspecified, server picks an appropriate default.
+        #   Optional.
+        # @param [String] filter
+        #   An expression for filtering the results of the request.  Filter rules are
+        #   case insensitive. The fields eligible for filtering are:
+        #   + `name`
+        #   + `id`
+        #   + <code>labels.<em>key</em></code> where *key* is the name of a label
+        #   Some examples of using labels as filters:
+        #   |Filter|Description|
+        #   |------|-----------|
+        #   |name:how*|The project's name starts with "how".|
+        #   |name:Howl|The project's name is `Howl` or `howl`.|
+        #   |name:HOWL|Equivalent to above.|
+        #   |NAME:howl|Equivalent to above.|
+        #   |labels.color:*|The project has the label `color`.|
+        #   |labels.color:red|The project's label `color` has the value `red`.|
+        #   |labels.color:red&nbsp;labels.size:big|The project's label `color` has the
+        #   value `red` and its label `size` has the value `big`.
+        #   If you specify a filter that has both `parent.type` and `parent.id`, then
+        #   the `resourcemanager.projects.list` permission is checked on the parent.
+        #   If the user has this permission, all projects under the parent will be
+        #   returned after remaining filters have been applied. If the user lacks this
+        #   permission, then all projects for which the user has the
+        #   `resourcemanager.projects.get` permission will be returned after remaining
+        #   filters have been applied. If no filter is specified, the call will return
+        #   projects for which the user has `resourcemanager.projects.get` permissions.
+        #   Optional.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::ListProjectsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::CloudresourcemanagerV1beta1::ListProjectsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_projects(page_token: nil, page_size: nil, filter: nil, quota_user: nil, fields: nil, options: nil, &block)
+          command =  make_simple_command(:get, 'v1beta1/projects', options)
+          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::ListProjectsResponse::Representation
+          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::ListProjectsResponse
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['filter'] = filter unless filter.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          command.query['fields'] = fields unless fields.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Creates a Project resource.
+        # Initially, the Project resource is owned by its creator exclusively.
+        # The creator can later grant permission to others to read or update the
+        # Project.
+        # Several APIs are activated automatically for the Project, including
+        # Google Cloud Storage.
+        # @param [Google::Apis::CloudresourcemanagerV1beta1::Project] project_object
+        # @param [Boolean] use_legacy_stack
+        #   A safety hatch to opt out of the new reliable project creation process.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::Project] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::CloudresourcemanagerV1beta1::Project]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_project(project_object = nil, use_legacy_stack: nil, quota_user: nil, fields: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1beta1/projects', options)
+          command.request_representation = Google::Apis::CloudresourcemanagerV1beta1::Project::Representation
+          command.request_object = project_object
+          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::Project::Representation
+          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::Project
+          command.query['useLegacyStack'] = use_legacy_stack unless use_legacy_stack.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          command.query['fields'] = fields unless fields.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Sets the IAM access control policy for the specified Project. Replaces
         # any existing policy.
         # The following constraints apply when using `setIamPolicy()`:
@@ -104,44 +258,6 @@ module Google
           command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::Policy::Representation
           command.response_class = Google::Apis::CloudresourcemanagerV1beta1::Policy
           command.params['resource'] = resource unless resource.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          command.query['fields'] = fields unless fields.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Creates a Project resource.
-        # Initially, the Project resource is owned by its creator exclusively.
-        # The creator can later grant permission to others to read or update the
-        # Project.
-        # Several APIs are activated automatically for the Project, including
-        # Google Cloud Storage.
-        # @param [Google::Apis::CloudresourcemanagerV1beta1::Project] project_object
-        # @param [Boolean] use_legacy_stack
-        #   A safety hatch to opt out of the new reliable project creation process.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::Project] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::CloudresourcemanagerV1beta1::Project]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project(project_object = nil, use_legacy_stack: nil, quota_user: nil, fields: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1beta1/projects', options)
-          command.request_representation = Google::Apis::CloudresourcemanagerV1beta1::Project::Representation
-          command.request_object = project_object
-          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::Project::Representation
-          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::Project
-          command.query['useLegacyStack'] = use_legacy_stack unless use_legacy_stack.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           command.query['fields'] = fields unless fields.nil?
           execute_or_queue_command(command, &block)
@@ -254,42 +370,6 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Gets a list of ancestors in the resource hierarchy for the Project
-        # identified by the specified `project_id` (for example, `my-project-123`).
-        # The caller must have read permissions for this Project.
-        # @param [String] project_id
-        #   The Project ID (for example, `my-project-123`).
-        #   Required.
-        # @param [Google::Apis::CloudresourcemanagerV1beta1::GetAncestryRequest] get_ancestry_request_object
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::GetAncestryResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::CloudresourcemanagerV1beta1::GetAncestryResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def get_project_ancestry(project_id, get_ancestry_request_object = nil, quota_user: nil, fields: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1beta1/projects/{projectId}:getAncestry', options)
-          command.request_representation = Google::Apis::CloudresourcemanagerV1beta1::GetAncestryRequest::Representation
-          command.request_object = get_ancestry_request_object
-          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::GetAncestryResponse::Representation
-          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::GetAncestryResponse
-          command.params['projectId'] = project_id unless project_id.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          command.query['fields'] = fields unless fields.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
         # Updates the attributes of the Project identified by the specified
         # `project_id` (for example, `my-project-123`).
         # The caller must have modify permissions for this Project.
@@ -326,6 +406,42 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Gets a list of ancestors in the resource hierarchy for the Project
+        # identified by the specified `project_id` (for example, `my-project-123`).
+        # The caller must have read permissions for this Project.
+        # @param [String] project_id
+        #   The Project ID (for example, `my-project-123`).
+        #   Required.
+        # @param [Google::Apis::CloudresourcemanagerV1beta1::GetAncestryRequest] get_ancestry_request_object
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::GetAncestryResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::CloudresourcemanagerV1beta1::GetAncestryResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_ancestry(project_id, get_ancestry_request_object = nil, quota_user: nil, fields: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1beta1/projects/{projectId}:getAncestry', options)
+          command.request_representation = Google::Apis::CloudresourcemanagerV1beta1::GetAncestryRequest::Representation
+          command.request_object = get_ancestry_request_object
+          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::GetAncestryResponse::Representation
+          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::GetAncestryResponse
+          command.params['projectId'] = project_id unless project_id.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          command.query['fields'] = fields unless fields.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Returns permissions that a caller has on the specified Project.
         # @param [String] resource
         #   REQUIRED: The resource for which the policy detail is being requested.
@@ -355,172 +471,6 @@ module Google
           command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::TestIamPermissionsResponse::Representation
           command.response_class = Google::Apis::CloudresourcemanagerV1beta1::TestIamPermissionsResponse
           command.params['resource'] = resource unless resource.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          command.query['fields'] = fields unless fields.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Marks the Project identified by the specified
-        # `project_id` (for example, `my-project-123`) for deletion.
-        # This method will only affect the Project if the following criteria are met:
-        # + The Project does not have a billing account associated with it.
-        # + The Project has a lifecycle state of
-        # ACTIVE.
-        # This method changes the Project's lifecycle state from
-        # ACTIVE
-        # to DELETE_REQUESTED.
-        # The deletion starts at an unspecified time, at which point the project is
-        # no longer accessible.
-        # Until the deletion completes, you can check the lifecycle state
-        # checked by retrieving the Project with GetProject,
-        # and the Project remains visible to ListProjects.
-        # However, you cannot update the project.
-        # After the deletion completes, the Project is not retrievable by
-        # the  GetProject and
-        # ListProjects methods.
-        # The caller must have modify permissions for this Project.
-        # @param [String] project_id
-        #   The Project ID (for example, `foo-bar-123`).
-        #   Required.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::Empty] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::CloudresourcemanagerV1beta1::Empty]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def delete_project(project_id, quota_user: nil, fields: nil, options: nil, &block)
-          command =  make_simple_command(:delete, 'v1beta1/projects/{projectId}', options)
-          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::Empty::Representation
-          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::Empty
-          command.params['projectId'] = project_id unless project_id.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          command.query['fields'] = fields unless fields.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Lists Projects that are visible to the user and satisfy the
-        # specified filter. This method returns Projects in an unspecified order.
-        # New Projects do not necessarily appear at the end of the list.
-        # @param [String] filter
-        #   An expression for filtering the results of the request.  Filter rules are
-        #   case insensitive. The fields eligible for filtering are:
-        #   + `name`
-        #   + `id`
-        #   + <code>labels.<em>key</em></code> where *key* is the name of a label
-        #   Some examples of using labels as filters:
-        #   |Filter|Description|
-        #   |------|-----------|
-        #   |name:how*|The project's name starts with "how".|
-        #   |name:Howl|The project's name is `Howl` or `howl`.|
-        #   |name:HOWL|Equivalent to above.|
-        #   |NAME:howl|Equivalent to above.|
-        #   |labels.color:*|The project has the label `color`.|
-        #   |labels.color:red|The project's label `color` has the value `red`.|
-        #   |labels.color:red&nbsp;labels.size:big|The project's label `color` has the
-        #   value `red` and its label `size` has the value `big`.
-        #   If you specify a filter that has both `parent.type` and `parent.id`, then
-        #   the `resourcemanager.projects.list` permission is checked on the parent.
-        #   If the user has this permission, all projects under the parent will be
-        #   returned after remaining filters have been applied. If the user lacks this
-        #   permission, then all projects for which the user has the
-        #   `resourcemanager.projects.get` permission will be returned after remaining
-        #   filters have been applied. If no filter is specified, the call will return
-        #   projects for which the user has `resourcemanager.projects.get` permissions.
-        #   Optional.
-        # @param [String] page_token
-        #   A pagination token returned from a previous call to ListProjects
-        #   that indicates from where listing should continue.
-        #   Optional.
-        # @param [Fixnum] page_size
-        #   The maximum number of Projects to return in the response.
-        #   The server can return fewer Projects than requested.
-        #   If unspecified, server picks an appropriate default.
-        #   Optional.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::ListProjectsResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::CloudresourcemanagerV1beta1::ListProjectsResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_projects(filter: nil, page_token: nil, page_size: nil, quota_user: nil, fields: nil, options: nil, &block)
-          command =  make_simple_command(:get, 'v1beta1/projects', options)
-          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::ListProjectsResponse::Representation
-          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::ListProjectsResponse
-          command.query['filter'] = filter unless filter.nil?
-          command.query['pageToken'] = page_token unless page_token.nil?
-          command.query['pageSize'] = page_size unless page_size.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          command.query['fields'] = fields unless fields.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Lists Organization resources that are visible to the user and satisfy
-        # the specified filter. This method returns Organizations in an unspecified
-        # order. New Organizations do not necessarily appear at the end of the list.
-        # @param [String] filter
-        #   An optional query string used to filter the Organizations to return in
-        #   the response. Filter rules are case-insensitive.
-        #   Organizations may be filtered by `owner.directoryCustomerId` or by
-        #   `domain`, where the domain is a Google for Work domain, for example:
-        #   |Filter|Description|
-        #   |------|-----------|
-        #   |owner.directorycustomerid:123456789|Organizations with `owner.
-        #   directory_customer_id` equal to `123456789`.|
-        #   |domain:google.com|Organizations corresponding to the domain `google.com`.|
-        #   This field is optional.
-        # @param [String] page_token
-        #   A pagination token returned from a previous call to `ListOrganizations`
-        #   that indicates from where listing should continue.
-        #   This field is optional.
-        # @param [Fixnum] page_size
-        #   The maximum number of Organizations to return in the response.
-        #   This field is optional.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::ListOrganizationsResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::CloudresourcemanagerV1beta1::ListOrganizationsResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_organizations(filter: nil, page_token: nil, page_size: nil, quota_user: nil, fields: nil, options: nil, &block)
-          command =  make_simple_command(:get, 'v1beta1/organizations', options)
-          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::ListOrganizationsResponse::Representation
-          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::ListOrganizationsResponse
-          command.query['filter'] = filter unless filter.nil?
-          command.query['pageToken'] = page_token unless page_token.nil?
-          command.query['pageSize'] = page_size unless page_size.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           command.query['fields'] = fields unless fields.nil?
           execute_or_queue_command(command, &block)
@@ -698,6 +648,56 @@ module Google
           command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::TestIamPermissionsResponse::Representation
           command.response_class = Google::Apis::CloudresourcemanagerV1beta1::TestIamPermissionsResponse
           command.params['resource'] = resource unless resource.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          command.query['fields'] = fields unless fields.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Lists Organization resources that are visible to the user and satisfy
+        # the specified filter. This method returns Organizations in an unspecified
+        # order. New Organizations do not necessarily appear at the end of the list.
+        # @param [String] page_token
+        #   A pagination token returned from a previous call to `ListOrganizations`
+        #   that indicates from where listing should continue.
+        #   This field is optional.
+        # @param [Fixnum] page_size
+        #   The maximum number of Organizations to return in the response.
+        #   This field is optional.
+        # @param [String] filter
+        #   An optional query string used to filter the Organizations to return in
+        #   the response. Filter rules are case-insensitive.
+        #   Organizations may be filtered by `owner.directoryCustomerId` or by
+        #   `domain`, where the domain is a Google for Work domain, for example:
+        #   |Filter|Description|
+        #   |------|-----------|
+        #   |owner.directorycustomerid:123456789|Organizations with `owner.
+        #   directory_customer_id` equal to `123456789`.|
+        #   |domain:google.com|Organizations corresponding to the domain `google.com`.|
+        #   This field is optional.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::CloudresourcemanagerV1beta1::ListOrganizationsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::CloudresourcemanagerV1beta1::ListOrganizationsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_organizations(page_token: nil, page_size: nil, filter: nil, quota_user: nil, fields: nil, options: nil, &block)
+          command =  make_simple_command(:get, 'v1beta1/organizations', options)
+          command.response_representation = Google::Apis::CloudresourcemanagerV1beta1::ListOrganizationsResponse::Representation
+          command.response_class = Google::Apis::CloudresourcemanagerV1beta1::ListOrganizationsResponse
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['filter'] = filter unless filter.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           command.query['fields'] = fields unless fields.nil?
           execute_or_queue_command(command, &block)

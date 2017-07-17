@@ -27,6 +27,9 @@ module Google
       VERSION = 'V2'
       REVISION = '20170710'
 
+      # View and manage your data across Google Cloud Platform services
+      AUTH_CLOUD_PLATFORM = 'https://www.googleapis.com/auth/cloud-platform'
+
       # Submit log data for your projects
       AUTH_LOGGING_WRITE = 'https://www.googleapis.com/auth/logging.write'
 
@@ -38,9 +41,6 @@ module Google
 
       # View your data across Google Cloud Platform services
       AUTH_CLOUD_PLATFORM_READ_ONLY = 'https://www.googleapis.com/auth/cloud-platform.read-only'
-
-      # View and manage your data across Google Cloud Platform services
-      AUTH_CLOUD_PLATFORM = 'https://www.googleapis.com/auth/cloud-platform'
     end
   end
 end

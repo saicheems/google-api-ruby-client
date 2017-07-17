@@ -23,6 +23,72 @@ module Google
     module TranslateV2
       
       # 
+      class LanguagesResource
+        include Google::Apis::Core::Hashable
+      
+        # Human readable name of the language localized to the target language.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # Supported language code, generally consisting of its ISO 639-1
+        # identifier. (E.g. 'en', 'ja'). In certain cases, BCP-47 codes including
+        # language + region identifiers are returned (e.g. 'zh-TW' and 'zh-CH')
+        # Corresponds to the JSON property `language`
+        # @return [String]
+        attr_accessor :language
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @name = args[:name] if args.key?(:name)
+          @language = args[:language] if args.key?(:language)
+        end
+      end
+      
+      # 
+      class ListDetectionsResponse
+        include Google::Apis::Core::Hashable
+      
+        # A detections contains detection results of several text
+        # Corresponds to the JSON property `detections`
+        # @return [Array<Array<Google::Apis::TranslateV2::DetectionsResource>>]
+        attr_accessor :detections
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @detections = args[:detections] if args.key?(:detections)
+        end
+      end
+      
+      # The request message for discovering supported languages.
+      class GetSupportedLanguagesRequest
+        include Google::Apis::Core::Hashable
+      
+        # The language to use to return localized, human readable names of supported
+        # languages.
+        # Corresponds to the JSON property `target`
+        # @return [String]
+        attr_accessor :target
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @target = args[:target] if args.key?(:target)
+        end
+      end
+      
+      # 
       class ListLanguagesResponse
         include Google::Apis::Core::Hashable
       
@@ -41,6 +107,42 @@ module Google
         # Update properties of this object
         def update!(**args)
           @languages = args[:languages] if args.key?(:languages)
+        end
+      end
+      
+      # 
+      class TranslationsResource
+        include Google::Apis::Core::Hashable
+      
+        # Text translated into the target language.
+        # Corresponds to the JSON property `translatedText`
+        # @return [String]
+        attr_accessor :translated_text
+      
+        # The source language of the initial request, detected automatically, if
+        # no source language was passed within the initial request. If the
+        # source language was passed, auto-detection of the language will not
+        # occur and this field will be empty.
+        # Corresponds to the JSON property `detectedSourceLanguage`
+        # @return [String]
+        attr_accessor :detected_source_language
+      
+        # The `model` type used for this translation. Valid values are
+        # listed in public documentation. Can be different from requested `model`.
+        # Present only if specific model type was explicitly requested.
+        # Corresponds to the JSON property `model`
+        # @return [String]
+        attr_accessor :model
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @translated_text = args[:translated_text] if args.key?(:translated_text)
+          @detected_source_language = args[:detected_source_language] if args.key?(:detected_source_language)
+          @model = args[:model] if args.key?(:model)
         end
       end
       
@@ -73,42 +175,6 @@ module Google
           @confidence = args[:confidence] if args.key?(:confidence)
           @language = args[:language] if args.key?(:language)
           @is_reliable = args[:is_reliable] if args.key?(:is_reliable)
-        end
-      end
-      
-      # 
-      class TranslationsResource
-        include Google::Apis::Core::Hashable
-      
-        # The `model` type used for this translation. Valid values are
-        # listed in public documentation. Can be different from requested `model`.
-        # Present only if specific model type was explicitly requested.
-        # Corresponds to the JSON property `model`
-        # @return [String]
-        attr_accessor :model
-      
-        # Text translated into the target language.
-        # Corresponds to the JSON property `translatedText`
-        # @return [String]
-        attr_accessor :translated_text
-      
-        # The source language of the initial request, detected automatically, if
-        # no source language was passed within the initial request. If the
-        # source language was passed, auto-detection of the language will not
-        # occur and this field will be empty.
-        # Corresponds to the JSON property `detectedSourceLanguage`
-        # @return [String]
-        attr_accessor :detected_source_language
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @model = args[:model] if args.key?(:model)
-          @translated_text = args[:translated_text] if args.key?(:translated_text)
-          @detected_source_language = args[:detected_source_language] if args.key?(:detected_source_language)
         end
       end
       
@@ -198,72 +264,6 @@ module Google
         # Update properties of this object
         def update!(**args)
           @q = args[:q] if args.key?(:q)
-        end
-      end
-      
-      # 
-      class LanguagesResource
-        include Google::Apis::Core::Hashable
-      
-        # Human readable name of the language localized to the target language.
-        # Corresponds to the JSON property `name`
-        # @return [String]
-        attr_accessor :name
-      
-        # Supported language code, generally consisting of its ISO 639-1
-        # identifier. (E.g. 'en', 'ja'). In certain cases, BCP-47 codes including
-        # language + region identifiers are returned (e.g. 'zh-TW' and 'zh-CH')
-        # Corresponds to the JSON property `language`
-        # @return [String]
-        attr_accessor :language
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @name = args[:name] if args.key?(:name)
-          @language = args[:language] if args.key?(:language)
-        end
-      end
-      
-      # 
-      class ListDetectionsResponse
-        include Google::Apis::Core::Hashable
-      
-        # A detections contains detection results of several text
-        # Corresponds to the JSON property `detections`
-        # @return [Array<Array<Google::Apis::TranslateV2::DetectionsResource>>]
-        attr_accessor :detections
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @detections = args[:detections] if args.key?(:detections)
-        end
-      end
-      
-      # The request message for discovering supported languages.
-      class GetSupportedLanguagesRequest
-        include Google::Apis::Core::Hashable
-      
-        # The language to use to return localized, human readable names of supported
-        # languages.
-        # Corresponds to the JSON property `target`
-        # @return [String]
-        attr_accessor :target
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @target = args[:target] if args.key?(:target)
         end
       end
     end

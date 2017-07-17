@@ -212,13 +212,13 @@ module Google
       class Organization
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :creation_time, as: 'creationTime'
           property :owner, as: 'owner', class: Google::Apis::CloudresourcemanagerV1beta1::OrganizationOwner, decorator: Google::Apis::CloudresourcemanagerV1beta1::OrganizationOwner::Representation
       
           property :name, as: 'name'
           property :organization_id, as: 'organizationId'
           property :lifecycle_state, as: 'lifecycleState'
           property :display_name, as: 'displayName'
+          property :creation_time, as: 'creationTime'
         end
       end
       
@@ -285,14 +285,14 @@ module Google
       class Project
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :name, as: 'name'
+          property :project_id, as: 'projectId'
           property :lifecycle_state, as: 'lifecycleState'
           property :project_number, :numeric_string => true, as: 'projectNumber'
           property :parent, as: 'parent', class: Google::Apis::CloudresourcemanagerV1beta1::ResourceId, decorator: Google::Apis::CloudresourcemanagerV1beta1::ResourceId::Representation
       
           hash :labels, as: 'labels'
           property :create_time, as: 'createTime'
-          property :name, as: 'name'
-          property :project_id, as: 'projectId'
         end
       end
       
@@ -335,8 +335,8 @@ module Google
       class ResourceId
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :type, as: 'type'
           property :id, as: 'id'
+          property :type, as: 'type'
         end
       end
     end

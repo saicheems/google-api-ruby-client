@@ -47,6 +47,40 @@ module Google
           @batch_path = 'batch'
         end
         
+        # Deletes an invitation.
+        # This method returns the following error codes:
+        # * `PERMISSION_DENIED` if the requesting user is not permitted to delete the
+        # requested invitation or for access errors.
+        # * `NOT_FOUND` if no invitation exists with the requested ID.
+        # @param [String] id
+        #   Identifier of the invitation to delete.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ClassroomV1::Empty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ClassroomV1::Empty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_invitation(id, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:delete, 'v1/invitations/{id}', options)
+          command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
+          command.response_class = Google::Apis::ClassroomV1::Empty
+          command.params['id'] = id unless id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Returns a list of invitations that the requesting user is permitted to
         # view, restricted to those that match the list request.
         # *Note:* At least one of `user_id` or `course_id` must be supplied. Both
@@ -208,40 +242,6 @@ module Google
         # @raise [Google::Apis::AuthorizationError] Authorization is required
         def accept_invitation(id, fields: nil, quota_user: nil, options: nil, &block)
           command =  make_simple_command(:post, 'v1/invitations/{id}:accept', options)
-          command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
-          command.response_class = Google::Apis::ClassroomV1::Empty
-          command.params['id'] = id unless id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Deletes an invitation.
-        # This method returns the following error codes:
-        # * `PERMISSION_DENIED` if the requesting user is not permitted to delete the
-        # requested invitation or for access errors.
-        # * `NOT_FOUND` if no invitation exists with the requested ID.
-        # @param [String] id
-        #   Identifier of the invitation to delete.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::ClassroomV1::Empty] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::ClassroomV1::Empty]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def delete_invitation(id, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:delete, 'v1/invitations/{id}', options)
           command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
           command.response_class = Google::Apis::ClassroomV1::Empty
           command.params['id'] = id unless id.nil?
@@ -413,13 +413,6 @@ module Google
         #   * the string literal `"-"`, indicating that results should be returned for
         #   all students that the requesting user is permitted to view guardian
         #   invitations.
-        # @param [String] page_token
-        #   nextPageToken
-        #   value returned from a previous
-        #   list call,
-        #   indicating that the subsequent page of results should be returned.
-        #   The list request
-        #   must be otherwise identical to the one that resulted in this token.
         # @param [Fixnum] page_size
         #   Maximum number of items to return. Zero or unspecified indicates that the
         #   server may assign a maximum.
@@ -430,6 +423,13 @@ module Google
         # @param [String] invited_email_address
         #   If specified, only results with the specified `invited_email_address`
         #   will be returned.
+        # @param [String] page_token
+        #   nextPageToken
+        #   value returned from a previous
+        #   list call,
+        #   indicating that the subsequent page of results should be returned.
+        #   The list request
+        #   must be otherwise identical to the one that resulted in this token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -447,15 +447,15 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_user_profile_guardian_invitations(student_id, page_token: nil, page_size: nil, states: nil, invited_email_address: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def list_user_profile_guardian_invitations(student_id, page_size: nil, states: nil, invited_email_address: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
           command =  make_simple_command(:get, 'v1/userProfiles/{studentId}/guardianInvitations', options)
           command.response_representation = Google::Apis::ClassroomV1::ListGuardianInvitationsResponse::Representation
           command.response_class = Google::Apis::ClassroomV1::ListGuardianInvitationsResponse
           command.params['studentId'] = student_id unless student_id.nil?
-          command.query['pageToken'] = page_token unless page_token.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
           command.query['states'] = states unless states.nil?
           command.query['invitedEmailAddress'] = invited_email_address unless invited_email_address.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -514,6 +514,56 @@ module Google
           command.response_representation = Google::Apis::ClassroomV1::GuardianInvitation::Representation
           command.response_class = Google::Apis::ClassroomV1::GuardianInvitation
           command.params['studentId'] = student_id unless student_id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a guardian.
+        # The guardian will no longer receive guardian notifications and the guardian
+        # will no longer be accessible via the API.
+        # This method returns the following error codes:
+        # * `PERMISSION_DENIED` if no user that matches the provided `student_id`
+        # is visible to the requesting user, if the requesting user is not
+        # permitted to manage guardians for the student identified by the
+        # `student_id`, if guardians are not enabled for the domain in question,
+        # or for other access errors.
+        # * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot
+        # be recognized (it is not an email address, nor a `student_id` from the
+        # API).
+        # * `NOT_FOUND` if the requesting user is permitted to modify guardians for
+        # the requested `student_id`, but no `Guardian` record exists for that
+        # student with the provided `guardian_id`.
+        # @param [String] student_id
+        #   The student whose guardian is to be deleted. One of the following:
+        #   * the numeric identifier for the user
+        #   * the email address of the user
+        #   * the string literal `"me"`, indicating the requesting user
+        # @param [String] guardian_id
+        #   The `id` field from a `Guardian`.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ClassroomV1::Empty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ClassroomV1::Empty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_user_profile_guardian(student_id, guardian_id, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:delete, 'v1/userProfiles/{studentId}/guardians/{guardianId}', options)
+          command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
+          command.response_class = Google::Apis::ClassroomV1::Empty
+          command.params['studentId'] = student_id unless student_id.nil?
+          command.params['guardianId'] = guardian_id unless guardian_id.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -632,56 +682,6 @@ module Google
           command.query['pageToken'] = page_token unless page_token.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
           command.query['invitedEmailAddress'] = invited_email_address unless invited_email_address.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Deletes a guardian.
-        # The guardian will no longer receive guardian notifications and the guardian
-        # will no longer be accessible via the API.
-        # This method returns the following error codes:
-        # * `PERMISSION_DENIED` if no user that matches the provided `student_id`
-        # is visible to the requesting user, if the requesting user is not
-        # permitted to manage guardians for the student identified by the
-        # `student_id`, if guardians are not enabled for the domain in question,
-        # or for other access errors.
-        # * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot
-        # be recognized (it is not an email address, nor a `student_id` from the
-        # API).
-        # * `NOT_FOUND` if the requesting user is permitted to modify guardians for
-        # the requested `student_id`, but no `Guardian` record exists for that
-        # student with the provided `guardian_id`.
-        # @param [String] student_id
-        #   The student whose guardian is to be deleted. One of the following:
-        #   * the numeric identifier for the user
-        #   * the email address of the user
-        #   * the string literal `"me"`, indicating the requesting user
-        # @param [String] guardian_id
-        #   The `id` field from a `Guardian`.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::ClassroomV1::Empty] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::ClassroomV1::Empty]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def delete_user_profile_guardian(student_id, guardian_id, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:delete, 'v1/userProfiles/{studentId}/guardians/{guardianId}', options)
-          command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
-          command.response_class = Google::Apis::ClassroomV1::Empty
-          command.params['studentId'] = student_id unless student_id.nil?
-          command.params['guardianId'] = guardian_id unless guardian_id.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -960,49 +960,6 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Creates an alias for a course.
-        # This method returns the following error codes:
-        # * `PERMISSION_DENIED` if the requesting user is not permitted to create the
-        # alias or for access errors.
-        # * `NOT_FOUND` if the course does not exist.
-        # * `ALREADY_EXISTS` if the alias already exists.
-        # * `FAILED_PRECONDITION` if the alias requested does not make sense for the
-        # requesting user or course (for example, if a user not in a domain
-        # attempts to access a domain-scoped alias).
-        # @param [String] course_id
-        #   Identifier of the course to alias.
-        #   This identifier can be either the Classroom-assigned identifier or an
-        #   alias.
-        # @param [Google::Apis::ClassroomV1::CourseAlias] course_alias_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::ClassroomV1::CourseAlias] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::ClassroomV1::CourseAlias]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_course_alias(course_id, course_alias_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/courses/{courseId}/aliases', options)
-          command.request_representation = Google::Apis::ClassroomV1::CourseAlias::Representation
-          command.request_object = course_alias_object
-          command.response_representation = Google::Apis::ClassroomV1::CourseAlias::Representation
-          command.response_class = Google::Apis::ClassroomV1::CourseAlias
-          command.params['courseId'] = course_id unless course_id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
         # Deletes an alias of a course.
         # This method returns the following error codes:
         # * `PERMISSION_DENIED` if the requesting user is not permitted to remove the
@@ -1095,28 +1052,20 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Adds a user as a student of a course.
+        # Creates an alias for a course.
         # This method returns the following error codes:
-        # * `PERMISSION_DENIED` if the requesting user is not permitted to create
-        # students in this course or for access errors.
-        # * `NOT_FOUND` if the requested course ID does not exist.
-        # * `FAILED_PRECONDITION` if the requested user's account is disabled,
-        # for the following request errors:
-        # * CourseMemberLimitReached
-        # * CourseNotModifiable
-        # * UserGroupsMembershipLimitReached
-        # * `ALREADY_EXISTS` if the user is already a student or teacher in the
-        # course.
+        # * `PERMISSION_DENIED` if the requesting user is not permitted to create the
+        # alias or for access errors.
+        # * `NOT_FOUND` if the course does not exist.
+        # * `ALREADY_EXISTS` if the alias already exists.
+        # * `FAILED_PRECONDITION` if the alias requested does not make sense for the
+        # requesting user or course (for example, if a user not in a domain
+        # attempts to access a domain-scoped alias).
         # @param [String] course_id
-        #   Identifier of the course to create the student in.
+        #   Identifier of the course to alias.
         #   This identifier can be either the Classroom-assigned identifier or an
         #   alias.
-        # @param [Google::Apis::ClassroomV1::Student] student_object
-        # @param [String] enrollment_code
-        #   Enrollment code of the course to create the student in.
-        #   This code is required if userId
-        #   corresponds to the requesting user; it may be omitted if the requesting
-        #   user has administrative permissions to create students for any user.
+        # @param [Google::Apis::ClassroomV1::CourseAlias] course_alias_object
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -1126,22 +1075,21 @@ module Google
         #   Request-specific options
         #
         # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::ClassroomV1::Student] parsed result object
+        # @yieldparam result [Google::Apis::ClassroomV1::CourseAlias] parsed result object
         # @yieldparam err [StandardError] error object if request failed
         #
-        # @return [Google::Apis::ClassroomV1::Student]
+        # @return [Google::Apis::ClassroomV1::CourseAlias]
         #
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_course_student(course_id, student_object = nil, enrollment_code: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/courses/{courseId}/students', options)
-          command.request_representation = Google::Apis::ClassroomV1::Student::Representation
-          command.request_object = student_object
-          command.response_representation = Google::Apis::ClassroomV1::Student::Representation
-          command.response_class = Google::Apis::ClassroomV1::Student
+        def create_course_alias(course_id, course_alias_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/courses/{courseId}/aliases', options)
+          command.request_representation = Google::Apis::ClassroomV1::CourseAlias::Representation
+          command.request_object = course_alias_object
+          command.response_representation = Google::Apis::ClassroomV1::CourseAlias::Representation
+          command.response_class = Google::Apis::ClassroomV1::CourseAlias
           command.params['courseId'] = course_id unless course_id.nil?
-          command.query['enrollmentCode'] = enrollment_code unless enrollment_code.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -1283,6 +1231,58 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Adds a user as a student of a course.
+        # This method returns the following error codes:
+        # * `PERMISSION_DENIED` if the requesting user is not permitted to create
+        # students in this course or for access errors.
+        # * `NOT_FOUND` if the requested course ID does not exist.
+        # * `FAILED_PRECONDITION` if the requested user's account is disabled,
+        # for the following request errors:
+        # * CourseMemberLimitReached
+        # * CourseNotModifiable
+        # * UserGroupsMembershipLimitReached
+        # * `ALREADY_EXISTS` if the user is already a student or teacher in the
+        # course.
+        # @param [String] course_id
+        #   Identifier of the course to create the student in.
+        #   This identifier can be either the Classroom-assigned identifier or an
+        #   alias.
+        # @param [Google::Apis::ClassroomV1::Student] student_object
+        # @param [String] enrollment_code
+        #   Enrollment code of the course to create the student in.
+        #   This code is required if userId
+        #   corresponds to the requesting user; it may be omitted if the requesting
+        #   user has administrative permissions to create students for any user.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ClassroomV1::Student] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ClassroomV1::Student]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_course_student(course_id, student_object = nil, enrollment_code: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/courses/{courseId}/students', options)
+          command.request_representation = Google::Apis::ClassroomV1::Student::Representation
+          command.request_object = student_object
+          command.response_representation = Google::Apis::ClassroomV1::Student::Representation
+          command.response_class = Google::Apis::ClassroomV1::Student
+          command.params['courseId'] = course_id unless course_id.nil?
+          command.query['enrollmentCode'] = enrollment_code unless enrollment_code.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Deletes a course work.
         # This request must be made by the Developer Console project of the
         # [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to
@@ -1341,6 +1341,14 @@ module Google
         #   Identifier of the course.
         #   This identifier can be either the Classroom-assigned identifier or an
         #   alias.
+        # @param [Fixnum] page_size
+        #   Maximum number of items to return. Zero or unspecified indicates that the
+        #   server may assign a maximum.
+        #   The server may return fewer than the specified number of results.
+        # @param [Array<String>, String] course_work_states
+        #   Restriction on the work status to return. Only courseWork that matches
+        #   is returned. If unspecified, items with a work status of `PUBLISHED`
+        #   is returned.
         # @param [String] page_token
         #   nextPageToken
         #   value returned from a previous
@@ -1354,14 +1362,6 @@ module Google
         #   and `dueDate`. Supported direction keywords are `asc` and `desc`.
         #   If not specified, `updateTime desc` is the default behavior.
         #   Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc`
-        # @param [Fixnum] page_size
-        #   Maximum number of items to return. Zero or unspecified indicates that the
-        #   server may assign a maximum.
-        #   The server may return fewer than the specified number of results.
-        # @param [Array<String>, String] course_work_states
-        #   Restriction on the work status to return. Only courseWork that matches
-        #   is returned. If unspecified, items with a work status of `PUBLISHED`
-        #   is returned.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -1379,15 +1379,15 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_course_works(course_id, page_token: nil, order_by: nil, page_size: nil, course_work_states: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def list_course_works(course_id, page_size: nil, course_work_states: nil, page_token: nil, order_by: nil, fields: nil, quota_user: nil, options: nil, &block)
           command =  make_simple_command(:get, 'v1/courses/{courseId}/courseWork', options)
           command.response_representation = Google::Apis::ClassroomV1::ListCourseWorkResponse::Representation
           command.response_class = Google::Apis::ClassroomV1::ListCourseWorkResponse
           command.params['courseId'] = course_id unless course_id.nil?
-          command.query['pageToken'] = page_token unless page_token.nil?
-          command.query['orderBy'] = order_by unless order_by.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
           command.query['courseWorkStates'] = course_work_states unless course_work_states.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['orderBy'] = order_by unless order_by.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -1553,6 +1553,248 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Reclaims a student submission on behalf of the student that owns it.
+        # Reclaiming a student submission transfers ownership of attached Drive
+        # files to the student and update the submission state.
+        # Only the student that owns the requested student submission may call this
+        # method, and only for a student submission that has been turned in.
+        # This request must be made by the Developer Console project of the
+        # [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to
+        # create the corresponding course work item.
+        # This method returns the following error codes:
+        # * `PERMISSION_DENIED` if the requesting user is not permitted to access the
+        # requested course or course work, unsubmit the requested student submission,
+        # or for access errors.
+        # * `FAILED_PRECONDITION` if the student submission has not been turned in.
+        # * `INVALID_ARGUMENT` if the request is malformed.
+        # * `NOT_FOUND` if the requested course, course work, or student submission
+        # does not exist.
+        # @param [String] course_id
+        #   Identifier of the course.
+        #   This identifier can be either the Classroom-assigned identifier or an
+        #   alias.
+        # @param [String] course_work_id
+        #   Identifier of the course work.
+        # @param [String] id
+        #   Identifier of the student submission.
+        # @param [Google::Apis::ClassroomV1::ReclaimStudentSubmissionRequest] reclaim_student_submission_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ClassroomV1::Empty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ClassroomV1::Empty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def reclaim_student_submission(course_id, course_work_id, id, reclaim_student_submission_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim', options)
+          command.request_representation = Google::Apis::ClassroomV1::ReclaimStudentSubmissionRequest::Representation
+          command.request_object = reclaim_student_submission_request_object
+          command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
+          command.response_class = Google::Apis::ClassroomV1::Empty
+          command.params['courseId'] = course_id unless course_id.nil?
+          command.params['courseWorkId'] = course_work_id unless course_work_id.nil?
+          command.params['id'] = id unless id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Turns in a student submission.
+        # Turning in a student submission transfers ownership of attached Drive
+        # files to the teacher and may also update the submission state.
+        # This may only be called by the student that owns the specified student
+        # submission.
+        # This request must be made by the Developer Console project of the
+        # [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to
+        # create the corresponding course work item.
+        # This method returns the following error codes:
+        # * `PERMISSION_DENIED` if the requesting user is not permitted to access the
+        # requested course or course work, turn in the requested student submission,
+        # or for access errors.
+        # * `INVALID_ARGUMENT` if the request is malformed.
+        # * `NOT_FOUND` if the requested course, course work, or student submission
+        # does not exist.
+        # @param [String] course_id
+        #   Identifier of the course.
+        #   This identifier can be either the Classroom-assigned identifier or an
+        #   alias.
+        # @param [String] course_work_id
+        #   Identifier of the course work.
+        # @param [String] id
+        #   Identifier of the student submission.
+        # @param [Google::Apis::ClassroomV1::TurnInStudentSubmissionRequest] turn_in_student_submission_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ClassroomV1::Empty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ClassroomV1::Empty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def turn_in_student_submission(course_id, course_work_id, id, turn_in_student_submission_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn', options)
+          command.request_representation = Google::Apis::ClassroomV1::TurnInStudentSubmissionRequest::Representation
+          command.request_object = turn_in_student_submission_request_object
+          command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
+          command.response_class = Google::Apis::ClassroomV1::Empty
+          command.params['courseId'] = course_id unless course_id.nil?
+          command.params['courseWorkId'] = course_work_id unless course_work_id.nil?
+          command.params['id'] = id unless id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Modifies attachments of student submission.
+        # Attachments may only be added to student submissions belonging to course
+        # work objects with a `workType` of `ASSIGNMENT`.
+        # This request must be made by the Developer Console project of the
+        # [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to
+        # create the corresponding course work item.
+        # This method returns the following error codes:
+        # * `PERMISSION_DENIED` if the requesting user is not permitted to access the
+        # requested course or course work, if the user is not permitted to modify
+        # attachments on the requested student submission, or for
+        # access errors.
+        # * `INVALID_ARGUMENT` if the request is malformed.
+        # * `NOT_FOUND` if the requested course, course work, or student submission
+        # does not exist.
+        # @param [String] course_id
+        #   Identifier of the course.
+        #   This identifier can be either the Classroom-assigned identifier or an
+        #   alias.
+        # @param [String] course_work_id
+        #   Identifier of the course work.
+        # @param [String] id
+        #   Identifier of the student submission.
+        # @param [Google::Apis::ClassroomV1::ModifyAttachmentsRequest] modify_attachments_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ClassroomV1::StudentSubmission] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ClassroomV1::StudentSubmission]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def modify_student_submission_attachments(course_id, course_work_id, id, modify_attachments_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments', options)
+          command.request_representation = Google::Apis::ClassroomV1::ModifyAttachmentsRequest::Representation
+          command.request_object = modify_attachments_request_object
+          command.response_representation = Google::Apis::ClassroomV1::StudentSubmission::Representation
+          command.response_class = Google::Apis::ClassroomV1::StudentSubmission
+          command.params['courseId'] = course_id unless course_id.nil?
+          command.params['courseWorkId'] = course_work_id unless course_work_id.nil?
+          command.params['id'] = id unless id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Returns a list of student submissions that the requester is permitted to
+        # view, factoring in the OAuth scopes of the request.
+        # `-` may be specified as the `course_work_id` to include student
+        # submissions for multiple course work items.
+        # Course students may only view their own work. Course teachers
+        # and domain administrators may view all student submissions.
+        # This method returns the following error codes:
+        # * `PERMISSION_DENIED` if the requesting user is not permitted to access the
+        # requested course or course work, or for access errors.
+        # * `INVALID_ARGUMENT` if the request is malformed.
+        # * `NOT_FOUND` if the requested course does not exist.
+        # @param [String] course_id
+        #   Identifier of the course.
+        #   This identifier can be either the Classroom-assigned identifier or an
+        #   alias.
+        # @param [String] course_work_id
+        #   Identifer of the student work to request.
+        #   This may be set to the string literal `"-"` to request student work for
+        #   all course work in the specified course.
+        # @param [String] page_token
+        #   nextPageToken
+        #   value returned from a previous
+        #   list call,
+        #   indicating that the subsequent page of results should be returned.
+        #   The list request
+        #   must be otherwise identical to the one that resulted in this token.
+        # @param [Array<String>, String] states
+        #   Requested submission states. If specified, returned student submissions
+        #   match one of the specified submission states.
+        # @param [Fixnum] page_size
+        #   Maximum number of items to return. Zero or unspecified indicates that the
+        #   server may assign a maximum.
+        #   The server may return fewer than the specified number of results.
+        # @param [String] user_id
+        #   Optional argument to restrict returned student work to those owned by the
+        #   student with the specified identifier. The identifier can be one of the
+        #   following:
+        #   * the numeric identifier for the user
+        #   * the email address of the user
+        #   * the string literal `"me"`, indicating the requesting user
+        # @param [String] late
+        #   Requested lateness value. If specified, returned student submissions are
+        #   restricted by the requested value.
+        #   If unspecified, submissions are returned regardless of `late` value.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ClassroomV1::ListStudentSubmissionsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ClassroomV1::ListStudentSubmissionsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_student_submissions(course_id, course_work_id, page_token: nil, states: nil, page_size: nil, user_id: nil, late: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:get, 'v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions', options)
+          command.response_representation = Google::Apis::ClassroomV1::ListStudentSubmissionsResponse::Representation
+          command.response_class = Google::Apis::ClassroomV1::ListStudentSubmissionsResponse
+          command.params['courseId'] = course_id unless course_id.nil?
+          command.params['courseWorkId'] = course_work_id unless course_work_id.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['states'] = states unless states.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['userId'] = user_id unless user_id.nil?
+          command.query['late'] = late unless late.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Returns a student submission.
         # * `PERMISSION_DENIED` if the requesting user is not permitted to access the
         # requested course, course work, or student submission or for
@@ -1708,248 +1950,6 @@ module Google
           command.request_object = return_student_submission_request_object
           command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
           command.response_class = Google::Apis::ClassroomV1::Empty
-          command.params['courseId'] = course_id unless course_id.nil?
-          command.params['courseWorkId'] = course_work_id unless course_work_id.nil?
-          command.params['id'] = id unless id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Reclaims a student submission on behalf of the student that owns it.
-        # Reclaiming a student submission transfers ownership of attached Drive
-        # files to the student and update the submission state.
-        # Only the student that owns the requested student submission may call this
-        # method, and only for a student submission that has been turned in.
-        # This request must be made by the Developer Console project of the
-        # [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to
-        # create the corresponding course work item.
-        # This method returns the following error codes:
-        # * `PERMISSION_DENIED` if the requesting user is not permitted to access the
-        # requested course or course work, unsubmit the requested student submission,
-        # or for access errors.
-        # * `FAILED_PRECONDITION` if the student submission has not been turned in.
-        # * `INVALID_ARGUMENT` if the request is malformed.
-        # * `NOT_FOUND` if the requested course, course work, or student submission
-        # does not exist.
-        # @param [String] course_id
-        #   Identifier of the course.
-        #   This identifier can be either the Classroom-assigned identifier or an
-        #   alias.
-        # @param [String] course_work_id
-        #   Identifier of the course work.
-        # @param [String] id
-        #   Identifier of the student submission.
-        # @param [Google::Apis::ClassroomV1::ReclaimStudentSubmissionRequest] reclaim_student_submission_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::ClassroomV1::Empty] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::ClassroomV1::Empty]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def reclaim_student_submission(course_id, course_work_id, id, reclaim_student_submission_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim', options)
-          command.request_representation = Google::Apis::ClassroomV1::ReclaimStudentSubmissionRequest::Representation
-          command.request_object = reclaim_student_submission_request_object
-          command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
-          command.response_class = Google::Apis::ClassroomV1::Empty
-          command.params['courseId'] = course_id unless course_id.nil?
-          command.params['courseWorkId'] = course_work_id unless course_work_id.nil?
-          command.params['id'] = id unless id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Turns in a student submission.
-        # Turning in a student submission transfers ownership of attached Drive
-        # files to the teacher and may also update the submission state.
-        # This may only be called by the student that owns the specified student
-        # submission.
-        # This request must be made by the Developer Console project of the
-        # [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to
-        # create the corresponding course work item.
-        # This method returns the following error codes:
-        # * `PERMISSION_DENIED` if the requesting user is not permitted to access the
-        # requested course or course work, turn in the requested student submission,
-        # or for access errors.
-        # * `INVALID_ARGUMENT` if the request is malformed.
-        # * `NOT_FOUND` if the requested course, course work, or student submission
-        # does not exist.
-        # @param [String] course_id
-        #   Identifier of the course.
-        #   This identifier can be either the Classroom-assigned identifier or an
-        #   alias.
-        # @param [String] course_work_id
-        #   Identifier of the course work.
-        # @param [String] id
-        #   Identifier of the student submission.
-        # @param [Google::Apis::ClassroomV1::TurnInStudentSubmissionRequest] turn_in_student_submission_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::ClassroomV1::Empty] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::ClassroomV1::Empty]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def turn_in_student_submission(course_id, course_work_id, id, turn_in_student_submission_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn', options)
-          command.request_representation = Google::Apis::ClassroomV1::TurnInStudentSubmissionRequest::Representation
-          command.request_object = turn_in_student_submission_request_object
-          command.response_representation = Google::Apis::ClassroomV1::Empty::Representation
-          command.response_class = Google::Apis::ClassroomV1::Empty
-          command.params['courseId'] = course_id unless course_id.nil?
-          command.params['courseWorkId'] = course_work_id unless course_work_id.nil?
-          command.params['id'] = id unless id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Returns a list of student submissions that the requester is permitted to
-        # view, factoring in the OAuth scopes of the request.
-        # `-` may be specified as the `course_work_id` to include student
-        # submissions for multiple course work items.
-        # Course students may only view their own work. Course teachers
-        # and domain administrators may view all student submissions.
-        # This method returns the following error codes:
-        # * `PERMISSION_DENIED` if the requesting user is not permitted to access the
-        # requested course or course work, or for access errors.
-        # * `INVALID_ARGUMENT` if the request is malformed.
-        # * `NOT_FOUND` if the requested course does not exist.
-        # @param [String] course_id
-        #   Identifier of the course.
-        #   This identifier can be either the Classroom-assigned identifier or an
-        #   alias.
-        # @param [String] course_work_id
-        #   Identifer of the student work to request.
-        #   This may be set to the string literal `"-"` to request student work for
-        #   all course work in the specified course.
-        # @param [String] late
-        #   Requested lateness value. If specified, returned student submissions are
-        #   restricted by the requested value.
-        #   If unspecified, submissions are returned regardless of `late` value.
-        # @param [String] page_token
-        #   nextPageToken
-        #   value returned from a previous
-        #   list call,
-        #   indicating that the subsequent page of results should be returned.
-        #   The list request
-        #   must be otherwise identical to the one that resulted in this token.
-        # @param [Array<String>, String] states
-        #   Requested submission states. If specified, returned student submissions
-        #   match one of the specified submission states.
-        # @param [Fixnum] page_size
-        #   Maximum number of items to return. Zero or unspecified indicates that the
-        #   server may assign a maximum.
-        #   The server may return fewer than the specified number of results.
-        # @param [String] user_id
-        #   Optional argument to restrict returned student work to those owned by the
-        #   student with the specified identifier. The identifier can be one of the
-        #   following:
-        #   * the numeric identifier for the user
-        #   * the email address of the user
-        #   * the string literal `"me"`, indicating the requesting user
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::ClassroomV1::ListStudentSubmissionsResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::ClassroomV1::ListStudentSubmissionsResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_student_submissions(course_id, course_work_id, late: nil, page_token: nil, states: nil, page_size: nil, user_id: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:get, 'v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions', options)
-          command.response_representation = Google::Apis::ClassroomV1::ListStudentSubmissionsResponse::Representation
-          command.response_class = Google::Apis::ClassroomV1::ListStudentSubmissionsResponse
-          command.params['courseId'] = course_id unless course_id.nil?
-          command.params['courseWorkId'] = course_work_id unless course_work_id.nil?
-          command.query['late'] = late unless late.nil?
-          command.query['pageToken'] = page_token unless page_token.nil?
-          command.query['states'] = states unless states.nil?
-          command.query['pageSize'] = page_size unless page_size.nil?
-          command.query['userId'] = user_id unless user_id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Modifies attachments of student submission.
-        # Attachments may only be added to student submissions belonging to course
-        # work objects with a `workType` of `ASSIGNMENT`.
-        # This request must be made by the Developer Console project of the
-        # [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to
-        # create the corresponding course work item.
-        # This method returns the following error codes:
-        # * `PERMISSION_DENIED` if the requesting user is not permitted to access the
-        # requested course or course work, if the user is not permitted to modify
-        # attachments on the requested student submission, or for
-        # access errors.
-        # * `INVALID_ARGUMENT` if the request is malformed.
-        # * `NOT_FOUND` if the requested course, course work, or student submission
-        # does not exist.
-        # @param [String] course_id
-        #   Identifier of the course.
-        #   This identifier can be either the Classroom-assigned identifier or an
-        #   alias.
-        # @param [String] course_work_id
-        #   Identifier of the course work.
-        # @param [String] id
-        #   Identifier of the student submission.
-        # @param [Google::Apis::ClassroomV1::ModifyAttachmentsRequest] modify_attachments_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::ClassroomV1::StudentSubmission] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::ClassroomV1::StudentSubmission]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def modify_student_submission_attachments(course_id, course_work_id, id, modify_attachments_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments', options)
-          command.request_representation = Google::Apis::ClassroomV1::ModifyAttachmentsRequest::Representation
-          command.request_object = modify_attachments_request_object
-          command.response_representation = Google::Apis::ClassroomV1::StudentSubmission::Representation
-          command.response_class = Google::Apis::ClassroomV1::StudentSubmission
           command.params['courseId'] = course_id unless course_id.nil?
           command.params['courseWorkId'] = course_work_id unless course_work_id.nil?
           command.params['id'] = id unless id.nil?

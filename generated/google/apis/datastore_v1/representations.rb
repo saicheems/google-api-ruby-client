@@ -22,36 +22,6 @@ module Google
   module Apis
     module DatastoreV1
       
-      class MutationResult
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class GqlQuery
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class Filter
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class RunQueryRequest
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class RollbackRequest
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
       class CompositeFilter
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -106,13 +76,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class LookupRequest
+      class QueryResultBatch
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class QueryResultBatch
+      class LookupRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -136,6 +106,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class RunQueryResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class AllocateIdsRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -143,12 +119,6 @@ module Google
       end
       
       class LookupResponse
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class RunQueryResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -178,13 +148,13 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class Key
+      class LatLng
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class LatLng
+      class Key
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -227,64 +197,41 @@ module Google
       end
       
       class MutationResult
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :version, :numeric_string => true, as: 'version'
-          property :conflict_detected, as: 'conflictDetected'
-          property :key, as: 'key', class: Google::Apis::DatastoreV1::Key, decorator: Google::Apis::DatastoreV1::Key::Representation
+        class Representation < Google::Apis::Core::JsonRepresentation; end
       
-        end
+        include Google::Apis::Core::JsonObjectSupport
       end
       
       class GqlQuery
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          collection :positional_bindings, as: 'positionalBindings', class: Google::Apis::DatastoreV1::GqlQueryParameter, decorator: Google::Apis::DatastoreV1::GqlQueryParameter::Representation
+        class Representation < Google::Apis::Core::JsonRepresentation; end
       
-          hash :named_bindings, as: 'namedBindings', class: Google::Apis::DatastoreV1::GqlQueryParameter, decorator: Google::Apis::DatastoreV1::GqlQueryParameter::Representation
-      
-          property :allow_literals, as: 'allowLiterals'
-          property :query_string, as: 'queryString'
-        end
+        include Google::Apis::Core::JsonObjectSupport
       end
       
       class Filter
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :property_filter, as: 'propertyFilter', class: Google::Apis::DatastoreV1::PropertyFilter, decorator: Google::Apis::DatastoreV1::PropertyFilter::Representation
+        class Representation < Google::Apis::Core::JsonRepresentation; end
       
-          property :composite_filter, as: 'compositeFilter', class: Google::Apis::DatastoreV1::CompositeFilter, decorator: Google::Apis::DatastoreV1::CompositeFilter::Representation
-      
-        end
-      end
-      
-      class RunQueryRequest
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :gql_query, as: 'gqlQuery', class: Google::Apis::DatastoreV1::GqlQuery, decorator: Google::Apis::DatastoreV1::GqlQuery::Representation
-      
-          property :partition_id, as: 'partitionId', class: Google::Apis::DatastoreV1::PartitionId, decorator: Google::Apis::DatastoreV1::PartitionId::Representation
-      
-          property :read_options, as: 'readOptions', class: Google::Apis::DatastoreV1::ReadOptions, decorator: Google::Apis::DatastoreV1::ReadOptions::Representation
-      
-          property :query, as: 'query', class: Google::Apis::DatastoreV1::Query, decorator: Google::Apis::DatastoreV1::Query::Representation
-      
-        end
+        include Google::Apis::Core::JsonObjectSupport
       end
       
       class RollbackRequest
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :transaction, :base64 => true, as: 'transaction'
-        end
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class RunQueryRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
       end
       
       class CompositeFilter
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :op, as: 'op'
           collection :filters, as: 'filters', class: Google::Apis::DatastoreV1::Filter, decorator: Google::Apis::DatastoreV1::Filter::Representation
       
-          property :op, as: 'op'
         end
       end
       
@@ -305,8 +252,8 @@ module Google
           property :filter, as: 'filter', class: Google::Apis::DatastoreV1::Filter, decorator: Google::Apis::DatastoreV1::Filter::Representation
       
           property :limit, as: 'limit'
-          property :start_cursor, :base64 => true, as: 'startCursor'
           property :offset, as: 'offset'
+          property :start_cursor, :base64 => true, as: 'startCursor'
           collection :kind, as: 'kind', class: Google::Apis::DatastoreV1::KindExpression, decorator: Google::Apis::DatastoreV1::KindExpression::Representation
       
           collection :distinct_on, as: 'distinctOn', class: Google::Apis::DatastoreV1::PropertyReference, decorator: Google::Apis::DatastoreV1::PropertyReference::Representation
@@ -330,16 +277,25 @@ module Google
       class EntityResult
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :entity, as: 'entity', class: Google::Apis::DatastoreV1::Entity, decorator: Google::Apis::DatastoreV1::Entity::Representation
-      
           property :cursor, :base64 => true, as: 'cursor'
           property :version, :numeric_string => true, as: 'version'
+          property :entity, as: 'entity', class: Google::Apis::DatastoreV1::Entity, decorator: Google::Apis::DatastoreV1::Entity::Representation
+      
         end
       end
       
       class Value
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :entity_value, as: 'entityValue', class: Google::Apis::DatastoreV1::Entity, decorator: Google::Apis::DatastoreV1::Entity::Representation
+      
+          property :geo_point_value, as: 'geoPointValue', class: Google::Apis::DatastoreV1::LatLng, decorator: Google::Apis::DatastoreV1::LatLng::Representation
+      
+          property :integer_value, :numeric_string => true, as: 'integerValue'
+          property :key_value, as: 'keyValue', class: Google::Apis::DatastoreV1::Key, decorator: Google::Apis::DatastoreV1::Key::Representation
+      
+          property :string_value, as: 'stringValue'
+          property :exclude_from_indexes, as: 'excludeFromIndexes'
           property :double_value, as: 'doubleValue'
           property :timestamp_value, as: 'timestampValue'
           property :null_value, as: 'nullValue'
@@ -348,15 +304,6 @@ module Google
           property :meaning, as: 'meaning'
           property :array_value, as: 'arrayValue', class: Google::Apis::DatastoreV1::ArrayValue, decorator: Google::Apis::DatastoreV1::ArrayValue::Representation
       
-          property :entity_value, as: 'entityValue', class: Google::Apis::DatastoreV1::Entity, decorator: Google::Apis::DatastoreV1::Entity::Representation
-      
-          property :geo_point_value, as: 'geoPointValue', class: Google::Apis::DatastoreV1::LatLng, decorator: Google::Apis::DatastoreV1::LatLng::Representation
-      
-          property :key_value, as: 'keyValue', class: Google::Apis::DatastoreV1::Key, decorator: Google::Apis::DatastoreV1::Key::Representation
-      
-          property :integer_value, :numeric_string => true, as: 'integerValue'
-          property :string_value, as: 'stringValue'
-          property :exclude_from_indexes, as: 'excludeFromIndexes'
         end
       end
       
@@ -380,10 +327,24 @@ module Google
       class Entity
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          hash :properties, as: 'properties', class: Google::Apis::DatastoreV1::Value, decorator: Google::Apis::DatastoreV1::Value::Representation
-      
           property :key, as: 'key', class: Google::Apis::DatastoreV1::Key, decorator: Google::Apis::DatastoreV1::Key::Representation
       
+          hash :properties, as: 'properties', class: Google::Apis::DatastoreV1::Value, decorator: Google::Apis::DatastoreV1::Value::Representation
+      
+        end
+      end
+      
+      class QueryResultBatch
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :entity_results, as: 'entityResults', class: Google::Apis::DatastoreV1::EntityResult, decorator: Google::Apis::DatastoreV1::EntityResult::Representation
+      
+          property :more_results, as: 'moreResults'
+          property :end_cursor, :base64 => true, as: 'endCursor'
+          property :snapshot_version, :numeric_string => true, as: 'snapshotVersion'
+          property :skipped_cursor, :base64 => true, as: 'skippedCursor'
+          property :skipped_results, as: 'skippedResults'
+          property :entity_result_type, as: 'entityResultType'
         end
       end
       
@@ -394,20 +355,6 @@ module Google
       
           collection :keys, as: 'keys', class: Google::Apis::DatastoreV1::Key, decorator: Google::Apis::DatastoreV1::Key::Representation
       
-        end
-      end
-      
-      class QueryResultBatch
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :skipped_cursor, :base64 => true, as: 'skippedCursor'
-          property :skipped_results, as: 'skippedResults'
-          property :entity_result_type, as: 'entityResultType'
-          collection :entity_results, as: 'entityResults', class: Google::Apis::DatastoreV1::EntityResult, decorator: Google::Apis::DatastoreV1::EntityResult::Representation
-      
-          property :more_results, as: 'moreResults'
-          property :end_cursor, :base64 => true, as: 'endCursor'
-          property :snapshot_version, :numeric_string => true, as: 'snapshotVersion'
         end
       end
       
@@ -436,6 +383,16 @@ module Google
         end
       end
       
+      class RunQueryResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :query, as: 'query', class: Google::Apis::DatastoreV1::Query, decorator: Google::Apis::DatastoreV1::Query::Representation
+      
+          property :batch, as: 'batch', class: Google::Apis::DatastoreV1::QueryResultBatch, decorator: Google::Apis::DatastoreV1::QueryResultBatch::Representation
+      
+        end
+      end
+      
       class AllocateIdsRequest
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -447,21 +404,11 @@ module Google
       class LookupResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          collection :missing, as: 'missing', class: Google::Apis::DatastoreV1::EntityResult, decorator: Google::Apis::DatastoreV1::EntityResult::Representation
-      
           collection :found, as: 'found', class: Google::Apis::DatastoreV1::EntityResult, decorator: Google::Apis::DatastoreV1::EntityResult::Representation
       
+          collection :missing, as: 'missing', class: Google::Apis::DatastoreV1::EntityResult, decorator: Google::Apis::DatastoreV1::EntityResult::Representation
+      
           collection :deferred, as: 'deferred', class: Google::Apis::DatastoreV1::Key, decorator: Google::Apis::DatastoreV1::Key::Representation
-      
-        end
-      end
-      
-      class RunQueryResponse
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :query, as: 'query', class: Google::Apis::DatastoreV1::Query, decorator: Google::Apis::DatastoreV1::Query::Representation
-      
-          property :batch, as: 'batch', class: Google::Apis::DatastoreV1::QueryResultBatch, decorator: Google::Apis::DatastoreV1::QueryResultBatch::Representation
       
         end
       end
@@ -469,10 +416,10 @@ module Google
       class CommitRequest
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :transaction, :base64 => true, as: 'transaction'
           property :mode, as: 'mode'
           collection :mutations, as: 'mutations', class: Google::Apis::DatastoreV1::Mutation, decorator: Google::Apis::DatastoreV1::Mutation::Representation
       
-          property :transaction, :base64 => true, as: 'transaction'
         end
       end
       
@@ -485,9 +432,9 @@ module Google
       class PropertyOrder
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :direction, as: 'direction'
           property :property, as: 'property', class: Google::Apis::DatastoreV1::PropertyReference, decorator: Google::Apis::DatastoreV1::PropertyReference::Representation
       
+          property :direction, as: 'direction'
         end
       end
       
@@ -498,6 +445,14 @@ module Google
         end
       end
       
+      class LatLng
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :latitude, as: 'latitude'
+          property :longitude, as: 'longitude'
+        end
+      end
+      
       class Key
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -505,14 +460,6 @@ module Google
       
           collection :path, as: 'path', class: Google::Apis::DatastoreV1::PathElement, decorator: Google::Apis::DatastoreV1::PathElement::Representation
       
-        end
-      end
-      
-      class LatLng
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :latitude, as: 'latitude'
-          property :longitude, as: 'longitude'
         end
       end
       
@@ -542,14 +489,14 @@ module Google
       class Mutation
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :base_version, :numeric_string => true, as: 'baseVersion'
+          property :delete, as: 'delete', class: Google::Apis::DatastoreV1::Key, decorator: Google::Apis::DatastoreV1::Key::Representation
+      
           property :insert, as: 'insert', class: Google::Apis::DatastoreV1::Entity, decorator: Google::Apis::DatastoreV1::Entity::Representation
       
+          property :base_version, :numeric_string => true, as: 'baseVersion'
           property :update, as: 'update', class: Google::Apis::DatastoreV1::Entity, decorator: Google::Apis::DatastoreV1::Entity::Representation
       
           property :upsert, as: 'upsert', class: Google::Apis::DatastoreV1::Entity, decorator: Google::Apis::DatastoreV1::Entity::Representation
-      
-          property :delete, as: 'delete', class: Google::Apis::DatastoreV1::Key, decorator: Google::Apis::DatastoreV1::Key::Representation
       
         end
       end
@@ -557,14 +504,67 @@ module Google
       class ReadOptions
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
-          property :transaction, :base64 => true, as: 'transaction'
           property :read_consistency, as: 'readConsistency'
+          property :transaction, :base64 => true, as: 'transaction'
         end
       end
       
       class RollbackResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+        end
+      end
+      
+      class MutationResult
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :conflict_detected, as: 'conflictDetected'
+          property :key, as: 'key', class: Google::Apis::DatastoreV1::Key, decorator: Google::Apis::DatastoreV1::Key::Representation
+      
+          property :version, :numeric_string => true, as: 'version'
+        end
+      end
+      
+      class GqlQuery
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :query_string, as: 'queryString'
+          property :allow_literals, as: 'allowLiterals'
+          hash :named_bindings, as: 'namedBindings', class: Google::Apis::DatastoreV1::GqlQueryParameter, decorator: Google::Apis::DatastoreV1::GqlQueryParameter::Representation
+      
+          collection :positional_bindings, as: 'positionalBindings', class: Google::Apis::DatastoreV1::GqlQueryParameter, decorator: Google::Apis::DatastoreV1::GqlQueryParameter::Representation
+      
+        end
+      end
+      
+      class Filter
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :composite_filter, as: 'compositeFilter', class: Google::Apis::DatastoreV1::CompositeFilter, decorator: Google::Apis::DatastoreV1::CompositeFilter::Representation
+      
+          property :property_filter, as: 'propertyFilter', class: Google::Apis::DatastoreV1::PropertyFilter, decorator: Google::Apis::DatastoreV1::PropertyFilter::Representation
+      
+        end
+      end
+      
+      class RollbackRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :transaction, :base64 => true, as: 'transaction'
+        end
+      end
+      
+      class RunQueryRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :partition_id, as: 'partitionId', class: Google::Apis::DatastoreV1::PartitionId, decorator: Google::Apis::DatastoreV1::PartitionId::Representation
+      
+          property :gql_query, as: 'gqlQuery', class: Google::Apis::DatastoreV1::GqlQuery, decorator: Google::Apis::DatastoreV1::GqlQuery::Representation
+      
+          property :read_options, as: 'readOptions', class: Google::Apis::DatastoreV1::ReadOptions, decorator: Google::Apis::DatastoreV1::ReadOptions::Representation
+      
+          property :query, as: 'query', class: Google::Apis::DatastoreV1::Query, decorator: Google::Apis::DatastoreV1::Query::Representation
+      
         end
       end
     end

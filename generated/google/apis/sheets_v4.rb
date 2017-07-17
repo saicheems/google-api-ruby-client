@@ -27,9 +27,6 @@ module Google
       VERSION = 'V4'
       REVISION = '20170707'
 
-      # View and manage Google Drive files and folders that you have opened or created with this app
-      AUTH_DRIVE_FILE = 'https://www.googleapis.com/auth/drive.file'
-
       # View your Google Spreadsheets
       AUTH_SPREADSHEETS_READONLY = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 
@@ -41,6 +38,9 @@ module Google
 
       # View and manage your spreadsheets in Google Drive
       AUTH_SPREADSHEETS = 'https://www.googleapis.com/auth/spreadsheets'
+
+      # View and manage Google Drive files and folders that you have opened or created with this app
+      AUTH_DRIVE_FILE = 'https://www.googleapis.com/auth/drive.file'
     end
   end
 end

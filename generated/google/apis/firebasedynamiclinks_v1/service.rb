@@ -47,42 +47,6 @@ module Google
           @batch_path = 'batch'
         end
         
-        # Creates a short Dynamic Link given either a valid long Dynamic Link or
-        # details such as Dynamic Link domain, Android and iOS app information.
-        # The created short Dynamic Link will not expire.
-        # Repeated calls with the same long Dynamic Link or Dynamic Link information
-        # will produce the same short Dynamic Link.
-        # The Dynamic Link domain in the request must be owned by requester's
-        # Firebase project.
-        # @param [Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkRequest] create_short_dynamic_link_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_short_link_short_dynamic_link(create_short_dynamic_link_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/shortLinks', options)
-          command.request_representation = Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkRequest::Representation
-          command.request_object = create_short_dynamic_link_request_object
-          command.response_representation = Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkResponse::Representation
-          command.response_class = Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkResponse
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
         # Fetches analytics stats of a short Dynamic Link for a given
         # duration. Metrics include number of clicks, redirects, installs,
         # app first opens, and app reopens.
@@ -90,11 +54,11 @@ module Google
         #   Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
         # @param [Fixnum] duration_days
         #   The span of time requested in days.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
         #   Available to use for quota purposes for server-side applications. Can be any
         #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
         # @param [Google::Apis::RequestOptions] options
         #   Request-specific options
         #
@@ -107,14 +71,50 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def get_link_stats(dynamic_link, duration_days: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def get_link_stats(dynamic_link, duration_days: nil, quota_user: nil, fields: nil, options: nil, &block)
           command =  make_simple_command(:get, 'v1/{dynamicLink}/linkStats', options)
           command.response_representation = Google::Apis::FirebasedynamiclinksV1::DynamicLinkStats::Representation
           command.response_class = Google::Apis::FirebasedynamiclinksV1::DynamicLinkStats
           command.params['dynamicLink'] = dynamic_link unless dynamic_link.nil?
           command.query['durationDays'] = duration_days unless duration_days.nil?
-          command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
+          command.query['fields'] = fields unless fields.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Creates a short Dynamic Link given either a valid long Dynamic Link or
+        # details such as Dynamic Link domain, Android and iOS app information.
+        # The created short Dynamic Link will not expire.
+        # Repeated calls with the same long Dynamic Link or Dynamic Link information
+        # will produce the same short Dynamic Link.
+        # The Dynamic Link domain in the request must be owned by requester's
+        # Firebase project.
+        # @param [Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkRequest] create_short_dynamic_link_request_object
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_short_link_short_dynamic_link(create_short_dynamic_link_request_object = nil, quota_user: nil, fields: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/shortLinks', options)
+          command.request_representation = Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkRequest::Representation
+          command.request_object = create_short_dynamic_link_request_object
+          command.response_representation = Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkResponse::Representation
+          command.response_class = Google::Apis::FirebasedynamiclinksV1::CreateShortDynamicLinkResponse
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          command.query['fields'] = fields unless fields.nil?
           execute_or_queue_command(command, &block)
         end
 

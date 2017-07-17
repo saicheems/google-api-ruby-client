@@ -1320,9 +1320,14 @@ module Google
         # @return [String]
         attr_accessor :source_format
       
-        # [Required] The fully-qualified URIs that point to your data in Google Cloud
-        # Storage. Each URI can contain one '*' wildcard character and it must come
-        # after the 'bucket' name.
+        # [Required] The fully-qualified URIs that point to your data in Google Cloud.
+        # For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character
+        # and it must come after the 'bucket' name. Size limits related to load jobs
+        # apply to external data sources. For Google Cloud Bigtable URIs: Exactly one
+        # URI can be specified and it has be a fully specified and valid HTTPS URL for a
+        # Google Cloud Bigtable table. For Google Cloud Datastore backups: Exactly one
+        # URI can be specified, and it must end with '.backup_info'. Also, the '*'
+        # wildcard character is not allowed.
         # Corresponds to the JSON property `sourceUris`
         # @return [Array<String>]
         attr_accessor :source_uris
@@ -1481,8 +1486,8 @@ module Google
         # Specifies whether to use BigQuery's legacy SQL dialect for this query. The
         # default value is true. If set to false, the query will use BigQuery's standard
         # SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set
-        # to false, the values of allowLargeResults and flattenResults are ignored;
-        # query will be run as if allowLargeResults is true and flattenResults is false.
+        # to false, the value of flattenResults is ignored; query will be run as if
+        # flattenResults is false.
         # Corresponds to the JSON property `useLegacySql`
         # @return [Boolean]
         attr_accessor :use_legacy_sql
@@ -1504,12 +1509,13 @@ module Google
       
         # [Optional] Specifies the action that occurs if the destination table already
         # exists. The following values are supported: WRITE_TRUNCATE: If the table
-        # already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table
-        # already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the
-        # table already exists and contains data, a 'duplicate' error is returned in the
-        # job result. The default value is WRITE_EMPTY. Each action is atomic and only
-        # occurs if BigQuery is able to complete the job successfully. Creation,
-        # truncation and append actions occur as one atomic update upon job completion.
+        # already exists, BigQuery overwrites the table data and uses the schema from
+        # the query result. WRITE_APPEND: If the table already exists, BigQuery appends
+        # the data to the table. WRITE_EMPTY: If the table already exists and contains
+        # data, a 'duplicate' error is returned in the job result. The default value is
+        # WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to
+        # complete the job successfully. Creation, truncation and append actions occur
+        # as one atomic update upon job completion.
         # Corresponds to the JSON property `writeDisposition`
         # @return [String]
         attr_accessor :write_disposition
@@ -1871,6 +1877,14 @@ module Google
       class JobStatistics3
         include Google::Apis::Core::Hashable
       
+        # [Output-only] The number of bad records encountered. Note that if the job has
+        # failed because of more bad records encountered than the maximum allowed in the
+        # load job configuration, then this number can be less than the total number of
+        # bad records present in the input data.
+        # Corresponds to the JSON property `badRecords`
+        # @return [Fixnum]
+        attr_accessor :bad_records
+      
         # [Output-only] Number of bytes of source data in a load job.
         # Corresponds to the JSON property `inputFileBytes`
         # @return [Fixnum]
@@ -1899,6 +1913,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @bad_records = args[:bad_records] if args.key?(:bad_records)
           @input_file_bytes = args[:input_file_bytes] if args.key?(:input_file_bytes)
           @input_files = args[:input_files] if args.key?(:input_files)
           @output_bytes = args[:output_bytes] if args.key?(:output_bytes)
@@ -2265,8 +2280,8 @@ module Google
         # Specifies whether to use BigQuery's legacy SQL dialect for this query. The
         # default value is true. If set to false, the query will use BigQuery's standard
         # SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set
-        # to false, the values of allowLargeResults and flattenResults are ignored;
-        # query will be run as if allowLargeResults is true and flattenResults is false.
+        # to false, the value of flattenResults is ignored; query will be run as if
+        # flattenResults is false.
         # Corresponds to the JSON property `useLegacySql`
         # @return [Boolean]
         attr_accessor :use_legacy_sql

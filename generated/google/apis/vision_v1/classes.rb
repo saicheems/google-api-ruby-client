@@ -22,6 +22,540 @@ module Google
   module Apis
     module VisionV1
       
+      # A face annotation object contains the results of face detection.
+      class FaceAnnotation
+        include Google::Apis::Core::Hashable
+      
+        # Pitch angle, which indicates the upwards/downwards angle that the face is
+        # pointing relative to the image's horizontal plane. Range [-180,180].
+        # Corresponds to the JSON property `tiltAngle`
+        # @return [Float]
+        attr_accessor :tilt_angle
+      
+        # A bounding polygon for the detected image annotation.
+        # Corresponds to the JSON property `fdBoundingPoly`
+        # @return [Google::Apis::VisionV1::BoundingPoly]
+        attr_accessor :fd_bounding_poly
+      
+        # Surprise likelihood.
+        # Corresponds to the JSON property `surpriseLikelihood`
+        # @return [String]
+        attr_accessor :surprise_likelihood
+      
+        # Detected face landmarks.
+        # Corresponds to the JSON property `landmarks`
+        # @return [Array<Google::Apis::VisionV1::Landmark>]
+        attr_accessor :landmarks
+      
+        # Anger likelihood.
+        # Corresponds to the JSON property `angerLikelihood`
+        # @return [String]
+        attr_accessor :anger_likelihood
+      
+        # Face landmarking confidence. Range [0, 1].
+        # Corresponds to the JSON property `landmarkingConfidence`
+        # @return [Float]
+        attr_accessor :landmarking_confidence
+      
+        # Joy likelihood.
+        # Corresponds to the JSON property `joyLikelihood`
+        # @return [String]
+        attr_accessor :joy_likelihood
+      
+        # Under-exposed likelihood.
+        # Corresponds to the JSON property `underExposedLikelihood`
+        # @return [String]
+        attr_accessor :under_exposed_likelihood
+      
+        # Yaw angle, which indicates the leftward/rightward angle that the face is
+        # pointing relative to the vertical plane perpendicular to the image. Range
+        # [-180,180].
+        # Corresponds to the JSON property `panAngle`
+        # @return [Float]
+        attr_accessor :pan_angle
+      
+        # Detection confidence. Range [0, 1].
+        # Corresponds to the JSON property `detectionConfidence`
+        # @return [Float]
+        attr_accessor :detection_confidence
+      
+        # Blurred likelihood.
+        # Corresponds to the JSON property `blurredLikelihood`
+        # @return [String]
+        attr_accessor :blurred_likelihood
+      
+        # Headwear likelihood.
+        # Corresponds to the JSON property `headwearLikelihood`
+        # @return [String]
+        attr_accessor :headwear_likelihood
+      
+        # A bounding polygon for the detected image annotation.
+        # Corresponds to the JSON property `boundingPoly`
+        # @return [Google::Apis::VisionV1::BoundingPoly]
+        attr_accessor :bounding_poly
+      
+        # Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
+        # of the face relative to the image vertical about the axis perpendicular to
+        # the face. Range [-180,180].
+        # Corresponds to the JSON property `rollAngle`
+        # @return [Float]
+        attr_accessor :roll_angle
+      
+        # Sorrow likelihood.
+        # Corresponds to the JSON property `sorrowLikelihood`
+        # @return [String]
+        attr_accessor :sorrow_likelihood
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @tilt_angle = args[:tilt_angle] if args.key?(:tilt_angle)
+          @fd_bounding_poly = args[:fd_bounding_poly] if args.key?(:fd_bounding_poly)
+          @surprise_likelihood = args[:surprise_likelihood] if args.key?(:surprise_likelihood)
+          @landmarks = args[:landmarks] if args.key?(:landmarks)
+          @anger_likelihood = args[:anger_likelihood] if args.key?(:anger_likelihood)
+          @landmarking_confidence = args[:landmarking_confidence] if args.key?(:landmarking_confidence)
+          @joy_likelihood = args[:joy_likelihood] if args.key?(:joy_likelihood)
+          @under_exposed_likelihood = args[:under_exposed_likelihood] if args.key?(:under_exposed_likelihood)
+          @pan_angle = args[:pan_angle] if args.key?(:pan_angle)
+          @detection_confidence = args[:detection_confidence] if args.key?(:detection_confidence)
+          @blurred_likelihood = args[:blurred_likelihood] if args.key?(:blurred_likelihood)
+          @headwear_likelihood = args[:headwear_likelihood] if args.key?(:headwear_likelihood)
+          @bounding_poly = args[:bounding_poly] if args.key?(:bounding_poly)
+          @roll_angle = args[:roll_angle] if args.key?(:roll_angle)
+          @sorrow_likelihood = args[:sorrow_likelihood] if args.key?(:sorrow_likelihood)
+        end
+      end
+      
+      # Multiple image annotation requests are batched into a single service call.
+      class BatchAnnotateImagesRequest
+        include Google::Apis::Core::Hashable
+      
+        # Individual image annotation requests for this batch.
+        # Corresponds to the JSON property `requests`
+        # @return [Array<Google::Apis::VisionV1::AnnotateImageRequest>]
+        attr_accessor :requests
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @requests = args[:requests] if args.key?(:requests)
+        end
+      end
+      
+      # Detected start or end of a structural component.
+      class DetectedBreak
+        include Google::Apis::Core::Hashable
+      
+        # Detected break type.
+        # Corresponds to the JSON property `type`
+        # @return [String]
+        attr_accessor :type
+      
+        # True if break prepends the element.
+        # Corresponds to the JSON property `isPrefix`
+        # @return [Boolean]
+        attr_accessor :is_prefix
+        alias_method :is_prefix?, :is_prefix
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @type = args[:type] if args.key?(:type)
+          @is_prefix = args[:is_prefix] if args.key?(:is_prefix)
+        end
+      end
+      
+      # Image context and/or feature-specific parameters.
+      class ImageContext
+        include Google::Apis::Core::Hashable
+      
+        # List of languages to use for TEXT_DETECTION. In most cases, an empty value
+        # yields the best results since it enables automatic language detection. For
+        # languages based on the Latin alphabet, setting `language_hints` is not
+        # needed. In rare cases, when the language of the text in the image is known,
+        # setting a hint will help get better results (although it will be a
+        # significant hindrance if the hint is wrong). Text detection returns an
+        # error if one or more of the specified languages is not one of the
+        # [supported languages](/vision/docs/languages).
+        # Corresponds to the JSON property `languageHints`
+        # @return [Array<String>]
+        attr_accessor :language_hints
+      
+        # Rectangle determined by min and max `LatLng` pairs.
+        # Corresponds to the JSON property `latLongRect`
+        # @return [Google::Apis::VisionV1::LatLongRect]
+        attr_accessor :lat_long_rect
+      
+        # Parameters for crop hints annotation request.
+        # Corresponds to the JSON property `cropHintsParams`
+        # @return [Google::Apis::VisionV1::CropHintsParams]
+        attr_accessor :crop_hints_params
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @language_hints = args[:language_hints] if args.key?(:language_hints)
+          @lat_long_rect = args[:lat_long_rect] if args.key?(:lat_long_rect)
+          @crop_hints_params = args[:crop_hints_params] if args.key?(:crop_hints_params)
+        end
+      end
+      
+      # Detected page from OCR.
+      class Page
+        include Google::Apis::Core::Hashable
+      
+        # Page width in pixels.
+        # Corresponds to the JSON property `width`
+        # @return [Fixnum]
+        attr_accessor :width
+      
+        # List of blocks of text, images etc on this page.
+        # Corresponds to the JSON property `blocks`
+        # @return [Array<Google::Apis::VisionV1::Block>]
+        attr_accessor :blocks
+      
+        # Additional information detected on the structural component.
+        # Corresponds to the JSON property `property`
+        # @return [Google::Apis::VisionV1::TextProperty]
+        attr_accessor :property
+      
+        # Page height in pixels.
+        # Corresponds to the JSON property `height`
+        # @return [Fixnum]
+        attr_accessor :height
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @width = args[:width] if args.key?(:width)
+          @blocks = args[:blocks] if args.key?(:blocks)
+          @property = args[:property] if args.key?(:property)
+          @height = args[:height] if args.key?(:height)
+        end
+      end
+      
+      # Request for performing Google Cloud Vision API tasks over a user-provided
+      # image, with user-requested features.
+      class AnnotateImageRequest
+        include Google::Apis::Core::Hashable
+      
+        # Image context and/or feature-specific parameters.
+        # Corresponds to the JSON property `imageContext`
+        # @return [Google::Apis::VisionV1::ImageContext]
+        attr_accessor :image_context
+      
+        # Requested features.
+        # Corresponds to the JSON property `features`
+        # @return [Array<Google::Apis::VisionV1::Feature>]
+        attr_accessor :features
+      
+        # Client image to perform Google Cloud Vision API tasks over.
+        # Corresponds to the JSON property `image`
+        # @return [Google::Apis::VisionV1::Image]
+        attr_accessor :image
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @image_context = args[:image_context] if args.key?(:image_context)
+          @features = args[:features] if args.key?(:features)
+          @image = args[:image] if args.key?(:image)
+        end
+      end
+      
+      # The `Status` type defines a logical error model that is suitable for different
+      # programming environments, including REST APIs and RPC APIs. It is used by
+      # [gRPC](https://github.com/grpc). The error model is designed to be:
+      # - Simple to use and understand for most users
+      # - Flexible enough to meet unexpected needs
+      # # Overview
+      # The `Status` message contains three pieces of data: error code, error message,
+      # and error details. The error code should be an enum value of
+      # google.rpc.Code, but it may accept additional error codes if needed.  The
+      # error message should be a developer-facing English message that helps
+      # developers *understand* and *resolve* the error. If a localized user-facing
+      # error message is needed, put the localized message in the error details or
+      # localize it in the client. The optional error details may contain arbitrary
+      # information about the error. There is a predefined set of error detail types
+      # in the package `google.rpc` that can be used for common error conditions.
+      # # Language mapping
+      # The `Status` message is the logical representation of the error model, but it
+      # is not necessarily the actual wire format. When the `Status` message is
+      # exposed in different client libraries and different wire protocols, it can be
+      # mapped differently. For example, it will likely be mapped to some exceptions
+      # in Java, but more likely mapped to some error codes in C.
+      # # Other uses
+      # The error model and the `Status` message can be used in a variety of
+      # environments, either with or without APIs, to provide a
+      # consistent developer experience across different environments.
+      # Example uses of this error model include:
+      # - Partial errors. If a service needs to return partial errors to the client,
+      # it may embed the `Status` in the normal response to indicate the partial
+      # errors.
+      # - Workflow errors. A typical workflow has multiple steps. Each step may
+      # have a `Status` message for error reporting.
+      # - Batch operations. If a client uses batch request and batch response, the
+      # `Status` message should be used directly inside batch response, one for
+      # each error sub-response.
+      # - Asynchronous operations. If an API call embeds asynchronous operation
+      # results in its response, the status of those operations should be
+      # represented directly using the `Status` message.
+      # - Logging. If some API errors are stored in logs, the message `Status` could
+      # be used directly after any stripping needed for security/privacy reasons.
+      class Status
+        include Google::Apis::Core::Hashable
+      
+        # The status code, which should be an enum value of google.rpc.Code.
+        # Corresponds to the JSON property `code`
+        # @return [Fixnum]
+        attr_accessor :code
+      
+        # A developer-facing error message, which should be in English. Any
+        # user-facing error message should be localized and sent in the
+        # google.rpc.Status.details field, or localized by the client.
+        # Corresponds to the JSON property `message`
+        # @return [String]
+        attr_accessor :message
+      
+        # A list of messages that carry the error details.  There is a common set of
+        # message types for APIs to use.
+        # Corresponds to the JSON property `details`
+        # @return [Array<Hash<String,Object>>]
+        attr_accessor :details
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @code = args[:code] if args.key?(:code)
+          @message = args[:message] if args.key?(:message)
+          @details = args[:details] if args.key?(:details)
+        end
+      end
+      
+      # Rectangle determined by min and max `LatLng` pairs.
+      class LatLongRect
+        include Google::Apis::Core::Hashable
+      
+        # An object representing a latitude/longitude pair. This is expressed as a pair
+        # of doubles representing degrees latitude and degrees longitude. Unless
+        # specified otherwise, this must conform to the
+        # <a href="http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf">WGS84
+        # standard</a>. Values must be within normalized ranges.
+        # Example of normalization code in Python:
+        # def NormalizeLongitude(longitude):
+        # """Wraps decimal degrees longitude to [-180.0, 180.0]."""
+        # q, r = divmod(longitude, 360.0)
+        # if r > 180.0 or (r == 180.0 and q <= -1.0):
+        # return r - 360.0
+        # return r
+        # def NormalizeLatLng(latitude, longitude):
+        # """Wraps decimal degrees latitude and longitude to
+        # [-90.0, 90.0] and [-180.0, 180.0], respectively."""
+        # r = latitude % 360.0
+        # if r <= 90.0:
+        # return r, NormalizeLongitude(longitude)
+        # elif r >= 270.0:
+        # return r - 360, NormalizeLongitude(longitude)
+        # else:
+        # return 180 - r, NormalizeLongitude(longitude + 180.0)
+        # assert 180.0 == NormalizeLongitude(180.0)
+        # assert -180.0 == NormalizeLongitude(-180.0)
+        # assert -179.0 == NormalizeLongitude(181.0)
+        # assert (0.0, 0.0) == NormalizeLatLng(360.0, 0.0)
+        # assert (0.0, 0.0) == NormalizeLatLng(-360.0, 0.0)
+        # assert (85.0, 180.0) == NormalizeLatLng(95.0, 0.0)
+        # assert (-85.0, -170.0) == NormalizeLatLng(-95.0, 10.0)
+        # assert (90.0, 10.0) == NormalizeLatLng(90.0, 10.0)
+        # assert (-90.0, -10.0) == NormalizeLatLng(-90.0, -10.0)
+        # assert (0.0, -170.0) == NormalizeLatLng(-180.0, 10.0)
+        # assert (0.0, -170.0) == NormalizeLatLng(180.0, 10.0)
+        # assert (-90.0, 10.0) == NormalizeLatLng(270.0, 10.0)
+        # assert (90.0, 10.0) == NormalizeLatLng(-270.0, 10.0)
+        # Corresponds to the JSON property `minLatLng`
+        # @return [Google::Apis::VisionV1::LatLng]
+        attr_accessor :min_lat_lng
+      
+        # An object representing a latitude/longitude pair. This is expressed as a pair
+        # of doubles representing degrees latitude and degrees longitude. Unless
+        # specified otherwise, this must conform to the
+        # <a href="http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf">WGS84
+        # standard</a>. Values must be within normalized ranges.
+        # Example of normalization code in Python:
+        # def NormalizeLongitude(longitude):
+        # """Wraps decimal degrees longitude to [-180.0, 180.0]."""
+        # q, r = divmod(longitude, 360.0)
+        # if r > 180.0 or (r == 180.0 and q <= -1.0):
+        # return r - 360.0
+        # return r
+        # def NormalizeLatLng(latitude, longitude):
+        # """Wraps decimal degrees latitude and longitude to
+        # [-90.0, 90.0] and [-180.0, 180.0], respectively."""
+        # r = latitude % 360.0
+        # if r <= 90.0:
+        # return r, NormalizeLongitude(longitude)
+        # elif r >= 270.0:
+        # return r - 360, NormalizeLongitude(longitude)
+        # else:
+        # return 180 - r, NormalizeLongitude(longitude + 180.0)
+        # assert 180.0 == NormalizeLongitude(180.0)
+        # assert -180.0 == NormalizeLongitude(-180.0)
+        # assert -179.0 == NormalizeLongitude(181.0)
+        # assert (0.0, 0.0) == NormalizeLatLng(360.0, 0.0)
+        # assert (0.0, 0.0) == NormalizeLatLng(-360.0, 0.0)
+        # assert (85.0, 180.0) == NormalizeLatLng(95.0, 0.0)
+        # assert (-85.0, -170.0) == NormalizeLatLng(-95.0, 10.0)
+        # assert (90.0, 10.0) == NormalizeLatLng(90.0, 10.0)
+        # assert (-90.0, -10.0) == NormalizeLatLng(-90.0, -10.0)
+        # assert (0.0, -170.0) == NormalizeLatLng(-180.0, 10.0)
+        # assert (0.0, -170.0) == NormalizeLatLng(180.0, 10.0)
+        # assert (-90.0, 10.0) == NormalizeLatLng(270.0, 10.0)
+        # assert (90.0, 10.0) == NormalizeLatLng(-270.0, 10.0)
+        # Corresponds to the JSON property `maxLatLng`
+        # @return [Google::Apis::VisionV1::LatLng]
+        attr_accessor :max_lat_lng
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @min_lat_lng = args[:min_lat_lng] if args.key?(:min_lat_lng)
+          @max_lat_lng = args[:max_lat_lng] if args.key?(:max_lat_lng)
+        end
+      end
+      
+      # A single symbol representation.
+      class Symbol
+        include Google::Apis::Core::Hashable
+      
+        # The actual UTF-8 representation of the symbol.
+        # Corresponds to the JSON property `text`
+        # @return [String]
+        attr_accessor :text
+      
+        # Additional information detected on the structural component.
+        # Corresponds to the JSON property `property`
+        # @return [Google::Apis::VisionV1::TextProperty]
+        attr_accessor :property
+      
+        # A bounding polygon for the detected image annotation.
+        # Corresponds to the JSON property `boundingBox`
+        # @return [Google::Apis::VisionV1::BoundingPoly]
+        attr_accessor :bounding_box
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @text = args[:text] if args.key?(:text)
+          @property = args[:property] if args.key?(:property)
+          @bounding_box = args[:bounding_box] if args.key?(:bounding_box)
+        end
+      end
+      
+      # Set of crop hints that are used to generate new crops when serving images.
+      class CropHintsAnnotation
+        include Google::Apis::Core::Hashable
+      
+        # Crop hint results.
+        # Corresponds to the JSON property `cropHints`
+        # @return [Array<Google::Apis::VisionV1::CropHint>]
+        attr_accessor :crop_hints
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @crop_hints = args[:crop_hints] if args.key?(:crop_hints)
+        end
+      end
+      
+      # An object representing a latitude/longitude pair. This is expressed as a pair
+      # of doubles representing degrees latitude and degrees longitude. Unless
+      # specified otherwise, this must conform to the
+      # <a href="http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf">WGS84
+      # standard</a>. Values must be within normalized ranges.
+      # Example of normalization code in Python:
+      # def NormalizeLongitude(longitude):
+      # """Wraps decimal degrees longitude to [-180.0, 180.0]."""
+      # q, r = divmod(longitude, 360.0)
+      # if r > 180.0 or (r == 180.0 and q <= -1.0):
+      # return r - 360.0
+      # return r
+      # def NormalizeLatLng(latitude, longitude):
+      # """Wraps decimal degrees latitude and longitude to
+      # [-90.0, 90.0] and [-180.0, 180.0], respectively."""
+      # r = latitude % 360.0
+      # if r <= 90.0:
+      # return r, NormalizeLongitude(longitude)
+      # elif r >= 270.0:
+      # return r - 360, NormalizeLongitude(longitude)
+      # else:
+      # return 180 - r, NormalizeLongitude(longitude + 180.0)
+      # assert 180.0 == NormalizeLongitude(180.0)
+      # assert -180.0 == NormalizeLongitude(-180.0)
+      # assert -179.0 == NormalizeLongitude(181.0)
+      # assert (0.0, 0.0) == NormalizeLatLng(360.0, 0.0)
+      # assert (0.0, 0.0) == NormalizeLatLng(-360.0, 0.0)
+      # assert (85.0, 180.0) == NormalizeLatLng(95.0, 0.0)
+      # assert (-85.0, -170.0) == NormalizeLatLng(-95.0, 10.0)
+      # assert (90.0, 10.0) == NormalizeLatLng(90.0, 10.0)
+      # assert (-90.0, -10.0) == NormalizeLatLng(-90.0, -10.0)
+      # assert (0.0, -170.0) == NormalizeLatLng(-180.0, 10.0)
+      # assert (0.0, -170.0) == NormalizeLatLng(180.0, 10.0)
+      # assert (-90.0, 10.0) == NormalizeLatLng(270.0, 10.0)
+      # assert (90.0, 10.0) == NormalizeLatLng(-270.0, 10.0)
+      class LatLng
+        include Google::Apis::Core::Hashable
+      
+        # The latitude in degrees. It must be in the range [-90.0, +90.0].
+        # Corresponds to the JSON property `latitude`
+        # @return [Float]
+        attr_accessor :latitude
+      
+        # The longitude in degrees. It must be in the range [-180.0, +180.0].
+        # Corresponds to the JSON property `longitude`
+        # @return [Float]
+        attr_accessor :longitude
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @latitude = args[:latitude] if args.key?(:latitude)
+          @longitude = args[:longitude] if args.key?(:longitude)
+        end
+      end
+      
       # Represents a color in the RGBA color space. This representation is designed
       # for simplicity of conversion to/from color representations in various
       # languages over compactness; for example, the fields of this representation
@@ -303,32 +837,6 @@ module Google
         end
       end
       
-      # A vertex represents a 2D point in the image.
-      # NOTE: the vertex coordinates are in the same scale as the original image.
-      class Vertex
-        include Google::Apis::Core::Hashable
-      
-        # X coordinate.
-        # Corresponds to the JSON property `x`
-        # @return [Fixnum]
-        attr_accessor :x
-      
-        # Y coordinate.
-        # Corresponds to the JSON property `y`
-        # @return [Fixnum]
-        attr_accessor :y
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @x = args[:x] if args.key?(:x)
-          @y = args[:y] if args.key?(:y)
-        end
-      end
-      
       # Detected language for a structural component.
       class DetectedLanguage
         include Google::Apis::Core::Hashable
@@ -353,6 +861,32 @@ module Google
         def update!(**args)
           @language_code = args[:language_code] if args.key?(:language_code)
           @confidence = args[:confidence] if args.key?(:confidence)
+        end
+      end
+      
+      # A vertex represents a 2D point in the image.
+      # NOTE: the vertex coordinates are in the same scale as the original image.
+      class Vertex
+        include Google::Apis::Core::Hashable
+      
+        # X coordinate.
+        # Corresponds to the JSON property `x`
+        # @return [Fixnum]
+        attr_accessor :x
+      
+        # Y coordinate.
+        # Corresponds to the JSON property `y`
+        # @return [Fixnum]
+        attr_accessor :y
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @x = args[:x] if args.key?(:x)
+          @y = args[:y] if args.key?(:y)
         end
       end
       
@@ -436,18 +970,6 @@ module Google
       class AnnotateImageResponse
         include Google::Apis::Core::Hashable
       
-        # If present, label detection has completed successfully.
-        # Corresponds to the JSON property `labelAnnotations`
-        # @return [Array<Google::Apis::VisionV1::EntityAnnotation>]
-        attr_accessor :label_annotations
-      
-        # Set of features pertaining to the image, computed by computer vision
-        # methods over safe-search verticals (for example, adult, spoof, medical,
-        # violence).
-        # Corresponds to the JSON property `safeSearchAnnotation`
-        # @return [Google::Apis::VisionV1::SafeSearchAnnotation]
-        attr_accessor :safe_search_annotation
-      
         # The `Status` type defines a logical error model that is suitable for different
         # programming environments, including REST APIs and RPC APIs. It is used by
         # [gRPC](https://github.com/grpc). The error model is designed to be:
@@ -527,15 +1049,27 @@ module Google
         # @return [Array<Google::Apis::VisionV1::EntityAnnotation>]
         attr_accessor :logo_annotations
       
+        # Relevant information for the image from the Internet.
+        # Corresponds to the JSON property `webDetection`
+        # @return [Google::Apis::VisionV1::WebDetection]
+        attr_accessor :web_detection
+      
         # Set of crop hints that are used to generate new crops when serving images.
         # Corresponds to the JSON property `cropHintsAnnotation`
         # @return [Google::Apis::VisionV1::CropHintsAnnotation]
         attr_accessor :crop_hints_annotation
       
-        # Relevant information for the image from the Internet.
-        # Corresponds to the JSON property `webDetection`
-        # @return [Google::Apis::VisionV1::WebDetection]
-        attr_accessor :web_detection
+        # Set of features pertaining to the image, computed by computer vision
+        # methods over safe-search verticals (for example, adult, spoof, medical,
+        # violence).
+        # Corresponds to the JSON property `safeSearchAnnotation`
+        # @return [Google::Apis::VisionV1::SafeSearchAnnotation]
+        attr_accessor :safe_search_annotation
+      
+        # If present, label detection has completed successfully.
+        # Corresponds to the JSON property `labelAnnotations`
+        # @return [Array<Google::Apis::VisionV1::EntityAnnotation>]
+        attr_accessor :label_annotations
       
         def initialize(**args)
            update!(**args)
@@ -543,8 +1077,6 @@ module Google
       
         # Update properties of this object
         def update!(**args)
-          @label_annotations = args[:label_annotations] if args.key?(:label_annotations)
-          @safe_search_annotation = args[:safe_search_annotation] if args.key?(:safe_search_annotation)
           @error = args[:error] if args.key?(:error)
           @full_text_annotation = args[:full_text_annotation] if args.key?(:full_text_annotation)
           @landmark_annotations = args[:landmark_annotations] if args.key?(:landmark_annotations)
@@ -552,8 +1084,10 @@ module Google
           @image_properties_annotation = args[:image_properties_annotation] if args.key?(:image_properties_annotation)
           @face_annotations = args[:face_annotations] if args.key?(:face_annotations)
           @logo_annotations = args[:logo_annotations] if args.key?(:logo_annotations)
-          @crop_hints_annotation = args[:crop_hints_annotation] if args.key?(:crop_hints_annotation)
           @web_detection = args[:web_detection] if args.key?(:web_detection)
+          @crop_hints_annotation = args[:crop_hints_annotation] if args.key?(:crop_hints_annotation)
+          @safe_search_annotation = args[:safe_search_annotation] if args.key?(:safe_search_annotation)
+          @label_annotations = args[:label_annotations] if args.key?(:label_annotations)
         end
       end
       
@@ -622,6 +1156,17 @@ module Google
       class WebDetection
         include Google::Apis::Core::Hashable
       
+        # Fully matching images from the Internet.
+        # Can include resized copies of the query image.
+        # Corresponds to the JSON property `fullMatchingImages`
+        # @return [Array<Google::Apis::VisionV1::WebImage>]
+        attr_accessor :full_matching_images
+      
+        # Deduced entities from similar images on the Internet.
+        # Corresponds to the JSON property `webEntities`
+        # @return [Array<Google::Apis::VisionV1::WebEntity>]
+        attr_accessor :web_entities
+      
         # Web pages containing the matching images from the Internet.
         # Corresponds to the JSON property `pagesWithMatchingImages`
         # @return [Array<Google::Apis::VisionV1::WebPage>]
@@ -639,97 +1184,23 @@ module Google
         # @return [Array<Google::Apis::VisionV1::WebImage>]
         attr_accessor :partial_matching_images
       
-        # Fully matching images from the Internet.
-        # Can include resized copies of the query image.
-        # Corresponds to the JSON property `fullMatchingImages`
-        # @return [Array<Google::Apis::VisionV1::WebImage>]
-        attr_accessor :full_matching_images
-      
-        # Deduced entities from similar images on the Internet.
-        # Corresponds to the JSON property `webEntities`
-        # @return [Array<Google::Apis::VisionV1::WebEntity>]
-        attr_accessor :web_entities
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @full_matching_images = args[:full_matching_images] if args.key?(:full_matching_images)
+          @web_entities = args[:web_entities] if args.key?(:web_entities)
           @pages_with_matching_images = args[:pages_with_matching_images] if args.key?(:pages_with_matching_images)
           @visually_similar_images = args[:visually_similar_images] if args.key?(:visually_similar_images)
           @partial_matching_images = args[:partial_matching_images] if args.key?(:partial_matching_images)
-          @full_matching_images = args[:full_matching_images] if args.key?(:full_matching_images)
-          @web_entities = args[:web_entities] if args.key?(:web_entities)
-        end
-      end
-      
-      # Response to a batch image annotation request.
-      class BatchAnnotateImagesResponse
-        include Google::Apis::Core::Hashable
-      
-        # Individual responses to image annotation requests within the batch.
-        # Corresponds to the JSON property `responses`
-        # @return [Array<Google::Apis::VisionV1::AnnotateImageResponse>]
-        attr_accessor :responses
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @responses = args[:responses] if args.key?(:responses)
-        end
-      end
-      
-      # External image source (Google Cloud Storage image location).
-      class ImageSource
-        include Google::Apis::Core::Hashable
-      
-        # NOTE: For new code `image_uri` below is preferred.
-        # Google Cloud Storage image URI, which must be in the following form:
-        # `gs://bucket_name/object_name` (for details, see
-        # [Google Cloud Storage Request
-        # URIs](https://cloud.google.com/storage/docs/reference-uris)).
-        # NOTE: Cloud Storage object versioning is not supported.
-        # Corresponds to the JSON property `gcsImageUri`
-        # @return [String]
-        attr_accessor :gcs_image_uri
-      
-        # Image URI which supports:
-        # 1) Google Cloud Storage image URI, which must be in the following form:
-        # `gs://bucket_name/object_name` (for details, see
-        # [Google Cloud Storage Request
-        # URIs](https://cloud.google.com/storage/docs/reference-uris)).
-        # NOTE: Cloud Storage object versioning is not supported.
-        # 2) Publicly accessible image HTTP/HTTPS URL.
-        # This is preferred over the legacy `gcs_image_uri` above. When both
-        # `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
-        # precedence.
-        # Corresponds to the JSON property `imageUri`
-        # @return [String]
-        attr_accessor :image_uri
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @gcs_image_uri = args[:gcs_image_uri] if args.key?(:gcs_image_uri)
-          @image_uri = args[:image_uri] if args.key?(:image_uri)
         end
       end
       
       # A `Property` consists of a user-supplied name/value pair.
       class Property
         include Google::Apis::Core::Hashable
-      
-        # Value of the property.
-        # Corresponds to the JSON property `value`
-        # @return [String]
-        attr_accessor :value
       
         # Value of numeric properties.
         # Corresponds to the JSON property `uint64Value`
@@ -741,15 +1212,20 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # Value of the property.
+        # Corresponds to the JSON property `value`
+        # @return [String]
+        attr_accessor :value
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @value = args[:value] if args.key?(:value)
           @uint64_value = args[:uint64_value] if args.key?(:uint64_value)
           @name = args[:name] if args.key?(:name)
+          @value = args[:value] if args.key?(:value)
         end
       end
       
@@ -806,11 +1282,74 @@ module Google
         end
       end
       
+      # External image source (Google Cloud Storage image location).
+      class ImageSource
+        include Google::Apis::Core::Hashable
+      
+        # NOTE: For new code `image_uri` below is preferred.
+        # Google Cloud Storage image URI, which must be in the following form:
+        # `gs://bucket_name/object_name` (for details, see
+        # [Google Cloud Storage Request
+        # URIs](https://cloud.google.com/storage/docs/reference-uris)).
+        # NOTE: Cloud Storage object versioning is not supported.
+        # Corresponds to the JSON property `gcsImageUri`
+        # @return [String]
+        attr_accessor :gcs_image_uri
+      
+        # Image URI which supports:
+        # 1) Google Cloud Storage image URI, which must be in the following form:
+        # `gs://bucket_name/object_name` (for details, see
+        # [Google Cloud Storage Request
+        # URIs](https://cloud.google.com/storage/docs/reference-uris)).
+        # NOTE: Cloud Storage object versioning is not supported.
+        # 2) Publicly accessible image HTTP/HTTPS URL.
+        # This is preferred over the legacy `gcs_image_uri` above. When both
+        # `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
+        # precedence.
+        # Corresponds to the JSON property `imageUri`
+        # @return [String]
+        attr_accessor :image_uri
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @gcs_image_uri = args[:gcs_image_uri] if args.key?(:gcs_image_uri)
+          @image_uri = args[:image_uri] if args.key?(:image_uri)
+        end
+      end
+      
+      # Response to a batch image annotation request.
+      class BatchAnnotateImagesResponse
+        include Google::Apis::Core::Hashable
+      
+        # Individual responses to image annotation requests within the batch.
+        # Corresponds to the JSON property `responses`
+        # @return [Array<Google::Apis::VisionV1::AnnotateImageResponse>]
+        attr_accessor :responses
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @responses = args[:responses] if args.key?(:responses)
+        end
+      end
+      
       # A 3D position in the image, used primarily for Face detection landmarks.
       # A valid Position must have both x and y coordinates.
       # The position coordinates are in the same scale as the original image.
       class Position
         include Google::Apis::Core::Hashable
+      
+        # Y coordinate.
+        # Corresponds to the JSON property `y`
+        # @return [Float]
+        attr_accessor :y
       
         # Z coordinate (or depth).
         # Corresponds to the JSON property `z`
@@ -822,20 +1361,15 @@ module Google
         # @return [Float]
         attr_accessor :x
       
-        # Y coordinate.
-        # Corresponds to the JSON property `y`
-        # @return [Float]
-        attr_accessor :y
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @y = args[:y] if args.key?(:y)
           @z = args[:z] if args.key?(:z)
           @x = args[:x] if args.key?(:x)
-          @y = args[:y] if args.key?(:y)
         end
       end
       
@@ -843,16 +1377,16 @@ module Google
       class WebPage
         include Google::Apis::Core::Hashable
       
+        # The result web page URL.
+        # Corresponds to the JSON property `url`
+        # @return [String]
+        attr_accessor :url
+      
         # Overall relevancy score for the web page.
         # Not normalized and not comparable across different image queries.
         # Corresponds to the JSON property `score`
         # @return [Float]
         attr_accessor :score
-      
-        # The result web page URL.
-        # Corresponds to the JSON property `url`
-        # @return [String]
-        attr_accessor :url
       
         def initialize(**args)
            update!(**args)
@@ -860,8 +1394,8 @@ module Google
       
         # Update properties of this object
         def update!(**args)
-          @score = args[:score] if args.key?(:score)
           @url = args[:url] if args.key?(:url)
+          @score = args[:score] if args.key?(:score)
         end
       end
       
@@ -1000,6 +1534,20 @@ module Google
       class EntityAnnotation
         include Google::Apis::Core::Hashable
       
+        # Overall score of the result. Range [0, 1].
+        # Corresponds to the JSON property `score`
+        # @return [Float]
+        attr_accessor :score
+      
+        # The location information for the detected entity. Multiple
+        # `LocationInfo` elements can be present because one location may
+        # indicate the location of the scene in the image, and another location
+        # may indicate the location of the place where the image was taken.
+        # Location information is usually present for landmarks.
+        # Corresponds to the JSON property `locations`
+        # @return [Array<Google::Apis::VisionV1::LocationInfo>]
+        attr_accessor :locations
+      
         # Opaque entity ID. Some IDs may be available in
         # [Google Knowledge Graph Search API](https://developers.google.com/knowledge-
         # graph/).
@@ -1015,16 +1563,21 @@ module Google
         # @return [Float]
         attr_accessor :confidence
       
+        # A bounding polygon for the detected image annotation.
+        # Corresponds to the JSON property `boundingPoly`
+        # @return [Google::Apis::VisionV1::BoundingPoly]
+        attr_accessor :bounding_poly
+      
         # The language code for the locale in which the entity textual
         # `description` is expressed.
         # Corresponds to the JSON property `locale`
         # @return [String]
         attr_accessor :locale
       
-        # A bounding polygon for the detected image annotation.
-        # Corresponds to the JSON property `boundingPoly`
-        # @return [Google::Apis::VisionV1::BoundingPoly]
-        attr_accessor :bounding_poly
+        # Entity textual description, expressed in its `locale` language.
+        # Corresponds to the JSON property `description`
+        # @return [String]
+        attr_accessor :description
       
         # The relevancy of the ICA (Image Content Annotation) label to the
         # image. For example, the relevancy of "tower" is likely higher to an image
@@ -1035,30 +1588,11 @@ module Google
         # @return [Float]
         attr_accessor :topicality
       
-        # Entity textual description, expressed in its `locale` language.
-        # Corresponds to the JSON property `description`
-        # @return [String]
-        attr_accessor :description
-      
         # Some entities may have optional user-supplied `Property` (name/value)
         # fields, such a score or string that qualifies the entity.
         # Corresponds to the JSON property `properties`
         # @return [Array<Google::Apis::VisionV1::Property>]
         attr_accessor :properties
-      
-        # Overall score of the result. Range [0, 1].
-        # Corresponds to the JSON property `score`
-        # @return [Float]
-        attr_accessor :score
-      
-        # The location information for the detected entity. Multiple
-        # `LocationInfo` elements can be present because one location may
-        # indicate the location of the scene in the image, and another location
-        # may indicate the location of the place where the image was taken.
-        # Location information is usually present for landmarks.
-        # Corresponds to the JSON property `locations`
-        # @return [Array<Google::Apis::VisionV1::LocationInfo>]
-        attr_accessor :locations
       
         def initialize(**args)
            update!(**args)
@@ -1066,15 +1600,15 @@ module Google
       
         # Update properties of this object
         def update!(**args)
-          @mid = args[:mid] if args.key?(:mid)
-          @confidence = args[:confidence] if args.key?(:confidence)
-          @locale = args[:locale] if args.key?(:locale)
-          @bounding_poly = args[:bounding_poly] if args.key?(:bounding_poly)
-          @topicality = args[:topicality] if args.key?(:topicality)
-          @description = args[:description] if args.key?(:description)
-          @properties = args[:properties] if args.key?(:properties)
           @score = args[:score] if args.key?(:score)
           @locations = args[:locations] if args.key?(:locations)
+          @mid = args[:mid] if args.key?(:mid)
+          @confidence = args[:confidence] if args.key?(:confidence)
+          @bounding_poly = args[:bounding_poly] if args.key?(:bounding_poly)
+          @locale = args[:locale] if args.key?(:locale)
+          @description = args[:description] if args.key?(:description)
+          @topicality = args[:topicality] if args.key?(:topicality)
+          @properties = args[:properties] if args.key?(:properties)
         end
       end
       
@@ -1118,11 +1652,6 @@ module Google
       class Landmark
         include Google::Apis::Core::Hashable
       
-        # Face landmark type.
-        # Corresponds to the JSON property `type`
-        # @return [String]
-        attr_accessor :type
-      
         # A 3D position in the image, used primarily for Face detection landmarks.
         # A valid Position must have both x and y coordinates.
         # The position coordinates are in the same scale as the original image.
@@ -1130,14 +1659,19 @@ module Google
         # @return [Google::Apis::VisionV1::Position]
         attr_accessor :position
       
+        # Face landmark type.
+        # Corresponds to the JSON property `type`
+        # @return [String]
+        attr_accessor :type
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @type = args[:type] if args.key?(:type)
           @position = args[:position] if args.key?(:position)
+          @type = args[:type] if args.key?(:type)
         end
       end
       
@@ -1171,6 +1705,11 @@ module Google
       class Word
         include Google::Apis::Core::Hashable
       
+        # A bounding polygon for the detected image annotation.
+        # Corresponds to the JSON property `boundingBox`
+        # @return [Google::Apis::VisionV1::BoundingPoly]
+        attr_accessor :bounding_box
+      
         # List of symbols in the word.
         # The order of the symbols follows the natural reading order.
         # Corresponds to the JSON property `symbols`
@@ -1182,20 +1721,15 @@ module Google
         # @return [Google::Apis::VisionV1::TextProperty]
         attr_accessor :property
       
-        # A bounding polygon for the detected image annotation.
-        # Corresponds to the JSON property `boundingBox`
-        # @return [Google::Apis::VisionV1::BoundingPoly]
-        attr_accessor :bounding_box
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @bounding_box = args[:bounding_box] if args.key?(:bounding_box)
           @symbols = args[:symbols] if args.key?(:symbols)
           @property = args[:property] if args.key?(:property)
-          @bounding_box = args[:bounding_box] if args.key?(:bounding_box)
         end
       end
       
@@ -1255,540 +1789,6 @@ module Google
         def update!(**args)
           @source = args[:source] if args.key?(:source)
           @content = args[:content] if args.key?(:content)
-        end
-      end
-      
-      # A face annotation object contains the results of face detection.
-      class FaceAnnotation
-        include Google::Apis::Core::Hashable
-      
-        # Pitch angle, which indicates the upwards/downwards angle that the face is
-        # pointing relative to the image's horizontal plane. Range [-180,180].
-        # Corresponds to the JSON property `tiltAngle`
-        # @return [Float]
-        attr_accessor :tilt_angle
-      
-        # A bounding polygon for the detected image annotation.
-        # Corresponds to the JSON property `fdBoundingPoly`
-        # @return [Google::Apis::VisionV1::BoundingPoly]
-        attr_accessor :fd_bounding_poly
-      
-        # Surprise likelihood.
-        # Corresponds to the JSON property `surpriseLikelihood`
-        # @return [String]
-        attr_accessor :surprise_likelihood
-      
-        # Detected face landmarks.
-        # Corresponds to the JSON property `landmarks`
-        # @return [Array<Google::Apis::VisionV1::Landmark>]
-        attr_accessor :landmarks
-      
-        # Anger likelihood.
-        # Corresponds to the JSON property `angerLikelihood`
-        # @return [String]
-        attr_accessor :anger_likelihood
-      
-        # Face landmarking confidence. Range [0, 1].
-        # Corresponds to the JSON property `landmarkingConfidence`
-        # @return [Float]
-        attr_accessor :landmarking_confidence
-      
-        # Joy likelihood.
-        # Corresponds to the JSON property `joyLikelihood`
-        # @return [String]
-        attr_accessor :joy_likelihood
-      
-        # Under-exposed likelihood.
-        # Corresponds to the JSON property `underExposedLikelihood`
-        # @return [String]
-        attr_accessor :under_exposed_likelihood
-      
-        # Yaw angle, which indicates the leftward/rightward angle that the face is
-        # pointing relative to the vertical plane perpendicular to the image. Range
-        # [-180,180].
-        # Corresponds to the JSON property `panAngle`
-        # @return [Float]
-        attr_accessor :pan_angle
-      
-        # Detection confidence. Range [0, 1].
-        # Corresponds to the JSON property `detectionConfidence`
-        # @return [Float]
-        attr_accessor :detection_confidence
-      
-        # Blurred likelihood.
-        # Corresponds to the JSON property `blurredLikelihood`
-        # @return [String]
-        attr_accessor :blurred_likelihood
-      
-        # Headwear likelihood.
-        # Corresponds to the JSON property `headwearLikelihood`
-        # @return [String]
-        attr_accessor :headwear_likelihood
-      
-        # A bounding polygon for the detected image annotation.
-        # Corresponds to the JSON property `boundingPoly`
-        # @return [Google::Apis::VisionV1::BoundingPoly]
-        attr_accessor :bounding_poly
-      
-        # Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
-        # of the face relative to the image vertical about the axis perpendicular to
-        # the face. Range [-180,180].
-        # Corresponds to the JSON property `rollAngle`
-        # @return [Float]
-        attr_accessor :roll_angle
-      
-        # Sorrow likelihood.
-        # Corresponds to the JSON property `sorrowLikelihood`
-        # @return [String]
-        attr_accessor :sorrow_likelihood
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @tilt_angle = args[:tilt_angle] if args.key?(:tilt_angle)
-          @fd_bounding_poly = args[:fd_bounding_poly] if args.key?(:fd_bounding_poly)
-          @surprise_likelihood = args[:surprise_likelihood] if args.key?(:surprise_likelihood)
-          @landmarks = args[:landmarks] if args.key?(:landmarks)
-          @anger_likelihood = args[:anger_likelihood] if args.key?(:anger_likelihood)
-          @landmarking_confidence = args[:landmarking_confidence] if args.key?(:landmarking_confidence)
-          @joy_likelihood = args[:joy_likelihood] if args.key?(:joy_likelihood)
-          @under_exposed_likelihood = args[:under_exposed_likelihood] if args.key?(:under_exposed_likelihood)
-          @pan_angle = args[:pan_angle] if args.key?(:pan_angle)
-          @detection_confidence = args[:detection_confidence] if args.key?(:detection_confidence)
-          @blurred_likelihood = args[:blurred_likelihood] if args.key?(:blurred_likelihood)
-          @headwear_likelihood = args[:headwear_likelihood] if args.key?(:headwear_likelihood)
-          @bounding_poly = args[:bounding_poly] if args.key?(:bounding_poly)
-          @roll_angle = args[:roll_angle] if args.key?(:roll_angle)
-          @sorrow_likelihood = args[:sorrow_likelihood] if args.key?(:sorrow_likelihood)
-        end
-      end
-      
-      # Multiple image annotation requests are batched into a single service call.
-      class BatchAnnotateImagesRequest
-        include Google::Apis::Core::Hashable
-      
-        # Individual image annotation requests for this batch.
-        # Corresponds to the JSON property `requests`
-        # @return [Array<Google::Apis::VisionV1::AnnotateImageRequest>]
-        attr_accessor :requests
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @requests = args[:requests] if args.key?(:requests)
-        end
-      end
-      
-      # Detected start or end of a structural component.
-      class DetectedBreak
-        include Google::Apis::Core::Hashable
-      
-        # Detected break type.
-        # Corresponds to the JSON property `type`
-        # @return [String]
-        attr_accessor :type
-      
-        # True if break prepends the element.
-        # Corresponds to the JSON property `isPrefix`
-        # @return [Boolean]
-        attr_accessor :is_prefix
-        alias_method :is_prefix?, :is_prefix
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @type = args[:type] if args.key?(:type)
-          @is_prefix = args[:is_prefix] if args.key?(:is_prefix)
-        end
-      end
-      
-      # Image context and/or feature-specific parameters.
-      class ImageContext
-        include Google::Apis::Core::Hashable
-      
-        # Parameters for crop hints annotation request.
-        # Corresponds to the JSON property `cropHintsParams`
-        # @return [Google::Apis::VisionV1::CropHintsParams]
-        attr_accessor :crop_hints_params
-      
-        # List of languages to use for TEXT_DETECTION. In most cases, an empty value
-        # yields the best results since it enables automatic language detection. For
-        # languages based on the Latin alphabet, setting `language_hints` is not
-        # needed. In rare cases, when the language of the text in the image is known,
-        # setting a hint will help get better results (although it will be a
-        # significant hindrance if the hint is wrong). Text detection returns an
-        # error if one or more of the specified languages is not one of the
-        # [supported languages](/vision/docs/languages).
-        # Corresponds to the JSON property `languageHints`
-        # @return [Array<String>]
-        attr_accessor :language_hints
-      
-        # Rectangle determined by min and max `LatLng` pairs.
-        # Corresponds to the JSON property `latLongRect`
-        # @return [Google::Apis::VisionV1::LatLongRect]
-        attr_accessor :lat_long_rect
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @crop_hints_params = args[:crop_hints_params] if args.key?(:crop_hints_params)
-          @language_hints = args[:language_hints] if args.key?(:language_hints)
-          @lat_long_rect = args[:lat_long_rect] if args.key?(:lat_long_rect)
-        end
-      end
-      
-      # Detected page from OCR.
-      class Page
-        include Google::Apis::Core::Hashable
-      
-        # Page width in pixels.
-        # Corresponds to the JSON property `width`
-        # @return [Fixnum]
-        attr_accessor :width
-      
-        # List of blocks of text, images etc on this page.
-        # Corresponds to the JSON property `blocks`
-        # @return [Array<Google::Apis::VisionV1::Block>]
-        attr_accessor :blocks
-      
-        # Additional information detected on the structural component.
-        # Corresponds to the JSON property `property`
-        # @return [Google::Apis::VisionV1::TextProperty]
-        attr_accessor :property
-      
-        # Page height in pixels.
-        # Corresponds to the JSON property `height`
-        # @return [Fixnum]
-        attr_accessor :height
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @width = args[:width] if args.key?(:width)
-          @blocks = args[:blocks] if args.key?(:blocks)
-          @property = args[:property] if args.key?(:property)
-          @height = args[:height] if args.key?(:height)
-        end
-      end
-      
-      # Request for performing Google Cloud Vision API tasks over a user-provided
-      # image, with user-requested features.
-      class AnnotateImageRequest
-        include Google::Apis::Core::Hashable
-      
-        # Requested features.
-        # Corresponds to the JSON property `features`
-        # @return [Array<Google::Apis::VisionV1::Feature>]
-        attr_accessor :features
-      
-        # Client image to perform Google Cloud Vision API tasks over.
-        # Corresponds to the JSON property `image`
-        # @return [Google::Apis::VisionV1::Image]
-        attr_accessor :image
-      
-        # Image context and/or feature-specific parameters.
-        # Corresponds to the JSON property `imageContext`
-        # @return [Google::Apis::VisionV1::ImageContext]
-        attr_accessor :image_context
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @features = args[:features] if args.key?(:features)
-          @image = args[:image] if args.key?(:image)
-          @image_context = args[:image_context] if args.key?(:image_context)
-        end
-      end
-      
-      # The `Status` type defines a logical error model that is suitable for different
-      # programming environments, including REST APIs and RPC APIs. It is used by
-      # [gRPC](https://github.com/grpc). The error model is designed to be:
-      # - Simple to use and understand for most users
-      # - Flexible enough to meet unexpected needs
-      # # Overview
-      # The `Status` message contains three pieces of data: error code, error message,
-      # and error details. The error code should be an enum value of
-      # google.rpc.Code, but it may accept additional error codes if needed.  The
-      # error message should be a developer-facing English message that helps
-      # developers *understand* and *resolve* the error. If a localized user-facing
-      # error message is needed, put the localized message in the error details or
-      # localize it in the client. The optional error details may contain arbitrary
-      # information about the error. There is a predefined set of error detail types
-      # in the package `google.rpc` that can be used for common error conditions.
-      # # Language mapping
-      # The `Status` message is the logical representation of the error model, but it
-      # is not necessarily the actual wire format. When the `Status` message is
-      # exposed in different client libraries and different wire protocols, it can be
-      # mapped differently. For example, it will likely be mapped to some exceptions
-      # in Java, but more likely mapped to some error codes in C.
-      # # Other uses
-      # The error model and the `Status` message can be used in a variety of
-      # environments, either with or without APIs, to provide a
-      # consistent developer experience across different environments.
-      # Example uses of this error model include:
-      # - Partial errors. If a service needs to return partial errors to the client,
-      # it may embed the `Status` in the normal response to indicate the partial
-      # errors.
-      # - Workflow errors. A typical workflow has multiple steps. Each step may
-      # have a `Status` message for error reporting.
-      # - Batch operations. If a client uses batch request and batch response, the
-      # `Status` message should be used directly inside batch response, one for
-      # each error sub-response.
-      # - Asynchronous operations. If an API call embeds asynchronous operation
-      # results in its response, the status of those operations should be
-      # represented directly using the `Status` message.
-      # - Logging. If some API errors are stored in logs, the message `Status` could
-      # be used directly after any stripping needed for security/privacy reasons.
-      class Status
-        include Google::Apis::Core::Hashable
-      
-        # The status code, which should be an enum value of google.rpc.Code.
-        # Corresponds to the JSON property `code`
-        # @return [Fixnum]
-        attr_accessor :code
-      
-        # A developer-facing error message, which should be in English. Any
-        # user-facing error message should be localized and sent in the
-        # google.rpc.Status.details field, or localized by the client.
-        # Corresponds to the JSON property `message`
-        # @return [String]
-        attr_accessor :message
-      
-        # A list of messages that carry the error details.  There is a common set of
-        # message types for APIs to use.
-        # Corresponds to the JSON property `details`
-        # @return [Array<Hash<String,Object>>]
-        attr_accessor :details
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @code = args[:code] if args.key?(:code)
-          @message = args[:message] if args.key?(:message)
-          @details = args[:details] if args.key?(:details)
-        end
-      end
-      
-      # Rectangle determined by min and max `LatLng` pairs.
-      class LatLongRect
-        include Google::Apis::Core::Hashable
-      
-        # An object representing a latitude/longitude pair. This is expressed as a pair
-        # of doubles representing degrees latitude and degrees longitude. Unless
-        # specified otherwise, this must conform to the
-        # <a href="http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf">WGS84
-        # standard</a>. Values must be within normalized ranges.
-        # Example of normalization code in Python:
-        # def NormalizeLongitude(longitude):
-        # """Wraps decimal degrees longitude to [-180.0, 180.0]."""
-        # q, r = divmod(longitude, 360.0)
-        # if r > 180.0 or (r == 180.0 and q <= -1.0):
-        # return r - 360.0
-        # return r
-        # def NormalizeLatLng(latitude, longitude):
-        # """Wraps decimal degrees latitude and longitude to
-        # [-90.0, 90.0] and [-180.0, 180.0], respectively."""
-        # r = latitude % 360.0
-        # if r <= 90.0:
-        # return r, NormalizeLongitude(longitude)
-        # elif r >= 270.0:
-        # return r - 360, NormalizeLongitude(longitude)
-        # else:
-        # return 180 - r, NormalizeLongitude(longitude + 180.0)
-        # assert 180.0 == NormalizeLongitude(180.0)
-        # assert -180.0 == NormalizeLongitude(-180.0)
-        # assert -179.0 == NormalizeLongitude(181.0)
-        # assert (0.0, 0.0) == NormalizeLatLng(360.0, 0.0)
-        # assert (0.0, 0.0) == NormalizeLatLng(-360.0, 0.0)
-        # assert (85.0, 180.0) == NormalizeLatLng(95.0, 0.0)
-        # assert (-85.0, -170.0) == NormalizeLatLng(-95.0, 10.0)
-        # assert (90.0, 10.0) == NormalizeLatLng(90.0, 10.0)
-        # assert (-90.0, -10.0) == NormalizeLatLng(-90.0, -10.0)
-        # assert (0.0, -170.0) == NormalizeLatLng(-180.0, 10.0)
-        # assert (0.0, -170.0) == NormalizeLatLng(180.0, 10.0)
-        # assert (-90.0, 10.0) == NormalizeLatLng(270.0, 10.0)
-        # assert (90.0, 10.0) == NormalizeLatLng(-270.0, 10.0)
-        # Corresponds to the JSON property `minLatLng`
-        # @return [Google::Apis::VisionV1::LatLng]
-        attr_accessor :min_lat_lng
-      
-        # An object representing a latitude/longitude pair. This is expressed as a pair
-        # of doubles representing degrees latitude and degrees longitude. Unless
-        # specified otherwise, this must conform to the
-        # <a href="http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf">WGS84
-        # standard</a>. Values must be within normalized ranges.
-        # Example of normalization code in Python:
-        # def NormalizeLongitude(longitude):
-        # """Wraps decimal degrees longitude to [-180.0, 180.0]."""
-        # q, r = divmod(longitude, 360.0)
-        # if r > 180.0 or (r == 180.0 and q <= -1.0):
-        # return r - 360.0
-        # return r
-        # def NormalizeLatLng(latitude, longitude):
-        # """Wraps decimal degrees latitude and longitude to
-        # [-90.0, 90.0] and [-180.0, 180.0], respectively."""
-        # r = latitude % 360.0
-        # if r <= 90.0:
-        # return r, NormalizeLongitude(longitude)
-        # elif r >= 270.0:
-        # return r - 360, NormalizeLongitude(longitude)
-        # else:
-        # return 180 - r, NormalizeLongitude(longitude + 180.0)
-        # assert 180.0 == NormalizeLongitude(180.0)
-        # assert -180.0 == NormalizeLongitude(-180.0)
-        # assert -179.0 == NormalizeLongitude(181.0)
-        # assert (0.0, 0.0) == NormalizeLatLng(360.0, 0.0)
-        # assert (0.0, 0.0) == NormalizeLatLng(-360.0, 0.0)
-        # assert (85.0, 180.0) == NormalizeLatLng(95.0, 0.0)
-        # assert (-85.0, -170.0) == NormalizeLatLng(-95.0, 10.0)
-        # assert (90.0, 10.0) == NormalizeLatLng(90.0, 10.0)
-        # assert (-90.0, -10.0) == NormalizeLatLng(-90.0, -10.0)
-        # assert (0.0, -170.0) == NormalizeLatLng(-180.0, 10.0)
-        # assert (0.0, -170.0) == NormalizeLatLng(180.0, 10.0)
-        # assert (-90.0, 10.0) == NormalizeLatLng(270.0, 10.0)
-        # assert (90.0, 10.0) == NormalizeLatLng(-270.0, 10.0)
-        # Corresponds to the JSON property `maxLatLng`
-        # @return [Google::Apis::VisionV1::LatLng]
-        attr_accessor :max_lat_lng
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @min_lat_lng = args[:min_lat_lng] if args.key?(:min_lat_lng)
-          @max_lat_lng = args[:max_lat_lng] if args.key?(:max_lat_lng)
-        end
-      end
-      
-      # A single symbol representation.
-      class Symbol
-        include Google::Apis::Core::Hashable
-      
-        # Additional information detected on the structural component.
-        # Corresponds to the JSON property `property`
-        # @return [Google::Apis::VisionV1::TextProperty]
-        attr_accessor :property
-      
-        # A bounding polygon for the detected image annotation.
-        # Corresponds to the JSON property `boundingBox`
-        # @return [Google::Apis::VisionV1::BoundingPoly]
-        attr_accessor :bounding_box
-      
-        # The actual UTF-8 representation of the symbol.
-        # Corresponds to the JSON property `text`
-        # @return [String]
-        attr_accessor :text
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @property = args[:property] if args.key?(:property)
-          @bounding_box = args[:bounding_box] if args.key?(:bounding_box)
-          @text = args[:text] if args.key?(:text)
-        end
-      end
-      
-      # Set of crop hints that are used to generate new crops when serving images.
-      class CropHintsAnnotation
-        include Google::Apis::Core::Hashable
-      
-        # Crop hint results.
-        # Corresponds to the JSON property `cropHints`
-        # @return [Array<Google::Apis::VisionV1::CropHint>]
-        attr_accessor :crop_hints
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @crop_hints = args[:crop_hints] if args.key?(:crop_hints)
-        end
-      end
-      
-      # An object representing a latitude/longitude pair. This is expressed as a pair
-      # of doubles representing degrees latitude and degrees longitude. Unless
-      # specified otherwise, this must conform to the
-      # <a href="http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf">WGS84
-      # standard</a>. Values must be within normalized ranges.
-      # Example of normalization code in Python:
-      # def NormalizeLongitude(longitude):
-      # """Wraps decimal degrees longitude to [-180.0, 180.0]."""
-      # q, r = divmod(longitude, 360.0)
-      # if r > 180.0 or (r == 180.0 and q <= -1.0):
-      # return r - 360.0
-      # return r
-      # def NormalizeLatLng(latitude, longitude):
-      # """Wraps decimal degrees latitude and longitude to
-      # [-90.0, 90.0] and [-180.0, 180.0], respectively."""
-      # r = latitude % 360.0
-      # if r <= 90.0:
-      # return r, NormalizeLongitude(longitude)
-      # elif r >= 270.0:
-      # return r - 360, NormalizeLongitude(longitude)
-      # else:
-      # return 180 - r, NormalizeLongitude(longitude + 180.0)
-      # assert 180.0 == NormalizeLongitude(180.0)
-      # assert -180.0 == NormalizeLongitude(-180.0)
-      # assert -179.0 == NormalizeLongitude(181.0)
-      # assert (0.0, 0.0) == NormalizeLatLng(360.0, 0.0)
-      # assert (0.0, 0.0) == NormalizeLatLng(-360.0, 0.0)
-      # assert (85.0, 180.0) == NormalizeLatLng(95.0, 0.0)
-      # assert (-85.0, -170.0) == NormalizeLatLng(-95.0, 10.0)
-      # assert (90.0, 10.0) == NormalizeLatLng(90.0, 10.0)
-      # assert (-90.0, -10.0) == NormalizeLatLng(-90.0, -10.0)
-      # assert (0.0, -170.0) == NormalizeLatLng(-180.0, 10.0)
-      # assert (0.0, -170.0) == NormalizeLatLng(180.0, 10.0)
-      # assert (-90.0, 10.0) == NormalizeLatLng(270.0, 10.0)
-      # assert (90.0, 10.0) == NormalizeLatLng(-270.0, 10.0)
-      class LatLng
-        include Google::Apis::Core::Hashable
-      
-        # The latitude in degrees. It must be in the range [-90.0, +90.0].
-        # Corresponds to the JSON property `latitude`
-        # @return [Float]
-        attr_accessor :latitude
-      
-        # The longitude in degrees. It must be in the range [-180.0, +180.0].
-        # Corresponds to the JSON property `longitude`
-        # @return [Float]
-        attr_accessor :longitude
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @latitude = args[:latitude] if args.key?(:latitude)
-          @longitude = args[:longitude] if args.key?(:longitude)
         end
       end
     end

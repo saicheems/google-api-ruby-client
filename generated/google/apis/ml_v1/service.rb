@@ -115,20 +115,116 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Lists the models in a project.
-        # Each project can contain multiple models, and each model can have multiple
-        # versions.
+        # Creates a training or a batch prediction job.
         # @param [String] parent
-        #   Required. The name of the project whose models are to be listed.
+        #   Required. The project name.
+        # @param [Google::Apis::MlV1::GoogleCloudMlV1Job] google_cloud_ml_v1__job_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1Job] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::MlV1::GoogleCloudMlV1Job]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_project_job(parent, google_cloud_ml_v1__job_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/{+parent}/jobs', options)
+          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1Job::Representation
+          command.request_object = google_cloud_ml_v1__job_object
+          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1Job::Representation
+          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1Job
+          command.params['parent'] = parent unless parent.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Cancels a running job.
+        # @param [String] name
+        #   Required. The name of the job to cancel.
+        # @param [Google::Apis::MlV1::GoogleCloudMlV1CancelJobRequest] google_cloud_ml_v1__cancel_job_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::MlV1::GoogleProtobufEmpty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::MlV1::GoogleProtobufEmpty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def cancel_project_job(name, google_cloud_ml_v1__cancel_job_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/{+name}:cancel', options)
+          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1CancelJobRequest::Representation
+          command.request_object = google_cloud_ml_v1__cancel_job_request_object
+          command.response_representation = Google::Apis::MlV1::GoogleProtobufEmpty::Representation
+          command.response_class = Google::Apis::MlV1::GoogleProtobufEmpty
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Describes a job.
+        # @param [String] name
+        #   Required. The name of the job to get the description of.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1Job] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::MlV1::GoogleCloudMlV1Job]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_job(name, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:get, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1Job::Representation
+          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1Job
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Lists the jobs in the project.
+        # @param [String] parent
+        #   Required. The name of the project for which to list jobs.
         # @param [String] page_token
         #   Optional. A page token to request the next page of results.
         #   You get the token from the `next_page_token` field of the response from
         #   the previous call.
         # @param [Fixnum] page_size
-        #   Optional. The number of models to retrieve per "page" of results. If there
+        #   Optional. The number of jobs to retrieve per "page" of results. If there
         #   are more remaining results than this number, the response message will
         #   contain a valid value in the `next_page_token` field.
         #   The default value is 20, and the maximum page size is 100.
+        # @param [String] filter
+        #   Optional. Specifies the subset of jobs to retrieve.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -138,93 +234,22 @@ module Google
         #   Request-specific options
         #
         # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1ListModelsResponse] parsed result object
+        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1ListJobsResponse] parsed result object
         # @yieldparam err [StandardError] error object if request failed
         #
-        # @return [Google::Apis::MlV1::GoogleCloudMlV1ListModelsResponse]
+        # @return [Google::Apis::MlV1::GoogleCloudMlV1ListJobsResponse]
         #
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_project_models(parent, page_token: nil, page_size: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:get, 'v1/{+parent}/models', options)
-          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1ListModelsResponse::Representation
-          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1ListModelsResponse
+        def list_project_jobs(parent, page_token: nil, page_size: nil, filter: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:get, 'v1/{+parent}/jobs', options)
+          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1ListJobsResponse::Representation
+          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1ListJobsResponse
           command.params['parent'] = parent unless parent.nil?
           command.query['pageToken'] = page_token unless page_token.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Sets the access control policy on the specified resource. Replaces any
-        # existing policy.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy is being specified.
-        #   See the operation documentation for the appropriate value for this field.
-        # @param [Google::Apis::MlV1::GoogleIamV1SetIamPolicyRequest] google_iam_v1__set_iam_policy_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleIamV1Policy] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::MlV1::GoogleIamV1Policy]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def set_project_model_iam_policy(resource, google_iam_v1__set_iam_policy_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/{+resource}:setIamPolicy', options)
-          command.request_representation = Google::Apis::MlV1::GoogleIamV1SetIamPolicyRequest::Representation
-          command.request_object = google_iam_v1__set_iam_policy_request_object
-          command.response_representation = Google::Apis::MlV1::GoogleIamV1Policy::Representation
-          command.response_class = Google::Apis::MlV1::GoogleIamV1Policy
-          command.params['resource'] = resource unless resource.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Creates a model which will later contain one or more versions.
-        # You must add at least one version before you can request predictions from
-        # the model. Add versions by calling
-        # [projects.models.versions.create](/ml-engine/reference/rest/v1/projects.models.
-        # versions/create).
-        # @param [String] parent
-        #   Required. The project name.
-        # @param [Google::Apis::MlV1::GoogleCloudMlV1Model] google_cloud_ml_v1__model_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1Model] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::MlV1::GoogleCloudMlV1Model]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project_model(parent, google_cloud_ml_v1__model_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/{+parent}/models', options)
-          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1Model::Representation
-          command.request_object = google_cloud_ml_v1__model_object
-          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1Model::Representation
-          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1Model
-          command.params['parent'] = parent unless parent.nil?
+          command.query['filter'] = filter unless filter.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -368,17 +393,20 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Creates a new version of a model from a trained TensorFlow model.
-        # If the version created in the cloud by this call is the first deployed
-        # version of the specified model, it will be made the default version of the
-        # model. When you add a version to a model that already has one or more
-        # versions, the default version does not automatically change. If you want a
-        # new version to be the default, you must call
-        # [projects.models.versions.setDefault](/ml-engine/reference/rest/v1/projects.
-        # models.versions/setDefault).
+        # Lists the models in a project.
+        # Each project can contain multiple models, and each model can have multiple
+        # versions.
         # @param [String] parent
-        #   Required. The name of the model.
-        # @param [Google::Apis::MlV1::GoogleCloudMlV1Version] google_cloud_ml_v1__version_object
+        #   Required. The name of the project whose models are to be listed.
+        # @param [String] page_token
+        #   Optional. A page token to request the next page of results.
+        #   You get the token from the `next_page_token` field of the response from
+        #   the previous call.
+        # @param [Fixnum] page_size
+        #   Optional. The number of models to retrieve per "page" of results. If there
+        #   are more remaining results than this number, the response message will
+        #   contain a valid value in the `next_page_token` field.
+        #   The default value is 20, and the maximum page size is 100.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -388,39 +416,69 @@ module Google
         #   Request-specific options
         #
         # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleLongrunningOperation] parsed result object
+        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1ListModelsResponse] parsed result object
         # @yieldparam err [StandardError] error object if request failed
         #
-        # @return [Google::Apis::MlV1::GoogleLongrunningOperation]
+        # @return [Google::Apis::MlV1::GoogleCloudMlV1ListModelsResponse]
         #
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project_model_version(parent, google_cloud_ml_v1__version_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/{+parent}/versions', options)
-          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1Version::Representation
-          command.request_object = google_cloud_ml_v1__version_object
-          command.response_representation = Google::Apis::MlV1::GoogleLongrunningOperation::Representation
-          command.response_class = Google::Apis::MlV1::GoogleLongrunningOperation
+        def list_project_models(parent, page_token: nil, page_size: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:get, 'v1/{+parent}/models', options)
+          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1ListModelsResponse::Representation
+          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1ListModelsResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Creates a model which will later contain one or more versions.
+        # You must add at least one version before you can request predictions from
+        # the model. Add versions by calling
+        # [projects.models.versions.create](/ml-engine/reference/rest/v1/projects.models.
+        # versions/create).
+        # @param [String] parent
+        #   Required. The project name.
+        # @param [Google::Apis::MlV1::GoogleCloudMlV1Model] google_cloud_ml_v1__model_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1Model] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::MlV1::GoogleCloudMlV1Model]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_project_model(parent, google_cloud_ml_v1__model_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/{+parent}/models', options)
+          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1Model::Representation
+          command.request_object = google_cloud_ml_v1__model_object
+          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1Model::Representation
+          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1Model
           command.params['parent'] = parent unless parent.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
         end
         
-        # Designates a version to be the default for the model.
-        # The default version is used for prediction requests made against the model
-        # that don't specify a version.
-        # The first version to be created for a model is automatically set as the
-        # default. You must make any subsequent changes to the default version
-        # setting manually using this method.
-        # @param [String] name
-        #   Required. The name of the version to make the default for the model. You
-        #   can get the names of all the versions of a model by calling
-        #   [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.
-        #   versions/list).
-        #   Authorization: `ml.models.update` permission is required on the parent model.
-        # @param [Google::Apis::MlV1::GoogleCloudMlV1SetDefaultVersionRequest] google_cloud_ml_v1__set_default_version_request_object
+        # Sets the access control policy on the specified resource. Replaces any
+        # existing policy.
+        # @param [String] resource
+        #   REQUIRED: The resource for which the policy is being specified.
+        #   See the operation documentation for the appropriate value for this field.
+        # @param [Google::Apis::MlV1::GoogleIamV1SetIamPolicyRequest] google_iam_v1__set_iam_policy_request_object
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -430,21 +488,21 @@ module Google
         #   Request-specific options
         #
         # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1Version] parsed result object
+        # @yieldparam result [Google::Apis::MlV1::GoogleIamV1Policy] parsed result object
         # @yieldparam err [StandardError] error object if request failed
         #
-        # @return [Google::Apis::MlV1::GoogleCloudMlV1Version]
+        # @return [Google::Apis::MlV1::GoogleIamV1Policy]
         #
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def set_project_model_version_default(name, google_cloud_ml_v1__set_default_version_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/{+name}:setDefault', options)
-          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1SetDefaultVersionRequest::Representation
-          command.request_object = google_cloud_ml_v1__set_default_version_request_object
-          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1Version::Representation
-          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1Version
-          command.params['name'] = name unless name.nil?
+        def set_project_model_iam_policy(resource, google_iam_v1__set_iam_policy_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/{+resource}:setIamPolicy', options)
+          command.request_representation = Google::Apis::MlV1::GoogleIamV1SetIamPolicyRequest::Representation
+          command.request_object = google_iam_v1__set_iam_policy_request_object
+          command.response_representation = Google::Apis::MlV1::GoogleIamV1Policy::Representation
+          command.response_class = Google::Apis::MlV1::GoogleIamV1Policy
+          command.params['resource'] = resource unless resource.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -528,15 +586,15 @@ module Google
         # be retrieved in batches (called pages):
         # @param [String] parent
         #   Required. The name of the model for which to list the version.
+        # @param [String] page_token
+        #   Optional. A page token to request the next page of results.
+        #   You get the token from the `next_page_token` field of the response from
+        #   the previous call.
         # @param [Fixnum] page_size
         #   Optional. The number of versions to retrieve per "page" of results. If
         #   there are more remaining results than this number, the response message
         #   will contain a valid value in the `next_page_token` field.
         #   The default value is 20, and the maximum page size is 100.
-        # @param [String] page_token
-        #   Optional. A page token to request the next page of results.
-        #   You get the token from the `next_page_token` field of the response from
-        #   the previous call.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -554,23 +612,29 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_project_model_versions(parent, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def list_project_model_versions(parent, page_token: nil, page_size: nil, fields: nil, quota_user: nil, options: nil, &block)
           command =  make_simple_command(:get, 'v1/{+parent}/versions', options)
           command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1ListVersionsResponse::Representation
           command.response_class = Google::Apis::MlV1::GoogleCloudMlV1ListVersionsResponse
           command.params['parent'] = parent unless parent.nil?
-          command.query['pageSize'] = page_size unless page_size.nil?
           command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
         end
         
-        # Gets the latest state of a long-running operation.  Clients can use this
-        # method to poll the operation result at intervals as recommended by the API
-        # service.
-        # @param [String] name
-        #   The name of the operation resource.
+        # Creates a new version of a model from a trained TensorFlow model.
+        # If the version created in the cloud by this call is the first deployed
+        # version of the specified model, it will be made the default version of the
+        # model. When you add a version to a model that already has one or more
+        # versions, the default version does not automatically change. If you want a
+        # new version to be the default, you must call
+        # [projects.models.versions.setDefault](/ml-engine/reference/rest/v1/projects.
+        # models.versions/setDefault).
+        # @param [String] parent
+        #   Required. The name of the model.
+        # @param [Google::Apis::MlV1::GoogleCloudMlV1Version] google_cloud_ml_v1__version_object
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -588,33 +652,31 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def get_project_operation(name, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:get, 'v1/{+name}', options)
+        def create_project_model_version(parent, google_cloud_ml_v1__version_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/{+parent}/versions', options)
+          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1Version::Representation
+          command.request_object = google_cloud_ml_v1__version_object
           command.response_representation = Google::Apis::MlV1::GoogleLongrunningOperation::Representation
           command.response_class = Google::Apis::MlV1::GoogleLongrunningOperation
-          command.params['name'] = name unless name.nil?
+          command.params['parent'] = parent unless parent.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
         end
         
-        # Lists operations that match the specified filter in the request. If the
-        # server doesn't support this method, it returns `UNIMPLEMENTED`.
-        # NOTE: the `name` binding allows API services to override the binding
-        # to use different resource name schemes, such as `users/*/operations`. To
-        # override the binding, API services can add a binding such as
-        # `"/v1/`name=users/*`/operations"` to their service configuration.
-        # For backwards compatibility, the default name includes the operations
-        # collection id, however overriding users must ensure the name binding
-        # is the parent resource, without the operations collection id.
+        # Designates a version to be the default for the model.
+        # The default version is used for prediction requests made against the model
+        # that don't specify a version.
+        # The first version to be created for a model is automatically set as the
+        # default. You must make any subsequent changes to the default version
+        # setting manually using this method.
         # @param [String] name
-        #   The name of the operation's parent resource.
-        # @param [Fixnum] page_size
-        #   The standard list page size.
-        # @param [String] filter
-        #   The standard list filter.
-        # @param [String] page_token
-        #   The standard list page token.
+        #   Required. The name of the version to make the default for the model. You
+        #   can get the names of all the versions of a model by calling
+        #   [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.
+        #   versions/list).
+        #   Authorization: `ml.models.update` permission is required on the parent model.
+        # @param [Google::Apis::MlV1::GoogleCloudMlV1SetDefaultVersionRequest] google_cloud_ml_v1__set_default_version_request_object
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -624,22 +686,21 @@ module Google
         #   Request-specific options
         #
         # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleLongrunningListOperationsResponse] parsed result object
+        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1Version] parsed result object
         # @yieldparam err [StandardError] error object if request failed
         #
-        # @return [Google::Apis::MlV1::GoogleLongrunningListOperationsResponse]
+        # @return [Google::Apis::MlV1::GoogleCloudMlV1Version]
         #
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_project_operations(name, page_size: nil, filter: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:get, 'v1/{+name}/operations', options)
-          command.response_representation = Google::Apis::MlV1::GoogleLongrunningListOperationsResponse::Representation
-          command.response_class = Google::Apis::MlV1::GoogleLongrunningListOperationsResponse
+        def set_project_model_version_default(name, google_cloud_ml_v1__set_default_version_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:post, 'v1/{+name}:setDefault', options)
+          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1SetDefaultVersionRequest::Representation
+          command.request_object = google_cloud_ml_v1__set_default_version_request_object
+          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1Version::Representation
+          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1Version
           command.params['name'] = name unless name.nil?
-          command.query['pageSize'] = page_size unless page_size.nil?
-          command.query['filter'] = filter unless filter.nil?
-          command.query['pageToken'] = page_token unless page_token.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -717,43 +778,11 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Creates a training or a batch prediction job.
-        # @param [String] parent
-        #   Required. The project name.
-        # @param [Google::Apis::MlV1::GoogleCloudMlV1Job] google_cloud_ml_v1__job_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1Job] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::MlV1::GoogleCloudMlV1Job]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project_job(parent, google_cloud_ml_v1__job_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/{+parent}/jobs', options)
-          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1Job::Representation
-          command.request_object = google_cloud_ml_v1__job_object
-          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1Job::Representation
-          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1Job
-          command.params['parent'] = parent unless parent.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Cancels a running job.
+        # Gets the latest state of a long-running operation.  Clients can use this
+        # method to poll the operation result at intervals as recommended by the API
+        # service.
         # @param [String] name
-        #   Required. The name of the job to cancel.
-        # @param [Google::Apis::MlV1::GoogleCloudMlV1CancelJobRequest] google_cloud_ml_v1__cancel_job_request_object
+        #   The name of the operation resource.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -763,70 +792,41 @@ module Google
         #   Request-specific options
         #
         # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleProtobufEmpty] parsed result object
+        # @yieldparam result [Google::Apis::MlV1::GoogleLongrunningOperation] parsed result object
         # @yieldparam err [StandardError] error object if request failed
         #
-        # @return [Google::Apis::MlV1::GoogleProtobufEmpty]
+        # @return [Google::Apis::MlV1::GoogleLongrunningOperation]
         #
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def cancel_project_job(name, google_cloud_ml_v1__cancel_job_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:post, 'v1/{+name}:cancel', options)
-          command.request_representation = Google::Apis::MlV1::GoogleCloudMlV1CancelJobRequest::Representation
-          command.request_object = google_cloud_ml_v1__cancel_job_request_object
-          command.response_representation = Google::Apis::MlV1::GoogleProtobufEmpty::Representation
-          command.response_class = Google::Apis::MlV1::GoogleProtobufEmpty
-          command.params['name'] = name unless name.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Describes a job.
-        # @param [String] name
-        #   Required. The name of the job to get the description of.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1Job] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::MlV1::GoogleCloudMlV1Job]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def get_project_job(name, fields: nil, quota_user: nil, options: nil, &block)
+        def get_project_operation(name, fields: nil, quota_user: nil, options: nil, &block)
           command =  make_simple_command(:get, 'v1/{+name}', options)
-          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1Job::Representation
-          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1Job
+          command.response_representation = Google::Apis::MlV1::GoogleLongrunningOperation::Representation
+          command.response_class = Google::Apis::MlV1::GoogleLongrunningOperation
           command.params['name'] = name unless name.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
         end
         
-        # Lists the jobs in the project.
-        # @param [String] parent
-        #   Required. The name of the project for which to list jobs.
-        # @param [String] page_token
-        #   Optional. A page token to request the next page of results.
-        #   You get the token from the `next_page_token` field of the response from
-        #   the previous call.
-        # @param [Fixnum] page_size
-        #   Optional. The number of jobs to retrieve per "page" of results. If there
-        #   are more remaining results than this number, the response message will
-        #   contain a valid value in the `next_page_token` field.
-        #   The default value is 20, and the maximum page size is 100.
+        # Lists operations that match the specified filter in the request. If the
+        # server doesn't support this method, it returns `UNIMPLEMENTED`.
+        # NOTE: the `name` binding allows API services to override the binding
+        # to use different resource name schemes, such as `users/*/operations`. To
+        # override the binding, API services can add a binding such as
+        # `"/v1/`name=users/*`/operations"` to their service configuration.
+        # For backwards compatibility, the default name includes the operations
+        # collection id, however overriding users must ensure the name binding
+        # is the parent resource, without the operations collection id.
+        # @param [String] name
+        #   The name of the operation's parent resource.
         # @param [String] filter
-        #   Optional. Specifies the subset of jobs to retrieve.
+        #   The standard list filter.
+        # @param [String] page_token
+        #   The standard list page token.
+        # @param [Fixnum] page_size
+        #   The standard list page size.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -836,22 +836,22 @@ module Google
         #   Request-specific options
         #
         # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::MlV1::GoogleCloudMlV1ListJobsResponse] parsed result object
+        # @yieldparam result [Google::Apis::MlV1::GoogleLongrunningListOperationsResponse] parsed result object
         # @yieldparam err [StandardError] error object if request failed
         #
-        # @return [Google::Apis::MlV1::GoogleCloudMlV1ListJobsResponse]
+        # @return [Google::Apis::MlV1::GoogleLongrunningListOperationsResponse]
         #
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_project_jobs(parent, page_token: nil, page_size: nil, filter: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:get, 'v1/{+parent}/jobs', options)
-          command.response_representation = Google::Apis::MlV1::GoogleCloudMlV1ListJobsResponse::Representation
-          command.response_class = Google::Apis::MlV1::GoogleCloudMlV1ListJobsResponse
-          command.params['parent'] = parent unless parent.nil?
+        def list_project_operations(name, filter: nil, page_token: nil, page_size: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:get, 'v1/{+name}/operations', options)
+          command.response_representation = Google::Apis::MlV1::GoogleLongrunningListOperationsResponse::Representation
+          command.response_class = Google::Apis::MlV1::GoogleLongrunningListOperationsResponse
+          command.params['name'] = name unless name.nil?
+          command.query['filter'] = filter unless filter.nil?
           command.query['pageToken'] = page_token unless page_token.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
-          command.query['filter'] = filter unless filter.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)

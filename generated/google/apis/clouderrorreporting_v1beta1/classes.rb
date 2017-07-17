@@ -22,288 +22,23 @@ module Google
   module Apis
     module ClouderrorreportingV1beta1
       
-      # Contains a set of requested error group stats.
-      class ListGroupStatsResponse
-        include Google::Apis::Core::Hashable
-      
-        # If non-empty, more results are available.
-        # Pass this token, along with the same query parameters as the first
-        # request, to view the next page of results.
-        # Corresponds to the JSON property `nextPageToken`
-        # @return [String]
-        attr_accessor :next_page_token
-      
-        # The timestamp specifies the start time to which the request was restricted.
-        # The start time is set based on the requested time range. It may be adjusted
-        # to a later time if a project has exceeded the storage quota and older data
-        # has been deleted.
-        # Corresponds to the JSON property `timeRangeBegin`
-        # @return [String]
-        attr_accessor :time_range_begin
-      
-        # The error group stats which match the given request.
-        # Corresponds to the JSON property `errorGroupStats`
-        # @return [Array<Google::Apis::ClouderrorreportingV1beta1::ErrorGroupStats>]
-        attr_accessor :error_group_stats
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
-          @time_range_begin = args[:time_range_begin] if args.key?(:time_range_begin)
-          @error_group_stats = args[:error_group_stats] if args.key?(:error_group_stats)
-        end
-      end
-      
-      # A reference to a particular snapshot of the source tree used to build and
-      # deploy an application.
-      class SourceReference
-        include Google::Apis::Core::Hashable
-      
-        # The canonical and persistent identifier of the deployed revision.
-        # Example (git): "0035781c50ec7aa23385dc841529ce8a4b70db1b"
-        # Corresponds to the JSON property `revisionId`
-        # @return [String]
-        attr_accessor :revision_id
-      
-        # Optional. A URI string identifying the repository.
-        # Example: "https://github.com/GoogleCloudPlatform/kubernetes.git"
-        # Corresponds to the JSON property `repository`
-        # @return [String]
-        attr_accessor :repository
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @revision_id = args[:revision_id] if args.key?(:revision_id)
-          @repository = args[:repository] if args.key?(:repository)
-        end
-      end
-      
-      # Response message for deleting error events.
-      class DeleteEventsResponse
-        include Google::Apis::Core::Hashable
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-        end
-      end
-      
-      # An error event which is returned by the Error Reporting system.
-      class ErrorEvent
-        include Google::Apis::Core::Hashable
-      
-        # Describes a running service that sends errors.
-        # Its version changes over time and multiple versions can run in parallel.
-        # Corresponds to the JSON property `serviceContext`
-        # @return [Google::Apis::ClouderrorreportingV1beta1::ServiceContext]
-        attr_accessor :service_context
-      
-        # Time when the event occurred as provided in the error report.
-        # If the report did not contain a timestamp, the time the error was received
-        # by the Error Reporting system is used.
-        # Corresponds to the JSON property `eventTime`
-        # @return [String]
-        attr_accessor :event_time
-      
-        # A description of the context in which an error occurred.
-        # This data should be provided by the application when reporting an error,
-        # unless the
-        # error report has been generated automatically from Google App Engine logs.
-        # Corresponds to the JSON property `context`
-        # @return [Google::Apis::ClouderrorreportingV1beta1::ErrorContext]
-        attr_accessor :context
-      
-        # The stack trace that was reported or logged by the service.
-        # Corresponds to the JSON property `message`
-        # @return [String]
-        attr_accessor :message
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @service_context = args[:service_context] if args.key?(:service_context)
-          @event_time = args[:event_time] if args.key?(:event_time)
-          @context = args[:context] if args.key?(:context)
-          @message = args[:message] if args.key?(:message)
-        end
-      end
-      
-      # An error event which is reported to the Error Reporting system.
-      class ReportedErrorEvent
-        include Google::Apis::Core::Hashable
-      
-        # A description of the context in which an error occurred.
-        # This data should be provided by the application when reporting an error,
-        # unless the
-        # error report has been generated automatically from Google App Engine logs.
-        # Corresponds to the JSON property `context`
-        # @return [Google::Apis::ClouderrorreportingV1beta1::ErrorContext]
-        attr_accessor :context
-      
-        # [Required] The error message.
-        # If no `context.reportLocation` is provided, the message must contain a
-        # header (typically consisting of the exception type name and an error
-        # message) and an exception stack trace in one of the supported programming
-        # languages and formats.
-        # Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go.
-        # Supported stack trace formats are:
-        # * **Java**: Must be the return value of [`Throwable.printStackTrace()`](https:/
-        # /docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%
-        # 29).
-        # * **Python**: Must be the return value of [`traceback.format_exc()`](https://
-        # docs.python.org/2/library/traceback.html#traceback.format_exc).
-        # * **JavaScript**: Must be the value of [`error.stack`](https://github.com/v8/
-        # v8/wiki/Stack-Trace-API)
-        # as returned by V8.
-        # * **Ruby**: Must contain frames returned by [`Exception.backtrace`](https://
-        # ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace).
-        # * **C#**: Must be the return value of [`Exception.ToString()`](https://msdn.
-        # microsoft.com/en-us/library/system.exception.tostring.aspx).
-        # * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)`
-        # and contain the result of [`(string)$exception`](http://php.net/manual/en/
-        # exception.tostring.php).
-        # * **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/
-        # pkg/runtime/debug/#Stack).
-        # Corresponds to the JSON property `message`
-        # @return [String]
-        attr_accessor :message
-      
-        # Describes a running service that sends errors.
-        # Its version changes over time and multiple versions can run in parallel.
-        # Corresponds to the JSON property `serviceContext`
-        # @return [Google::Apis::ClouderrorreportingV1beta1::ServiceContext]
-        attr_accessor :service_context
-      
-        # [Optional] Time when the event occurred.
-        # If not provided, the time when the event was received by the
-        # Error Reporting system will be used.
-        # Corresponds to the JSON property `eventTime`
-        # @return [String]
-        attr_accessor :event_time
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @context = args[:context] if args.key?(:context)
-          @message = args[:message] if args.key?(:message)
-          @service_context = args[:service_context] if args.key?(:service_context)
-          @event_time = args[:event_time] if args.key?(:event_time)
-        end
-      end
-      
-      # A description of the context in which an error occurred.
-      # This data should be provided by the application when reporting an error,
-      # unless the
-      # error report has been generated automatically from Google App Engine logs.
-      class ErrorContext
-        include Google::Apis::Core::Hashable
-      
-        # Source code that was used to build the executable which has
-        # caused the given error message.
-        # Corresponds to the JSON property `sourceReferences`
-        # @return [Array<Google::Apis::ClouderrorreportingV1beta1::SourceReference>]
-        attr_accessor :source_references
-      
-        # Indicates a location in the source code of the service for which errors are
-        # reported. `functionName` must be provided by the application when reporting
-        # an error, unless the error report contains a `message` with a supported
-        # exception stack trace. All fields are optional for the later case.
-        # Corresponds to the JSON property `reportLocation`
-        # @return [Google::Apis::ClouderrorreportingV1beta1::SourceLocation]
-        attr_accessor :report_location
-      
-        # HTTP request data that is related to a reported error.
-        # This data should be provided by the application when reporting an error,
-        # unless the
-        # error report has been generated automatically from Google App Engine logs.
-        # Corresponds to the JSON property `httpRequest`
-        # @return [Google::Apis::ClouderrorreportingV1beta1::HttpRequestContext]
-        attr_accessor :http_request
-      
-        # The user who caused or was affected by the crash.
-        # This can be a user ID, an email address, or an arbitrary token that
-        # uniquely identifies the user.
-        # When sending an error report, leave this field empty if the user was not
-        # logged in. In this case the
-        # Error Reporting system will use other data, such as remote IP address, to
-        # distinguish affected users. See `affected_users_count` in
-        # `ErrorGroupStats`.
-        # Corresponds to the JSON property `user`
-        # @return [String]
-        attr_accessor :user
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @source_references = args[:source_references] if args.key?(:source_references)
-          @report_location = args[:report_location] if args.key?(:report_location)
-          @http_request = args[:http_request] if args.key?(:http_request)
-          @user = args[:user] if args.key?(:user)
-        end
-      end
-      
-      # Information related to tracking the progress on resolving the error.
-      class TrackingIssue
-        include Google::Apis::Core::Hashable
-      
-        # A URL pointing to a related entry in an issue tracking system.
-        # Example: https://github.com/user/project/issues/4
-        # Corresponds to the JSON property `url`
-        # @return [String]
-        attr_accessor :url
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @url = args[:url] if args.key?(:url)
-        end
-      end
-      
       # Data extracted for a specific group based on certain filter criteria,
       # such as a given time period and/or service filter.
       class ErrorGroupStats
         include Google::Apis::Core::Hashable
-      
-        # Description of a group of similar error events.
-        # Corresponds to the JSON property `group`
-        # @return [Google::Apis::ClouderrorreportingV1beta1::ErrorGroup]
-        attr_accessor :group
-      
-        # Approximate first occurrence that was ever seen for this group
-        # and which matches the given filter criteria, ignoring the
-        # time_range that was specified in the request.
-        # Corresponds to the JSON property `firstSeenTime`
-        # @return [String]
-        attr_accessor :first_seen_time
       
         # Approximate total number of events in the given group that match
         # the filter criteria.
         # Corresponds to the JSON property `count`
         # @return [Fixnum]
         attr_accessor :count
+      
+        # Approximate last occurrence that was ever seen for this group and
+        # which matches the given filter criteria, ignoring the time_range
+        # that was specified in the request.
+        # Corresponds to the JSON property `lastSeenTime`
+        # @return [String]
+        attr_accessor :last_seen_time
       
         # Approximate number of affected users in the given group that
         # match the filter criteria.
@@ -321,25 +56,18 @@ module Google
         # @return [Fixnum]
         attr_accessor :affected_users_count
       
-        # Approximate last occurrence that was ever seen for this group and
-        # which matches the given filter criteria, ignoring the time_range
-        # that was specified in the request.
-        # Corresponds to the JSON property `lastSeenTime`
-        # @return [String]
-        attr_accessor :last_seen_time
-      
-        # The total number of services with a non-zero error count for the given
-        # filter criteria.
-        # Corresponds to the JSON property `numAffectedServices`
-        # @return [Fixnum]
-        attr_accessor :num_affected_services
-      
         # Service contexts with a non-zero error count for the given filter
         # criteria. This list can be truncated if multiple services are affected.
         # Refer to `num_affected_services` for the total count.
         # Corresponds to the JSON property `affectedServices`
         # @return [Array<Google::Apis::ClouderrorreportingV1beta1::ServiceContext>]
         attr_accessor :affected_services
+      
+        # The total number of services with a non-zero error count for the given
+        # filter criteria.
+        # Corresponds to the JSON property `numAffectedServices`
+        # @return [Fixnum]
+        attr_accessor :num_affected_services
       
         # An error event which is returned by the Error Reporting system.
         # Corresponds to the JSON property `representative`
@@ -355,21 +83,33 @@ module Google
         # @return [Array<Google::Apis::ClouderrorreportingV1beta1::TimedCount>]
         attr_accessor :timed_counts
       
+        # Description of a group of similar error events.
+        # Corresponds to the JSON property `group`
+        # @return [Google::Apis::ClouderrorreportingV1beta1::ErrorGroup]
+        attr_accessor :group
+      
+        # Approximate first occurrence that was ever seen for this group
+        # and which matches the given filter criteria, ignoring the
+        # time_range that was specified in the request.
+        # Corresponds to the JSON property `firstSeenTime`
+        # @return [String]
+        attr_accessor :first_seen_time
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @group = args[:group] if args.key?(:group)
-          @first_seen_time = args[:first_seen_time] if args.key?(:first_seen_time)
           @count = args[:count] if args.key?(:count)
-          @affected_users_count = args[:affected_users_count] if args.key?(:affected_users_count)
           @last_seen_time = args[:last_seen_time] if args.key?(:last_seen_time)
-          @num_affected_services = args[:num_affected_services] if args.key?(:num_affected_services)
+          @affected_users_count = args[:affected_users_count] if args.key?(:affected_users_count)
           @affected_services = args[:affected_services] if args.key?(:affected_services)
+          @num_affected_services = args[:num_affected_services] if args.key?(:num_affected_services)
           @representative = args[:representative] if args.key?(:representative)
           @timed_counts = args[:timed_counts] if args.key?(:timed_counts)
+          @group = args[:group] if args.key?(:group)
+          @first_seen_time = args[:first_seen_time] if args.key?(:first_seen_time)
         end
       end
       
@@ -472,49 +212,6 @@ module Google
         end
       end
       
-      # Describes a running service that sends errors.
-      # Its version changes over time and multiple versions can run in parallel.
-      class ServiceContext
-        include Google::Apis::Core::Hashable
-      
-        # Represents the source code version that the developer provided,
-        # which could represent a version label or a Git SHA-1 hash, for example.
-        # For App Engine standard environment, the version is set to the version of
-        # the app.
-        # Corresponds to the JSON property `version`
-        # @return [String]
-        attr_accessor :version
-      
-        # An identifier of the service, such as the name of the
-        # executable, job, or Google App Engine service name. This field is expected
-        # to have a low number of values that are relatively stable over time, as
-        # opposed to `version`, which can be changed whenever new code is deployed.
-        # Contains the service name for error reports extracted from Google
-        # App Engine logs or `default` if the App Engine default service is used.
-        # Corresponds to the JSON property `service`
-        # @return [String]
-        attr_accessor :service
-      
-        # Type of the MonitoredResource. List of possible values:
-        # https://cloud.google.com/monitoring/api/resources
-        # Value is set automatically for incoming errors and must not be set when
-        # reporting errors.
-        # Corresponds to the JSON property `resourceType`
-        # @return [String]
-        attr_accessor :resource_type
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @version = args[:version] if args.key?(:version)
-          @service = args[:service] if args.key?(:service)
-          @resource_type = args[:resource_type] if args.key?(:resource_type)
-        end
-      end
-      
       # Indicates a location in the source code of the service for which errors are
       # reported. `functionName` must be provided by the application when reporting
       # an error, unless the error report contains a `message` with a supported
@@ -552,6 +249,49 @@ module Google
         end
       end
       
+      # Describes a running service that sends errors.
+      # Its version changes over time and multiple versions can run in parallel.
+      class ServiceContext
+        include Google::Apis::Core::Hashable
+      
+        # An identifier of the service, such as the name of the
+        # executable, job, or Google App Engine service name. This field is expected
+        # to have a low number of values that are relatively stable over time, as
+        # opposed to `version`, which can be changed whenever new code is deployed.
+        # Contains the service name for error reports extracted from Google
+        # App Engine logs or `default` if the App Engine default service is used.
+        # Corresponds to the JSON property `service`
+        # @return [String]
+        attr_accessor :service
+      
+        # Type of the MonitoredResource. List of possible values:
+        # https://cloud.google.com/monitoring/api/resources
+        # Value is set automatically for incoming errors and must not be set when
+        # reporting errors.
+        # Corresponds to the JSON property `resourceType`
+        # @return [String]
+        attr_accessor :resource_type
+      
+        # Represents the source code version that the developer provided,
+        # which could represent a version label or a Git SHA-1 hash, for example.
+        # For App Engine standard environment, the version is set to the version of
+        # the app.
+        # Corresponds to the JSON property `version`
+        # @return [String]
+        attr_accessor :version
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @service = args[:service] if args.key?(:service)
+          @resource_type = args[:resource_type] if args.key?(:resource_type)
+          @version = args[:version] if args.key?(:version)
+        end
+      end
+      
       # Response for reporting an individual error event.
       # Data may be added to this message in the future.
       class ReportErrorEventResponse
@@ -572,11 +312,6 @@ module Google
       # error report has been generated automatically from Google App Engine logs.
       class HttpRequestContext
         include Google::Apis::Core::Hashable
-      
-        # The URL of the request.
-        # Corresponds to the JSON property `url`
-        # @return [String]
-        attr_accessor :url
       
         # The HTTP response status code for the request.
         # Corresponds to the JSON property `responseStatusCode`
@@ -606,6 +341,276 @@ module Google
         # @return [String]
         attr_accessor :user_agent
       
+        # The URL of the request.
+        # Corresponds to the JSON property `url`
+        # @return [String]
+        attr_accessor :url
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @response_status_code = args[:response_status_code] if args.key?(:response_status_code)
+          @method_prop = args[:method_prop] if args.key?(:method_prop)
+          @remote_ip = args[:remote_ip] if args.key?(:remote_ip)
+          @referrer = args[:referrer] if args.key?(:referrer)
+          @user_agent = args[:user_agent] if args.key?(:user_agent)
+          @url = args[:url] if args.key?(:url)
+        end
+      end
+      
+      # Contains a set of requested error group stats.
+      class ListGroupStatsResponse
+        include Google::Apis::Core::Hashable
+      
+        # The timestamp specifies the start time to which the request was restricted.
+        # The start time is set based on the requested time range. It may be adjusted
+        # to a later time if a project has exceeded the storage quota and older data
+        # has been deleted.
+        # Corresponds to the JSON property `timeRangeBegin`
+        # @return [String]
+        attr_accessor :time_range_begin
+      
+        # The error group stats which match the given request.
+        # Corresponds to the JSON property `errorGroupStats`
+        # @return [Array<Google::Apis::ClouderrorreportingV1beta1::ErrorGroupStats>]
+        attr_accessor :error_group_stats
+      
+        # If non-empty, more results are available.
+        # Pass this token, along with the same query parameters as the first
+        # request, to view the next page of results.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @time_range_begin = args[:time_range_begin] if args.key?(:time_range_begin)
+          @error_group_stats = args[:error_group_stats] if args.key?(:error_group_stats)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+        end
+      end
+      
+      # A reference to a particular snapshot of the source tree used to build and
+      # deploy an application.
+      class SourceReference
+        include Google::Apis::Core::Hashable
+      
+        # The canonical and persistent identifier of the deployed revision.
+        # Example (git): "0035781c50ec7aa23385dc841529ce8a4b70db1b"
+        # Corresponds to the JSON property `revisionId`
+        # @return [String]
+        attr_accessor :revision_id
+      
+        # Optional. A URI string identifying the repository.
+        # Example: "https://github.com/GoogleCloudPlatform/kubernetes.git"
+        # Corresponds to the JSON property `repository`
+        # @return [String]
+        attr_accessor :repository
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @revision_id = args[:revision_id] if args.key?(:revision_id)
+          @repository = args[:repository] if args.key?(:repository)
+        end
+      end
+      
+      # Response message for deleting error events.
+      class DeleteEventsResponse
+        include Google::Apis::Core::Hashable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+        end
+      end
+      
+      # An error event which is returned by the Error Reporting system.
+      class ErrorEvent
+        include Google::Apis::Core::Hashable
+      
+        # A description of the context in which an error occurred.
+        # This data should be provided by the application when reporting an error,
+        # unless the
+        # error report has been generated automatically from Google App Engine logs.
+        # Corresponds to the JSON property `context`
+        # @return [Google::Apis::ClouderrorreportingV1beta1::ErrorContext]
+        attr_accessor :context
+      
+        # The stack trace that was reported or logged by the service.
+        # Corresponds to the JSON property `message`
+        # @return [String]
+        attr_accessor :message
+      
+        # Describes a running service that sends errors.
+        # Its version changes over time and multiple versions can run in parallel.
+        # Corresponds to the JSON property `serviceContext`
+        # @return [Google::Apis::ClouderrorreportingV1beta1::ServiceContext]
+        attr_accessor :service_context
+      
+        # Time when the event occurred as provided in the error report.
+        # If the report did not contain a timestamp, the time the error was received
+        # by the Error Reporting system is used.
+        # Corresponds to the JSON property `eventTime`
+        # @return [String]
+        attr_accessor :event_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @context = args[:context] if args.key?(:context)
+          @message = args[:message] if args.key?(:message)
+          @service_context = args[:service_context] if args.key?(:service_context)
+          @event_time = args[:event_time] if args.key?(:event_time)
+        end
+      end
+      
+      # An error event which is reported to the Error Reporting system.
+      class ReportedErrorEvent
+        include Google::Apis::Core::Hashable
+      
+        # Describes a running service that sends errors.
+        # Its version changes over time and multiple versions can run in parallel.
+        # Corresponds to the JSON property `serviceContext`
+        # @return [Google::Apis::ClouderrorreportingV1beta1::ServiceContext]
+        attr_accessor :service_context
+      
+        # [Optional] Time when the event occurred.
+        # If not provided, the time when the event was received by the
+        # Error Reporting system will be used.
+        # Corresponds to the JSON property `eventTime`
+        # @return [String]
+        attr_accessor :event_time
+      
+        # A description of the context in which an error occurred.
+        # This data should be provided by the application when reporting an error,
+        # unless the
+        # error report has been generated automatically from Google App Engine logs.
+        # Corresponds to the JSON property `context`
+        # @return [Google::Apis::ClouderrorreportingV1beta1::ErrorContext]
+        attr_accessor :context
+      
+        # [Required] The error message.
+        # If no `context.reportLocation` is provided, the message must contain a
+        # header (typically consisting of the exception type name and an error
+        # message) and an exception stack trace in one of the supported programming
+        # languages and formats.
+        # Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go.
+        # Supported stack trace formats are:
+        # * **Java**: Must be the return value of [`Throwable.printStackTrace()`](https:/
+        # /docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%
+        # 29).
+        # * **Python**: Must be the return value of [`traceback.format_exc()`](https://
+        # docs.python.org/2/library/traceback.html#traceback.format_exc).
+        # * **JavaScript**: Must be the value of [`error.stack`](https://github.com/v8/
+        # v8/wiki/Stack-Trace-API)
+        # as returned by V8.
+        # * **Ruby**: Must contain frames returned by [`Exception.backtrace`](https://
+        # ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace).
+        # * **C#**: Must be the return value of [`Exception.ToString()`](https://msdn.
+        # microsoft.com/en-us/library/system.exception.tostring.aspx).
+        # * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)`
+        # and contain the result of [`(string)$exception`](http://php.net/manual/en/
+        # exception.tostring.php).
+        # * **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/
+        # pkg/runtime/debug/#Stack).
+        # Corresponds to the JSON property `message`
+        # @return [String]
+        attr_accessor :message
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @service_context = args[:service_context] if args.key?(:service_context)
+          @event_time = args[:event_time] if args.key?(:event_time)
+          @context = args[:context] if args.key?(:context)
+          @message = args[:message] if args.key?(:message)
+        end
+      end
+      
+      # A description of the context in which an error occurred.
+      # This data should be provided by the application when reporting an error,
+      # unless the
+      # error report has been generated automatically from Google App Engine logs.
+      class ErrorContext
+        include Google::Apis::Core::Hashable
+      
+        # HTTP request data that is related to a reported error.
+        # This data should be provided by the application when reporting an error,
+        # unless the
+        # error report has been generated automatically from Google App Engine logs.
+        # Corresponds to the JSON property `httpRequest`
+        # @return [Google::Apis::ClouderrorreportingV1beta1::HttpRequestContext]
+        attr_accessor :http_request
+      
+        # The user who caused or was affected by the crash.
+        # This can be a user ID, an email address, or an arbitrary token that
+        # uniquely identifies the user.
+        # When sending an error report, leave this field empty if the user was not
+        # logged in. In this case the
+        # Error Reporting system will use other data, such as remote IP address, to
+        # distinguish affected users. See `affected_users_count` in
+        # `ErrorGroupStats`.
+        # Corresponds to the JSON property `user`
+        # @return [String]
+        attr_accessor :user
+      
+        # Source code that was used to build the executable which has
+        # caused the given error message.
+        # Corresponds to the JSON property `sourceReferences`
+        # @return [Array<Google::Apis::ClouderrorreportingV1beta1::SourceReference>]
+        attr_accessor :source_references
+      
+        # Indicates a location in the source code of the service for which errors are
+        # reported. `functionName` must be provided by the application when reporting
+        # an error, unless the error report contains a `message` with a supported
+        # exception stack trace. All fields are optional for the later case.
+        # Corresponds to the JSON property `reportLocation`
+        # @return [Google::Apis::ClouderrorreportingV1beta1::SourceLocation]
+        attr_accessor :report_location
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @http_request = args[:http_request] if args.key?(:http_request)
+          @user = args[:user] if args.key?(:user)
+          @source_references = args[:source_references] if args.key?(:source_references)
+          @report_location = args[:report_location] if args.key?(:report_location)
+        end
+      end
+      
+      # Information related to tracking the progress on resolving the error.
+      class TrackingIssue
+        include Google::Apis::Core::Hashable
+      
+        # A URL pointing to a related entry in an issue tracking system.
+        # Example: https://github.com/user/project/issues/4
+        # Corresponds to the JSON property `url`
+        # @return [String]
+        attr_accessor :url
+      
         def initialize(**args)
            update!(**args)
         end
@@ -613,11 +618,6 @@ module Google
         # Update properties of this object
         def update!(**args)
           @url = args[:url] if args.key?(:url)
-          @response_status_code = args[:response_status_code] if args.key?(:response_status_code)
-          @method_prop = args[:method_prop] if args.key?(:method_prop)
-          @remote_ip = args[:remote_ip] if args.key?(:remote_ip)
-          @referrer = args[:referrer] if args.key?(:referrer)
-          @user_agent = args[:user_agent] if args.key?(:user_agent)
         end
       end
     end

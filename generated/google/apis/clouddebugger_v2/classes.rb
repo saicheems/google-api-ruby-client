@@ -22,6 +22,93 @@ module Google
   module Apis
     module ClouddebuggerV2
       
+      # A CloudWorkspaceSourceContext denotes a workspace at a particular snapshot.
+      class CloudWorkspaceSourceContext
+        include Google::Apis::Core::Hashable
+      
+        # The ID of the snapshot.
+        # An empty snapshot_id refers to the most recent snapshot.
+        # Corresponds to the JSON property `snapshotId`
+        # @return [String]
+        attr_accessor :snapshot_id
+      
+        # A CloudWorkspaceId is a unique identifier for a cloud workspace.
+        # A cloud workspace is a place associated with a repo where modified files
+        # can be stored before they are committed.
+        # Corresponds to the JSON property `workspaceId`
+        # @return [Google::Apis::ClouddebuggerV2::CloudWorkspaceId]
+        attr_accessor :workspace_id
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @snapshot_id = args[:snapshot_id] if args.key?(:snapshot_id)
+          @workspace_id = args[:workspace_id] if args.key?(:workspace_id)
+        end
+      end
+      
+      # Response for updating an active breakpoint.
+      # The message is defined to allow future extensions.
+      class UpdateActiveBreakpointResponse
+        include Google::Apis::Core::Hashable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+        end
+      end
+      
+      # A SourceContext referring to a Gerrit project.
+      class GerritSourceContext
+        include Google::Apis::Core::Hashable
+      
+        # The name of an alias (branch, tag, etc.).
+        # Corresponds to the JSON property `aliasName`
+        # @return [String]
+        attr_accessor :alias_name
+      
+        # An alias to a repo revision.
+        # Corresponds to the JSON property `aliasContext`
+        # @return [Google::Apis::ClouddebuggerV2::AliasContext]
+        attr_accessor :alias_context
+      
+        # The full project name within the host. Projects may be nested, so
+        # "project/subproject" is a valid project name.
+        # The "repo name" is hostURI/project.
+        # Corresponds to the JSON property `gerritProject`
+        # @return [String]
+        attr_accessor :gerrit_project
+      
+        # A revision (commit) ID.
+        # Corresponds to the JSON property `revisionId`
+        # @return [String]
+        attr_accessor :revision_id
+      
+        # The URI of a running Gerrit instance.
+        # Corresponds to the JSON property `hostUri`
+        # @return [String]
+        attr_accessor :host_uri
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @alias_name = args[:alias_name] if args.key?(:alias_name)
+          @alias_context = args[:alias_context] if args.key?(:alias_context)
+          @gerrit_project = args[:gerrit_project] if args.key?(:gerrit_project)
+          @revision_id = args[:revision_id] if args.key?(:revision_id)
+          @host_uri = args[:host_uri] if args.key?(:host_uri)
+        end
+      end
+      
       # A CloudWorkspaceId is a unique identifier for a cloud workspace.
       # A cloud workspace is a place associated with a repo where modified files
       # can be stored before they are committed.
@@ -57,7 +144,7 @@ module Google
         # List of breakpoints matching the request.
         # The fields `id` and `location` are guaranteed to be set on each breakpoint.
         # The fields: `stack_frames`, `evaluated_expressions` and `variable_table`
-        # are cleared on each breakpoint regardless of it's status.
+        # are cleared on each breakpoint regardless of its status.
         # Corresponds to the JSON property `breakpoints`
         # @return [Array<Google::Apis::ClouddebuggerV2::Breakpoint>]
         attr_accessor :breakpoints
@@ -82,32 +169,6 @@ module Google
       # Represents the breakpoint specification, status and results.
       class Breakpoint
         include Google::Apis::Core::Hashable
-      
-        # E-mail address of the user that created this breakpoint
-        # Corresponds to the JSON property `userEmail`
-        # @return [String]
-        attr_accessor :user_email
-      
-        # Action that the agent should perform when the code at the
-        # breakpoint location is hit.
-        # Corresponds to the JSON property `action`
-        # @return [String]
-        attr_accessor :action
-      
-        # Indicates the severity of the log. Only relevant when action is `LOG`.
-        # Corresponds to the JSON property `logLevel`
-        # @return [String]
-        attr_accessor :log_level
-      
-        # Breakpoint identifier, unique in the scope of the debuggee.
-        # Corresponds to the JSON property `id`
-        # @return [String]
-        attr_accessor :id
-      
-        # Represents a location in the source code.
-        # Corresponds to the JSON property `location`
-        # @return [Google::Apis::ClouddebuggerV2::SourceLocation]
-        attr_accessor :location
       
         # Time this breakpoint was finalized as seen by the server in seconds
         # resolution.
@@ -199,17 +260,38 @@ module Google
         # @return [Google::Apis::ClouddebuggerV2::StatusMessage]
         attr_accessor :status
       
+        # E-mail address of the user that created this breakpoint
+        # Corresponds to the JSON property `userEmail`
+        # @return [String]
+        attr_accessor :user_email
+      
+        # Action that the agent should perform when the code at the
+        # breakpoint location is hit.
+        # Corresponds to the JSON property `action`
+        # @return [String]
+        attr_accessor :action
+      
+        # Indicates the severity of the log. Only relevant when action is `LOG`.
+        # Corresponds to the JSON property `logLevel`
+        # @return [String]
+        attr_accessor :log_level
+      
+        # Breakpoint identifier, unique in the scope of the debuggee.
+        # Corresponds to the JSON property `id`
+        # @return [String]
+        attr_accessor :id
+      
+        # Represents a location in the source code.
+        # Corresponds to the JSON property `location`
+        # @return [Google::Apis::ClouddebuggerV2::SourceLocation]
+        attr_accessor :location
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @user_email = args[:user_email] if args.key?(:user_email)
-          @action = args[:action] if args.key?(:action)
-          @log_level = args[:log_level] if args.key?(:log_level)
-          @id = args[:id] if args.key?(:id)
-          @location = args[:location] if args.key?(:location)
           @final_time = args[:final_time] if args.key?(:final_time)
           @variable_table = args[:variable_table] if args.key?(:variable_table)
           @labels = args[:labels] if args.key?(:labels)
@@ -221,6 +303,11 @@ module Google
           @stack_frames = args[:stack_frames] if args.key?(:stack_frames)
           @condition = args[:condition] if args.key?(:condition)
           @status = args[:status] if args.key?(:status)
+          @user_email = args[:user_email] if args.key?(:user_email)
+          @action = args[:action] if args.key?(:action)
+          @log_level = args[:log_level] if args.key?(:log_level)
+          @id = args[:id] if args.key?(:id)
+          @location = args[:location] if args.key?(:location)
         end
       end
       
@@ -553,11 +640,6 @@ module Google
       class Variable
         include Google::Apis::Core::Hashable
       
-        # Members contained or pointed to by the variable.
-        # Corresponds to the JSON property `members`
-        # @return [Array<Google::Apis::ClouddebuggerV2::Variable>]
-        attr_accessor :members
-      
         # Represents a contextual status message.
         # The message can indicate an error or informational status, and refer to
         # specific parts of the containing object.
@@ -580,6 +662,11 @@ module Google
         # @return [String]
         attr_accessor :type
       
+        # Simple value of the variable.
+        # Corresponds to the JSON property `value`
+        # @return [String]
+        attr_accessor :value
+      
         # Reference to a variable in the shared variable table. More than
         # one variable can reference the same variable in the table. The
         # `var_table_index` field is an index into `variable_table` in Breakpoint.
@@ -587,10 +674,10 @@ module Google
         # @return [Fixnum]
         attr_accessor :var_table_index
       
-        # Simple value of the variable.
-        # Corresponds to the JSON property `value`
-        # @return [String]
-        attr_accessor :value
+        # Members contained or pointed to by the variable.
+        # Corresponds to the JSON property `members`
+        # @return [Array<Google::Apis::ClouddebuggerV2::Variable>]
+        attr_accessor :members
       
         def initialize(**args)
            update!(**args)
@@ -598,18 +685,23 @@ module Google
       
         # Update properties of this object
         def update!(**args)
-          @members = args[:members] if args.key?(:members)
           @status = args[:status] if args.key?(:status)
           @name = args[:name] if args.key?(:name)
           @type = args[:type] if args.key?(:type)
-          @var_table_index = args[:var_table_index] if args.key?(:var_table_index)
           @value = args[:value] if args.key?(:value)
+          @var_table_index = args[:var_table_index] if args.key?(:var_table_index)
+          @members = args[:members] if args.key?(:members)
         end
       end
       
       # Represents a stack frame context.
       class StackFrame
         include Google::Apis::Core::Hashable
+      
+        # Represents a location in the source code.
+        # Corresponds to the JSON property `location`
+        # @return [Google::Apis::ClouddebuggerV2::SourceLocation]
+        attr_accessor :location
       
         # Demangled function name at the call site.
         # Corresponds to the JSON property `function`
@@ -628,21 +720,16 @@ module Google
         # @return [Array<Google::Apis::ClouddebuggerV2::Variable>]
         attr_accessor :locals
       
-        # Represents a location in the source code.
-        # Corresponds to the JSON property `location`
-        # @return [Google::Apis::ClouddebuggerV2::SourceLocation]
-        attr_accessor :location
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @location = args[:location] if args.key?(:location)
           @function = args[:function] if args.key?(:function)
           @arguments = args[:arguments] if args.key?(:arguments)
           @locals = args[:locals] if args.key?(:locals)
-          @location = args[:location] if args.key?(:location)
         end
       end
       
@@ -730,29 +817,6 @@ module Google
         end
       end
       
-      # Response for listing debuggees.
-      class ListDebuggeesResponse
-        include Google::Apis::Core::Hashable
-      
-        # List of debuggees accessible to the calling user.
-        # Note that the `description` field is the only human readable field
-        # that should be displayed to the user.
-        # The fields `debuggee.id` and  `description` fields are guaranteed to be
-        # set on each debuggee.
-        # Corresponds to the JSON property `debuggees`
-        # @return [Array<Google::Apis::ClouddebuggerV2::Debuggee>]
-        attr_accessor :debuggees
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @debuggees = args[:debuggees] if args.key?(:debuggees)
-        end
-      end
-      
       # An alias to a repo revision.
       class AliasContext
         include Google::Apis::Core::Hashable
@@ -775,6 +839,29 @@ module Google
         def update!(**args)
           @name = args[:name] if args.key?(:name)
           @kind = args[:kind] if args.key?(:kind)
+        end
+      end
+      
+      # Response for listing debuggees.
+      class ListDebuggeesResponse
+        include Google::Apis::Core::Hashable
+      
+        # List of debuggees accessible to the calling user.
+        # Note that the `description` field is the only human readable field
+        # that should be displayed to the user.
+        # The fields `debuggee.id` and  `description` fields are guaranteed to be
+        # set on each debuggee.
+        # Corresponds to the JSON property `debuggees`
+        # @return [Array<Google::Apis::ClouddebuggerV2::Debuggee>]
+        attr_accessor :debuggees
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @debuggees = args[:debuggees] if args.key?(:debuggees)
         end
       end
       
@@ -801,15 +888,15 @@ module Google
       class SourceLocation
         include Google::Apis::Core::Hashable
       
-        # Path to the source file within the source context of the target binary.
-        # Corresponds to the JSON property `path`
-        # @return [String]
-        attr_accessor :path
-      
         # Line inside the file. The first line in the file has the value `1`.
         # Corresponds to the JSON property `line`
         # @return [Fixnum]
         attr_accessor :line
+      
+        # Path to the source file within the source context of the target binary.
+        # Corresponds to the JSON property `path`
+        # @return [String]
+        attr_accessor :path
       
         def initialize(**args)
            update!(**args)
@@ -817,8 +904,8 @@ module Google
       
         # Update properties of this object
         def update!(**args)
-          @path = args[:path] if args.key?(:path)
           @line = args[:line] if args.key?(:line)
+          @path = args[:path] if args.key?(:path)
         end
       end
       
@@ -829,6 +916,25 @@ module Google
       # same field values when registering.
       class Debuggee
         include Google::Apis::Core::Hashable
+      
+        # If set to `true`, indicates that the agent should disable itself and
+        # detach from the debuggee.
+        # Corresponds to the JSON property `isDisabled`
+        # @return [Boolean]
+        attr_accessor :is_disabled
+        alias_method :is_disabled?, :is_disabled
+      
+        # Unique identifier for the debuggee generated by the controller service.
+        # Corresponds to the JSON property `id`
+        # @return [String]
+        attr_accessor :id
+      
+        # Version ID of the agent release. The version ID is structured as
+        # following: `domain/type/vmajor.minor` (for example
+        # `google.com/gcp-java/v1.1`).
+        # Corresponds to the JSON property `agentVersion`
+        # @return [String]
+        attr_accessor :agent_version
       
         # Human readable description of the debuggee.
         # Including a human-readable project name, environment name and version
@@ -890,31 +996,15 @@ module Google
         # @return [String]
         attr_accessor :project
       
-        # If set to `true`, indicates that the agent should disable itself and
-        # detach from the debuggee.
-        # Corresponds to the JSON property `isDisabled`
-        # @return [Boolean]
-        attr_accessor :is_disabled
-        alias_method :is_disabled?, :is_disabled
-      
-        # Version ID of the agent release. The version ID is structured as
-        # following: `domain/type/vmajor.minor` (for example
-        # `google.com/gcp-java/v1.1`).
-        # Corresponds to the JSON property `agentVersion`
-        # @return [String]
-        attr_accessor :agent_version
-      
-        # Unique identifier for the debuggee generated by the controller service.
-        # Corresponds to the JSON property `id`
-        # @return [String]
-        attr_accessor :id
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @is_disabled = args[:is_disabled] if args.key?(:is_disabled)
+          @id = args[:id] if args.key?(:id)
+          @agent_version = args[:agent_version] if args.key?(:agent_version)
           @description = args[:description] if args.key?(:description)
           @uniquifier = args[:uniquifier] if args.key?(:uniquifier)
           @source_contexts = args[:source_contexts] if args.key?(:source_contexts)
@@ -923,9 +1013,6 @@ module Google
           @is_inactive = args[:is_inactive] if args.key?(:is_inactive)
           @status = args[:status] if args.key?(:status)
           @project = args[:project] if args.key?(:project)
-          @is_disabled = args[:is_disabled] if args.key?(:is_disabled)
-          @agent_version = args[:agent_version] if args.key?(:agent_version)
-          @id = args[:id] if args.key?(:id)
         end
       end
       
@@ -987,93 +1074,6 @@ module Google
           @wait_expired = args[:wait_expired] if args.key?(:wait_expired)
           @next_wait_token = args[:next_wait_token] if args.key?(:next_wait_token)
           @breakpoints = args[:breakpoints] if args.key?(:breakpoints)
-        end
-      end
-      
-      # A CloudWorkspaceSourceContext denotes a workspace at a particular snapshot.
-      class CloudWorkspaceSourceContext
-        include Google::Apis::Core::Hashable
-      
-        # The ID of the snapshot.
-        # An empty snapshot_id refers to the most recent snapshot.
-        # Corresponds to the JSON property `snapshotId`
-        # @return [String]
-        attr_accessor :snapshot_id
-      
-        # A CloudWorkspaceId is a unique identifier for a cloud workspace.
-        # A cloud workspace is a place associated with a repo where modified files
-        # can be stored before they are committed.
-        # Corresponds to the JSON property `workspaceId`
-        # @return [Google::Apis::ClouddebuggerV2::CloudWorkspaceId]
-        attr_accessor :workspace_id
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @snapshot_id = args[:snapshot_id] if args.key?(:snapshot_id)
-          @workspace_id = args[:workspace_id] if args.key?(:workspace_id)
-        end
-      end
-      
-      # Response for updating an active breakpoint.
-      # The message is defined to allow future extensions.
-      class UpdateActiveBreakpointResponse
-        include Google::Apis::Core::Hashable
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-        end
-      end
-      
-      # A SourceContext referring to a Gerrit project.
-      class GerritSourceContext
-        include Google::Apis::Core::Hashable
-      
-        # A revision (commit) ID.
-        # Corresponds to the JSON property `revisionId`
-        # @return [String]
-        attr_accessor :revision_id
-      
-        # The URI of a running Gerrit instance.
-        # Corresponds to the JSON property `hostUri`
-        # @return [String]
-        attr_accessor :host_uri
-      
-        # The name of an alias (branch, tag, etc.).
-        # Corresponds to the JSON property `aliasName`
-        # @return [String]
-        attr_accessor :alias_name
-      
-        # An alias to a repo revision.
-        # Corresponds to the JSON property `aliasContext`
-        # @return [Google::Apis::ClouddebuggerV2::AliasContext]
-        attr_accessor :alias_context
-      
-        # The full project name within the host. Projects may be nested, so
-        # "project/subproject" is a valid project name.
-        # The "repo name" is hostURI/project.
-        # Corresponds to the JSON property `gerritProject`
-        # @return [String]
-        attr_accessor :gerrit_project
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @revision_id = args[:revision_id] if args.key?(:revision_id)
-          @host_uri = args[:host_uri] if args.key?(:host_uri)
-          @alias_name = args[:alias_name] if args.key?(:alias_name)
-          @alias_context = args[:alias_context] if args.key?(:alias_context)
-          @gerrit_project = args[:gerrit_project] if args.key?(:gerrit_project)
         end
       end
     end

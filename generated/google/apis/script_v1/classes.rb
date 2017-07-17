@@ -27,11 +27,6 @@ module Google
       class JoinAsyncRequest
         include Google::Apis::Core::Hashable
       
-        # Timeout for information retrieval in milliseconds.
-        # Corresponds to the JSON property `timeout`
-        # @return [String]
-        attr_accessor :timeout
-      
         # The script id which specifies the script which all processes in the names
         # field must be from.
         # Corresponds to the JSON property `scriptId`
@@ -44,15 +39,20 @@ module Google
         # @return [Array<String>]
         attr_accessor :names
       
+        # Timeout for information retrieval in milliseconds.
+        # Corresponds to the JSON property `timeout`
+        # @return [String]
+        attr_accessor :timeout
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @timeout = args[:timeout] if args.key?(:timeout)
           @script_id = args[:script_id] if args.key?(:script_id)
           @names = args[:names] if args.key?(:names)
+          @timeout = args[:timeout] if args.key?(:timeout)
         end
       end
       
@@ -84,27 +84,6 @@ module Google
         end
       end
       
-      # An object that provides the return value for the JoinAsync method.
-      class JoinAsyncResponse
-        include Google::Apis::Core::Hashable
-      
-        # The return values for each script function, in a map of operation resource
-        # names to the Operation containing the result of the process. The response
-        # will contain either an error or the result of the script function.
-        # Corresponds to the JSON property `results`
-        # @return [Hash<String,Google::Apis::ScriptV1::Operation>]
-        attr_accessor :results
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @results = args[:results] if args.key?(:results)
-        end
-      end
-      
       # The response will not arrive until the function finishes executing. The
       # maximum runtime is listed in the guide to [limitations in Apps Script](https://
       # developers.google.com/apps-script/guides/services/quotas#current_limitations).
@@ -121,12 +100,6 @@ module Google
       # will automatically convert a 4XX response into an exception class.</p>
       class Operation
         include Google::Apis::Core::Hashable
-      
-        # This field is not used.
-        # Corresponds to the JSON property `done`
-        # @return [Boolean]
-        attr_accessor :done
-        alias_method :done?, :done
       
         # If the script function returns successfully, this field will contain an `
         # ExecutionResponse` object with the function's return value as the object's `
@@ -152,17 +125,44 @@ module Google
         # @return [Hash<String,Object>]
         attr_accessor :metadata
       
+        # This field is not used.
+        # Corresponds to the JSON property `done`
+        # @return [Boolean]
+        attr_accessor :done
+        alias_method :done?, :done
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
-          @done = args[:done] if args.key?(:done)
           @response = args[:response] if args.key?(:response)
           @name = args[:name] if args.key?(:name)
           @error = args[:error] if args.key?(:error)
           @metadata = args[:metadata] if args.key?(:metadata)
+          @done = args[:done] if args.key?(:done)
+        end
+      end
+      
+      # An object that provides the return value for the JoinAsync method.
+      class JoinAsyncResponse
+        include Google::Apis::Core::Hashable
+      
+        # The return values for each script function, in a map of operation resource
+        # names to the Operation containing the result of the process. The response
+        # will contain either an error or the result of the script function.
+        # Corresponds to the JSON property `results`
+        # @return [Hash<String,Google::Apis::ScriptV1::Operation>]
+        attr_accessor :results
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @results = args[:results] if args.key?(:results)
         end
       end
       
@@ -274,6 +274,20 @@ module Google
       class ExecutionRequest
         include Google::Apis::Core::Hashable
       
+        # For Android add-ons only. An ID that represents the user's current session
+        # in the Android app for Google Docs or Sheets, included as extra data in the
+        # [`Intent`](https://developer.android.com/guide/components/intents-filters.html)
+        # that launches the add-on. When an Android add-on is run with a session
+        # state, it gains the privileges of a
+        # [bound](https://developers.google.com/apps-script/guides/bound) script &mdash;
+        # that is, it can access information like the user's current cursor position
+        # (in Docs) or selected cell (in Sheets). To retrieve the state, call
+        # `Intent.getStringExtra("com.google.android.apps.docs.addons.SessionState")`.
+        # Optional.
+        # Corresponds to the JSON property `sessionState`
+        # @return [String]
+        attr_accessor :session_state
+      
         # If `true` and the user is an owner of the script, the script runs at the
         # most recently saved version rather than the version deployed for use with
         # the Execution API. Optional; default is `false`.
@@ -297,30 +311,16 @@ module Google
         # @return [Array<Object>]
         attr_accessor :parameters
       
-        # For Android add-ons only. An ID that represents the user's current session
-        # in the Android app for Google Docs or Sheets, included as extra data in the
-        # [`Intent`](https://developer.android.com/guide/components/intents-filters.html)
-        # that launches the add-on. When an Android add-on is run with a session
-        # state, it gains the privileges of a
-        # [bound](https://developers.google.com/apps-script/guides/bound) script &mdash;
-        # that is, it can access information like the user's current cursor position
-        # (in Docs) or selected cell (in Sheets). To retrieve the state, call
-        # `Intent.getStringExtra("com.google.android.apps.docs.addons.SessionState")`.
-        # Optional.
-        # Corresponds to the JSON property `sessionState`
-        # @return [String]
-        attr_accessor :session_state
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @session_state = args[:session_state] if args.key?(:session_state)
           @dev_mode = args[:dev_mode] if args.key?(:dev_mode)
           @function = args[:function] if args.key?(:function)
           @parameters = args[:parameters] if args.key?(:parameters)
-          @session_state = args[:session_state] if args.key?(:session_state)
         end
       end
     end

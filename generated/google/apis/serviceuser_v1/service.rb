@@ -49,45 +49,6 @@ module Google
           @batch_path = 'batch'
         end
         
-        # List enabled services for the specified consumer.
-        # @param [String] parent
-        #   List enabled services for the specified parent.
-        #   An example valid parent would be:
-        #   - projects/my-project
-        # @param [String] page_token
-        #   Token identifying which result to start with; returned by a previous list
-        #   call.
-        # @param [Fixnum] page_size
-        #   Requested size of the next page of data.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::ServiceuserV1::ListEnabledServicesResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::ServiceuserV1::ListEnabledServicesResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_project_services(parent, page_token: nil, page_size: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command =  make_simple_command(:get, 'v1/{+parent}/services', options)
-          command.response_representation = Google::Apis::ServiceuserV1::ListEnabledServicesResponse::Representation
-          command.response_class = Google::Apis::ServiceuserV1::ListEnabledServicesResponse
-          command.params['parent'] = parent unless parent.nil?
-          command.query['pageToken'] = page_token unless page_token.nil?
-          command.query['pageSize'] = page_size unless page_size.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
         # Disable a service so it can no longer be used with a
         # project. This prevents unintended usage that may cause unexpected billing
         # charges or security leaks.
@@ -161,6 +122,45 @@ module Google
           command.response_representation = Google::Apis::ServiceuserV1::Operation::Representation
           command.response_class = Google::Apis::ServiceuserV1::Operation
           command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # List enabled services for the specified consumer.
+        # @param [String] parent
+        #   List enabled services for the specified parent.
+        #   An example valid parent would be:
+        #   - projects/my-project
+        # @param [String] page_token
+        #   Token identifying which result to start with; returned by a previous list
+        #   call.
+        # @param [Fixnum] page_size
+        #   Requested size of the next page of data.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ServiceuserV1::ListEnabledServicesResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ServiceuserV1::ListEnabledServicesResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_project_services(parent, page_token: nil, page_size: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command =  make_simple_command(:get, 'v1/{+parent}/services', options)
+          command.response_representation = Google::Apis::ServiceuserV1::ListEnabledServicesResponse::Representation
+          command.response_class = Google::Apis::ServiceuserV1::ListEnabledServicesResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)

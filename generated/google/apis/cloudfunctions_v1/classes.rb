@@ -26,6 +26,11 @@ module Google
       class OperationMetadataV1Beta2
         include Google::Apis::Core::Hashable
       
+        # Type of operation.
+        # Corresponds to the JSON property `type`
+        # @return [String]
+        attr_accessor :type
+      
         # Target of the operation - for example
         # projects/project-1/locations/region-1/functions/function-1
         # Corresponds to the JSON property `target`
@@ -37,20 +42,15 @@ module Google
         # @return [Hash<String,Object>]
         attr_accessor :request
       
-        # Type of operation.
-        # Corresponds to the JSON property `type`
-        # @return [String]
-        attr_accessor :type
-      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @type = args[:type] if args.key?(:type)
           @target = args[:target] if args.key?(:target)
           @request = args[:request] if args.key?(:request)
-          @type = args[:type] if args.key?(:type)
         end
       end
     end

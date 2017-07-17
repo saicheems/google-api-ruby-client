@@ -26,7 +26,7 @@ module Google
     # @see https://cloud.google.com/spanner/
     module SpannerV1
       VERSION = 'V1'
-      REVISION = '20170613'
+      REVISION = '20170701'
 
       # Administer your Spanner databases
       AUTH_SPANNER_ADMIN = 'https://www.googleapis.com/auth/spanner.admin'
