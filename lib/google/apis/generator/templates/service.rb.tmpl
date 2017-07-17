@@ -34,7 +34,7 @@ module Google
       # @see <%= api.documentation_link %>
 <% end -%>
       class <%= api.service_name %> < Google::Apis::Core::BaseService
-<% for param in api.parameters.values.reject {|p| p.name == 'fields'} -%>
+<% for param in api.parameters.values.sort_by{|p| p.name}.reject {|p| p.name == 'fields'} -%>
         # @return [<%= param.generated_type %>]
         #  <%= block_comment(param.description, 8, 2) %>
         attr_accessor :<%= param.generated_name %>
@@ -51,7 +51,7 @@ module Google
         protected
 
         def apply_command_defaults(command)
-<% for param in api.parameters.values.reject {|p| p.name == 'fields'} -%>
+<% for param in api.parameters.values.sort_by{|p| p.name}.reject {|p| p.name == 'fields'} -%>
           command.query['<%= param.name %>'] = <%= param.generated_name %> unless <%= param.generated_name %>.nil?
 <% end -%>
         end

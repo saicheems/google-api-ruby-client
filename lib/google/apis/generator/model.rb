@@ -39,7 +39,7 @@ module Google
         attr_accessor :path
 
         def properties
-          @properties ||= {}
+          Hash[(@properties || {}).sort]
         end
 
         def qualified_name
@@ -68,6 +68,10 @@ module Google
         attr_accessor :generated_name
         attr_accessor :parent
 
+        def parameters
+          Hash[(@parameters || {}).sort]
+        end
+
         def path_parameters
           return [] if parameter_order.nil? || parameters.nil?
           parameter_order.map { |name| parameters[name] }.select { |param| param.location == 'path' }
@@ -94,8 +98,8 @@ module Google
 
         def all_methods
           m = []
-          m << api_methods.values unless api_methods.nil?
-          m << resources.map { |_k, r| r.all_methods } unless resources.nil?
+          m << api_methods.values.sort_by { |v| v.id } unless api_methods.nil?
+          m << Hash[resources.sort].map { |_k, r| r.all_methods } unless resources.nil?
           m.flatten
         end
       end
@@ -127,15 +131,23 @@ module Google
 
         def all_methods
           m = []
-          m << api_methods.values unless api_methods.nil?
-          m << resources.map { |_k, r| r.all_methods } unless resources.nil?
+          m << api_methods.values.sort_by { |v| v.id } unless api_methods.nil?
+          m << Hash[resources.sort].map { |_k, r| r.all_methods } unless resources.nil?
           m.flatten
+        end
+
+        def schemas
+          Hash[(@schemas || {}).sort]
         end
 
         class Auth
           class Oauth2
             class Scope
               attr_accessor :constant
+            end
+
+            def scopes
+              Hash[(@scopes || {}).sort]
             end
           end
         end

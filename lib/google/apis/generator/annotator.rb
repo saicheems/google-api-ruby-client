@@ -90,7 +90,7 @@ module Google
         end
 
         def dump
-          YAML.dump(@names)
+          YAML.dump(Hash[@names.sort])
         end
 
         def key
